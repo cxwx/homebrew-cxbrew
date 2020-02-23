@@ -34,8 +34,8 @@ class Gammalib < Formula
   test do
     (testpath/"test.py").write <<~EOS
       import gammalib
-      print('the version is ',gammalib.__version__)
+      print('the version is',gammalib.__version__)
     EOS
-    assert_match /the version is 1.6.3/, shell_output("python test.py")
+    assert_match /"the version is 1.6.3\n"/, shell_output("python test.py")
   end
 end
