@@ -7,7 +7,6 @@ class Gammalib < Formula
   depends_on "cfitsio"
   depends_on "doxygen"
   depends_on "python"
-#  depends_on "python@3.8"
   depends_on "readline"
   depends_on "swig"
   uses_from_macos "ncurses"
@@ -27,14 +26,14 @@ class Gammalib < Formula
   end
 
   test do
-    #(testpath/"test.py").write <<~EOS
-    #  import gammalib
-    #  dir=gammalib.GSkyDir()
-    #  dir.radec_deg(83.63,22.01)
-    #  l=dir.l_deg()
-    #  print(l)
-    #EOS
-    #assert_match /184.55973405309402/, shell_output("python test.py")
+    # (testpath/"test.py").write <<~EOS
+    #   import gammalib
+    #   dir=gammalib.GSkyDir()
+    #   dir.radec_deg(83.63,22.01)
+    #   l=dir.l_deg()
+    #   print(l)
+    # EOS
+    # assert_match /184.55973405309402/, shell_output("python test.py")
     (testpath/"test.cpp").write <<~EOS
       #include <gammalib/GSkyMap.hpp>
       #include <iostream>

@@ -5,10 +5,9 @@ class Ctools < Formula
   sha256 "7361351ef95be8f949815a0006df0867fda72c6a0ee6b9956b5340b3ae29764b"
 
   depends_on "doxygen"
-  depends_on "python"
-#  depends_on "python@3.8"
-  depends_on "swig"
   depends_on "gammalib"
+  depends_on "python"
+  depends_on "swig"
 
   def install
     system "./configure", "PYTHON=/usr/local/bin/python3", "--prefix=#{prefix}"
