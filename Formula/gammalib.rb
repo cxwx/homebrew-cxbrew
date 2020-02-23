@@ -8,12 +8,12 @@ class Gammalib < Formula
   depends_on "cfitsio"
   depends_on "doxygen"
   depends_on "ncurses"
-  depends_on "python3"
+  depends_on "python"
   depends_on "readline"
   depends_on "swig"
 
   def install
-    system "./configure", "--prefix=#{prefix}"
+    system "./configure", "PYTHON=/usr/local/bin/python3", "--prefix=#{prefix}"
     system "make"
     system "make", "install"
   end
