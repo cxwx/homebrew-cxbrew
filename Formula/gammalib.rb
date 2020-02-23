@@ -8,7 +8,7 @@ class Gammalib < Formula
   depends_on "cfitsio"
   depends_on "doxygen"
   depends_on "ncurses"
-  depends_on "python"
+  depends_on "python3"
   depends_on "readline"
   depends_on "swig"
 
@@ -16,6 +16,19 @@ class Gammalib < Formula
     system "./configure", "--prefix=#{prefix}"
     system "make"
     system "make", "install"
+  end
+
+  def caveats; <<~EOS
+    Because gammalib depends on several installation-dependent
+    environment variables to function properly, you should
+    add the following commands to your shell initialization
+    script or call them directly
+    before using gammalib.
+
+    For zsh users:
+      export GAMMALIB=/usr/local/
+      source $GAMMALIB/bin/gammalib-init.sh
+  EOS
   end
 
   test do
