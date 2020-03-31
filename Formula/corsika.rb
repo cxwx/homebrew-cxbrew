@@ -3,11 +3,6 @@ class Corsika < Formula
   homepage "https://www.ikp.kit.edu/corsika/"
   url "https://gitlab.ikp.kit.edu/AirShowerPhysics/corsika/-/archive/master/corsika-master.tar.gz"
   version "8.0.0"
-  bottle do
-    root_url "https://mirrors.ustc.edu.cn/homebrew-bottles/bottles-cxbrew"
-    cellar :any
-    sha256 "f0b58be4b44ee4c959ac7013cbdcacb72fc54fa174a58eb867142e2c702c8566" => :catalina
-  end
 
   # sha256 "5e4ff5bbdf6f533c448de1ccc6642c43313030bfc2fcabd3df762672cb7a17c8"
 
