@@ -3,9 +3,6 @@ require "formula"
 class Pal < Formula
 
   homepage "https://github.com/IceCube-SPNO/pal"
-  version "0.9.7"
-  url "https://github.com/IceCube-SPNO/pal/archive/master.tar.gz"
-  sha256 "001c4225d90a6887e8a7da45d1db2147bfa3c8ca3545492b20594042f9fcdabe"
 
   depends_on "erfa"
   # batteries not included
