@@ -6,13 +6,14 @@ class Gammalib < Formula
 
   depends_on "cfitsio"
   depends_on "doxygen"
-  depends_on "python"
+  depends_on "python@3.8"
   depends_on "readline"
   depends_on "swig"
   uses_from_macos "ncurses"
 
   def install
-    system "./configure", "PYTHON=/usr/local/bin/python3", "--prefix=#{prefix}"
+#    system "./configure", "PYTHON=/usr/local/bin/python3", "--prefix=#{prefix}"
+    system "./configure", "PYTHON=#{Formula["python@3.8"].opt_bin}/python3", "--prefix=#{prefix}"
     system "make"
     system "make", "install"
   end
