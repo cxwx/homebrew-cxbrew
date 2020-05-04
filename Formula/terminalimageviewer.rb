@@ -14,12 +14,13 @@ class Terminalimageviewer < Formula
         # No expermimental/filesystem.h on mac
         system "#{Formula["gcc"].opt_bin}/gcc-#{Formula["gcc"].version_suffix}", "-std=c++17",
                                                                                   "-Wall",
+                                                                                  "-L/usr/local/opt/gcc/lib/gcc/9/",
                                                                                   "-fpermissive",
                                                                                   "-fexceptions",
                                                                                   "-O2", "-c",
                                                                                   "tiv.cpp", "-o", "tiv.o"
         system "#{Formula["gcc"].opt_bin}/gcc-#{Formula["gcc"].version_suffix}", "tiv.o", "-o", 
-                                                                                 "tiv", "-lstdc++fs",
+                                                                                 "tiv", "-L/usr/local/opt/gcc/lib/gcc/9/ -lstdc++fs",
                                                                                  "-pthread", "-s"
       else
         system "make"
