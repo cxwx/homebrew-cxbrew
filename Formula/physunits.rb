@@ -1,9 +1,9 @@
 class Physunits < Formula
   desc "C++ header-only for Physics unit/quantity manipulation and conversion"
   homepage "https://github.com/martinmoene/PhysUnits-CT-Cpp11"
-  url "https://github.com/martinmoene/PhysUnits-CT-Cpp11/archive/master.tar.gz"
-  version "1.1.0"
-  sha256 "8a4974e816e576f55e5e6b27874c364ae6181405911b864edd0912402c3066ae"
+  url "https://github.com/martinmoene/PhysUnits-CT-Cpp11/archive/v1.2.0.tar.gz"
+  version "1.2.0"
+  sha256 "e9bcce99d9c90ac8ce96746eff49c20b7c9717aee08b3cd6e58127c7ad9fa7c6"
 
   depends_on "cmake" => :build
 
