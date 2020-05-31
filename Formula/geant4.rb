@@ -7,6 +7,7 @@ class Geant4 < Formula
   revision 1
 
   depends_on "cmake" => [:build, :test]
+  depends_on "expat"
   depends_on "qt"
   depends_on "xerces-c"
   depends_on "boost-python3"
