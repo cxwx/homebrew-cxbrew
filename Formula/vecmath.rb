@@ -6,6 +6,7 @@ class Vecmath < Formula
 
   depends_on "cmake" => :build
   depends_on "vc"
+  depends_on "vdt"
 
   def install
     mkdir "builddir" do

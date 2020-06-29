@@ -16,8 +16,8 @@ class Vecgeom < Formula
         -DBACKEND=Vc
         -DNO_SPECIALIZATION=ON
         -DVc_DIR=/usr/local/lib/cmake/Vc/
-        -DBUILD_SHARED_LIBS=ON
       ]
+      # -DBUILD_SHARED_LIBS=ON
       system "cmake", *args
       system "make", "install"
     end
