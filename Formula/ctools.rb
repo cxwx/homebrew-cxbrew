@@ -1,8 +1,8 @@
 class Ctools < Formula
   desc "Software package for analysis of CTA data"
   homepage "http://cta.irap.omp.eu/ctools/about.html"
-  url "http://cta.irap.omp.eu/ctools/releases/ctools/ctools-1.6.3.tar.gz"
-  sha256 "7361351ef95be8f949815a0006df0867fda72c6a0ee6b9956b5340b3ae29764b"
+  url "http://cta.irap.omp.eu/ctools/releases/ctools/ctools-1.7.0.tar.gz"
+#  sha256 "7361351ef95be8f949815a0006df0867fda72c6a0ee6b9956b5340b3ae29764b"
 
   depends_on "doxygen"
   depends_on "gammalib"
@@ -11,6 +11,8 @@ class Ctools < Formula
 
   def install
 #    system "./configure", "PYTHON=/usr/local/bin/python3", "--prefix=#{prefix}"
+#    system "export GAMMALIB=/usr/local/Cellar/gammalib/1.7.0/"
+#    system ". $GAMMALIB/bin/gammalib-init.sh"
     system "./configure", "PYTHON=#{Formula["python@3.8"].opt_bin}/python3", "--prefix=#{prefix}"
     system "make"
     system "make", "install"
