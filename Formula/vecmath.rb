@@ -1,8 +1,9 @@
 class Vecmath < Formula
   desc "A collection of vectorized based math utilities based on VecCore library"
   homepage "https://github.com/root-project/vecmath"
-  url "https://codeload.github.com/root-project/vecmath/tar.gz/master"
+  url "https://github.com/root-project/vecmath/archive/v0.1.0.tar.gz"
   version "0.1.0"
+  revision 1
 
   depends_on "cmake" => :build
   depends_on "vc"
