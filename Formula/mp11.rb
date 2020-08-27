@@ -4,9 +4,9 @@
 class Mp11 < Formula
   desc "C++11 metaprogramming library"
   homepage ""
-  url "https://github.com/boostorg/mp11/archive/boost-1.72.0.tar.gz"
-  sha256 "d3a7ec3d8a3c00842a680c10cbfe2f35e48e33d19335c5bd3fefce645befc37f"
-  license ""
+  url "https://github.com/boostorg/mp11/archive/boost-1.73.0.tar.gz"
+#  sha256 "d3a7ec3d8a3c00842a680c10cbfe2f35e48e33d19335c5bd3fefce645befc37f"
+#  license ""
 
   depends_on "cmake" => :build
   depends_on "boost"

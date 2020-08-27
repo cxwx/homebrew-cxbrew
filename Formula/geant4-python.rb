@@ -1,17 +1,19 @@
-class Geant4 < Formula
+class Geant4Python < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-  url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.tar.gz"
-  version "10.6.2"
-  sha256 "ecdadbf846807af8baa071f38104fb0dcc24847c8475cd8397302e2aefa8f66f"
+#  url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.tar.gz"
+  url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.b01.tar.gz"
+  version "10.7.b01"
   revision 1
+
+  conflicts_with "geant4", because: "both install `geant4`"
 
   depends_on "cmake" => [:build, :test]
   depends_on "expat"
   depends_on "qt"
-  depends_on "xerces-c"
   depends_on "boost-python3"
   depends_on "python@3.8"
+  depends_on "xerces-c"
 
   def install
     mkdir "geant-build" do
@@ -21,6 +23,8 @@ class Geant4 < Formula
         -DGEANT4_USE_QT=ON
         -DGEANT4_USE_PYTHON=ON
         -DGEANT4_INSTALL_DATA=ON
+        -DGEANT4_BUILD_MULTITHREADED=ON
+        -DGEANT4_BUILD_TLS_MODEL=global-dynamic
       ]
 
       system "cmake", *args
