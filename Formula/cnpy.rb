@@ -1,10 +1,9 @@
 class Cnpy < Formula
   desc "C++ io of numpy"
   homepage "https://github.com/rogersce/cnpy"
-#  url "https://github.com/rogersce/cnpy/archive/master.tar.gz"
+  #  url "https://github.com/rogersce/cnpy/archive/master.tar.gz"
   url "https://github.com/cxwx/cnpy/archive/V0.1.0.tar.gz"
-#  version "0.1.0"
-
+  #  version "0.1.0"
 
   depends_on "cmake" => [:build, :test]
 
@@ -19,5 +18,4 @@ class Cnpy < Formula
       system "make", "install"
     end
   end
-
 end

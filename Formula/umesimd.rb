@@ -1,5 +1,5 @@
 class Umesimd < Formula
-  desc "An explicit vectorization library"
+  desc "Explicit vectorization library"
   homepage "https://github.com/edanor/umesimd"
   url "https://github.com/edanor/umesimd/archive/v0.8.1.tar.gz"
 
@@ -15,5 +15,4 @@ class Umesimd < Formula
       system "make", "install"
     end
   end
-
 end

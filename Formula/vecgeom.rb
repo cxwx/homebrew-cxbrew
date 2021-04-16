@@ -1,12 +1,12 @@
 class Vecgeom < Formula
-  desc "A geometry modeller library needed by particle detector simulation"
+  desc "Geometry modeller library needed by particle detector simulation"
   homepage "https://gitlab.cern.ch/VecGeom/VecGeom"
   url "https://gitlab.cern.ch/VecGeom/VecGeom/-/archive/v1.1.7/VecGeom-v1.1.7.tar.gz"
 
-  depends_on "cmake" => :build
   depends_on "ccache" => :build
-  depends_on "vc"
+  depends_on "cmake" => :build
   depends_on "root"
+  depends_on "vc"
 
   def install
     mkdir "builddir" do
@@ -22,5 +22,4 @@ class Vecgeom < Formula
       system "make", "install"
     end
   end
-
 end

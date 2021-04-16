@@ -1,19 +1,21 @@
-class Geant4Python < Formula
+class Geant4CX < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-#  url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.tar.gz"
   url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.b01.tar.gz"
-  version "10.7.b01"
-  revision 1
-
-  conflicts_with "geant4", because: "both install `geant4`"
+  url "https://geant4-data.web.cern.ch/releases/geant4.10.07.p01.tar.gz"
+  version "10.7.p01"
+  revision 3
 
   depends_on "cmake" => [:build, :test]
-  depends_on "expat"
-  depends_on "qt"
   depends_on "boost-python3"
-  depends_on "python@3.8"
+  depends_on "boost-python3"
+  depends_on "expat"
+  depends_on "python"
+  depends_on "qt@5"
   depends_on "xerces-c"
+
+  conflicts_with "geant4", because: "both install `geant4`"
+  #  depends_on "python@3.8"
 
   def install
     mkdir "geant-build" do
@@ -30,7 +32,6 @@ class Geant4Python < Formula
       system "cmake", *args
       system "make", "install"
     end
-
   end
 
   def caveats

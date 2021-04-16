@@ -6,7 +6,7 @@ class SofaC < Formula
 
   def install
     cd "#{version}/c/src"
-    system "sed -i'.bak' 's/ar ru/gcc -fPIC -dynamiclib -o/g' makefile "
+    system "sed", "-i.bak", "s/ar ru/gcc -fPIC -dynamiclib -o/g", "makefile"
     system "make", "install", "INSTALL_DIR=#{prefix}", "SOFA_LIB_NAME=libsofa_c.dylib"
   end
 end

@@ -1,5 +1,5 @@
 class Vecmath < Formula
-  desc "A collection of vectorized based math utilities based on VecCore library"
+  desc "Collection of vectorized based math utilities based on VecCore library"
   homepage "https://github.com/root-project/vecmath"
   url "https://github.com/root-project/vecmath/archive/v0.1.0.tar.gz"
   version "0.1.0"
@@ -22,5 +22,4 @@ class Vecmath < Formula
       system "make", "install"
     end
   end
-
 end

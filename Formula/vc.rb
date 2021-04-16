@@ -1,5 +1,5 @@
 class Vc < Formula
-  desc "portable, zero-overhead C++ types for explicitly data-parallel programming"
+  desc "Portable, zero-overhead C++ types for explicitly data-parallel programming"
   homepage "https://github.com/VcDevel/Vc"
   url "https://github.com/VcDevel/Vc/releases/download/1.4.1/Vc-1.4.1.tar.gz"
   version "1.4.1"
@@ -18,5 +18,4 @@ class Vc < Formula
       system "make", "install"
     end
   end
-
 end

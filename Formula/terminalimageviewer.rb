@@ -16,7 +16,7 @@ class Terminalimageviewer < Formula
                       "-O2", "-c",
                       "-L/usr/local/opt/gcc/lib/gcc/10/",
                       "tiv.cpp", "-o", "tiv.o"
-        system "c++", "tiv.o", "-o", 
+        system "c++", "tiv.o", "-o",
                       "tiv", "-L/usr/local/opt/gcc/lib/gcc/10/", "-lstdc++fs",
                       "-pthread", "-s"
       else

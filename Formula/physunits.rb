@@ -33,6 +33,6 @@ class Physunits < Formula
       }
     EOS
     system ENV.cxx, "-std=c++11", "test.cpp", "-o", "test", "-I#{include}"
-    assert_match /12.5/, shell_output("./test")
+    assert_match(/12.5/, shell_output("./test"))
   end
 end

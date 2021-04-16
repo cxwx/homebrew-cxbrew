@@ -26,10 +26,11 @@ class Corsika < Formula
     end
   end
 
-  def caveats; <<~EOS
-    put
-    export FC=/usr/local/bin/fortran 
-    before brew install corsika
-  EOS
+  def caveats
+    <<~EOS
+      put
+      export FC=/usr/local/bin/fortran#{" "}
+      before brew install corsika
+    EOS
   end
 end

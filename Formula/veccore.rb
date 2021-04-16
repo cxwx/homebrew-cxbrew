@@ -4,9 +4,9 @@ class Veccore < Formula
   url "https://github.com/root-project/veccore/archive/v0.6.0.tar.gz"
 
   depends_on "cmake" => :build
-  depends_on "vc"
-  depends_on "umesimd"
   depends_on "root"
+  depends_on "umesimd"
+  depends_on "vc"
 
   def install
     mkdir "builddir" do
@@ -21,5 +21,4 @@ class Veccore < Formula
       system "make", "install"
     end
   end
-
 end

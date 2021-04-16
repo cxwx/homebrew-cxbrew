@@ -2,7 +2,7 @@
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Vdt < Formula
-  desc "The vdt mathematical library"
+  desc "Mathematical library"
   homepage "https://github.com/dpiparo/vdt"
   url "https://github.com/dpiparo/vdt/archive/v0.4.3.tar.gz"
   sha256 "705674612ebb5c182b65a8f61f4d173eb7fe7cdeee2235b402541a492e08ace1"

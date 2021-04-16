@@ -2,7 +2,7 @@
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Pf < Formula
-  desc "PF: a header only template library for fast particle filtering!"
+  desc ": a header only template library for fast particle filtering!"
   homepage "https://github.com/tbrown122387/pf/"
   url "https://github.com/tbrown122387/pf/archive/v1.0.2.tar.gz"
   sha256 "5f3d42a84152ab1b47cc601294bf42a90e1011bf80069cd01b7dc9b91b9154cf"
