@@ -18,6 +18,8 @@ class Corsika < Formula
   depends_on "binutils" => [:build]
   depends_on "make" => [:build]
 
+  conflicts_with "glew", because: "cor modify"
+
   def install
     mkdir "corsika-build" do
       args = std_cmake_args + %w[
