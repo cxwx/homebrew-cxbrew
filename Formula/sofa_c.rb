@@ -1,8 +1,8 @@
 class SofaC < Formula
   desc "Standards of Fundamental Astronomy"
   homepage "http://www.iausofa.org/"
-  url "http://www.iausofa.org/2021_0125_C/sofa_c-20210125_a.tar.gz"
-  version "20210125_a"
+  url "http://www.iausofa.org/2021_0512_C/sofa_c-20210512.tar.gz"
+#  version "20210125_a"
 
   def install
     cd "#{version}/c/src"
