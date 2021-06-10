@@ -1,4 +1,4 @@
-class Healpix < Formula
+class HealpixCX < Formula
   desc "Hierarchical Equal Area isoLatitude Pixelization of a sphere"
   homepage "https://healpix.jpl.nasa.gov"
   url "https://downloads.sourceforge.net/project/healpix/Healpix_3.70/Healpix_3.70_2020Jul23.tar.gz"
@@ -6,15 +6,13 @@ class Healpix < Formula
   sha256 "8841f171f1e22e75ea130e12e5cdc5bcf85dbec79f9f67dd1bf27e99fd20b6d1"
   license "GPL-2.0-or-later"
 
-  livecheck do
-    url :stable
-  end
-
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
-  depends_on "cfitsio"
+  depends_on "cfitsio_c_x"
+
+  conflicts_with "healpix", because: "both install `healpix`"
 
   def install
     configure_args = %w[
