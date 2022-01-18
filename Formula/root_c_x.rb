@@ -1,10 +1,16 @@
 class RootCX < Formula
   desc "Object oriented framework for large scale data analysis"
   homepage "https://root.cern.ch/"
-#  url "https://root.cern.ch/download/root_v6.24.00.source.tar.gz"
-#  sha256 "6f061ff6ef8f5ec218a12c4c9ea92665eea116b16e1cd4df4f96f00c078a2f6f"
+  url "https://root.cern.ch/download/root_v6.24.06.source.tar.gz"
+  sha256 "907f69f4baca1e4f30eeb4979598ca7599b6aa803ca046e80e25b6bbaa0ef522"
   license "LGPL-2.1-or-later"
-  head "https://github.com/root-project/root.git", branch: "v6-24-00-patches"
+  revision 1
+  head "https://github.com/root-project/root.git", branch: "master"
+
+  livecheck do
+    url "https://root.cern.ch/download/"
+    regex(/href=.*?root[._-]v?(\d+(?:\.\d*[02468])+)\.source\.t/i)
+  end
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
@@ -13,35 +19,43 @@ class RootCX < Formula
   depends_on "fftw"
   depends_on "gcc" # for gfortran
   depends_on "gl2ps"
+  depends_on "glew"
   depends_on "graphviz"
   depends_on "gsl"
   depends_on "lz4"
   depends_on "numpy" # for tmva
+  depends_on "openblas"
   depends_on "openssl@1.1"
   depends_on "pcre"
   depends_on "python@3.9"
+  depends_on "sqlite"
   depends_on "tbb"
+  depends_on :xcode
   depends_on "xrootd"
   depends_on "xz" # for LZMA
   depends_on "zstd"
+  depends_on "mysql-client"
 
   uses_from_macos "libxml2"
+  uses_from_macos "zlib"
 
-  conflicts_with "glew", because: "root ships its own copy of glew"
+  on_linux do
+    depends_on "libxft"
+    depends_on "libxpm"
+  end
 
   skip_clean "bin"
 
   def install
-    # Work around "error: no member named 'signbit' in the global namespace"
-    ENV.delete("SDKROOT") if DevelopmentTools.clang_build_version >= 900
+    ENV.append "LDFLAGS", "-Wl,-rpath,#{lib}/root" if OS.linux?
 
-    # Freetype/afterimage/gl2ps/lz4 are vendored in the tarball, so are fine.
-    # However, this is still permitting the build process to make remote
-    # connections. As a hack, since upstream support it, we inreplace
-    # this file to "encourage" the connection over HTTPS rather than HTTP.
-    inreplace "cmake/modules/SearchInstalledSoftware.cmake",
-              "http://lcgpackages",
-              "https://lcgpackages"
+    inreplace "cmake/modules/SearchInstalledSoftware.cmake" do |s|
+      # Enforce secure downloads of vendored dependencies. These are
+      # checksummed in the cmake file with sha256.
+      s.gsub! "http://lcgpackages", "https://lcgpackages"
+      # Patch out check that skips using brewed glew.
+      s.gsub! "CMAKE_VERSION VERSION_GREATER 3.15", "CMAKE_VERSION VERSION_GREATER 99.99"
+    end
 
     args = std_cmake_args + %W[
       -DCLING_CXX_PATH=clang++
@@ -49,8 +63,7 @@ class RootCX < Formula
       -DPYTHON_EXECUTABLE=#{Formula["python@3.9"].opt_bin}/python3
       -Dbuiltin_cfitsio=OFF
       -Dbuiltin_freetype=ON
-      -Dbuiltin_glew=ON
-      -DCFITSIO_LIBRARY=/usr/local/Cellar/cfitsio/3.490/lib/libcfitsio.9.3.49.dylib
+      -Dbuiltin_glew=OFF
       -Ddavix=ON
       -Dfftw3=ON
       -Dfitsio=ON
@@ -60,7 +73,7 @@ class RootCX < Formula
       -Dimt=ON
       -Dmathmore=ON
       -Dminuit2=ON
-      -Dmysql=OFF
+      -Dmysql=ON
       -Dpgsql=OFF
       -Dpyroot=ON
       -Droofit=ON
@@ -82,7 +95,6 @@ class RootCX < Formula
 
     mkdir "builddir" do
       system "cmake", "..", *args
-
       system "ninja", "install"
 
       chmod 0755, Dir[bin/"*.*sh"]
@@ -95,7 +107,7 @@ class RootCX < Formula
 
   def caveats
     <<~EOS
-      As of ROOT 6.24, you should not need the thisroot scripts; but if you
+      As of ROOT 6.22, you should not need the thisroot scripts; but if you
       depend on the custom variables set by them, you can still run them:
 
       For bash users:
@@ -133,12 +145,10 @@ class RootCX < Formula
         return 0;
       }
     EOS
-    (testpath/"test_compile.bash").write <<~EOS
-      $(root-config --cxx) $(root-config --cflags) $(root-config --libs) $(root-config --ldflags) test.cpp
-      ./a.out
-    EOS
-    assert_equal "Hello, world!\n",
-                 shell_output("/bin/bash test_compile.bash")
+    flags = %w[cflags libs ldflags].map { |f| "$(root-config --#{f})" }
+    flags << "-Wl,-rpath,#{lib}/root" if OS.linux?
+    shell_output("$(root-config --cxx) test.cpp #{flags.join(" ")}")
+    assert_equal "Hello, world!\n", shell_output("./a.out")
 
     # Test Python module
     system Formula["python@3.9"].opt_bin/"python3", "-c", "import ROOT; ROOT.gSystem.LoadAllLibraries()"
