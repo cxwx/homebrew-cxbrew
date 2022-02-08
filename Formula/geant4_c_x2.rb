@@ -10,6 +10,7 @@ class Geant4CX2 < Formula
   depends_on "expat"
   depends_on "python"
   depends_on "qt@5"
+  depends_on "vtk"
   depends_on "xerces-c"
 
   conflicts_with "geant4", because: "both install `geant4`"
@@ -21,6 +22,7 @@ class Geant4CX2 < Formula
         ../
         -DGEANT4_USE_GDML=ON
         -DGEANT4_USE_QT=ON
+        -DGEANT4_USE_VTK=ON
         -DGEANT4_USE_PYTHON=ON
         -DGEANT4_INSTALL_DATA=ON
         -DGEANT4_BUILD_MULTITHREADED=ON
