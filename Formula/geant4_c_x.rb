@@ -1,18 +1,17 @@
 class Geant4CX < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-  url "http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.b01.tar.gz"
-  url "https://geant4-data.web.cern.ch/releases/geant4.10.07.p01.tar.gz"
-  version "10.7.p01"
-  revision 3
+  url "https://geant4-data.web.cern.ch/releases/geant4-v11.0.0.tar.gz"
+  version "11.0.0"
+#  revision 3
 
   depends_on "cmake" => [:build, :test]
-  depends_on "boost-python3"
   depends_on "boost-python3"
   depends_on "expat"
   depends_on "python"
   depends_on "qt@5"
   depends_on "xerces-c"
+  depends_on "vtk"
 
   conflicts_with "geant4", because: "both install `geant4`"
   #  depends_on "python@3.8"
@@ -23,6 +22,7 @@ class Geant4CX < Formula
         ../
         -DGEANT4_USE_GDML=ON
         -DGEANT4_USE_QT=ON
+        -DGEANT4_USE_VTK=ON
         -DGEANT4_USE_PYTHON=ON
         -DGEANT4_INSTALL_DATA=ON
         -DGEANT4_BUILD_MULTITHREADED=ON
