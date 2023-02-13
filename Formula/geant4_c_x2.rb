@@ -1,8 +1,8 @@
 class Geant4CX2 < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-  url "https://geant4-data.web.cern.ch/releases/geant4-v11.0.2.tar.gz"
-  version "11.0.2"
+  url "https://geant4-data.web.cern.ch/releases/geant4-v11.1.0.tar.gz"
+#  version "11.0.2"
 #  revision 3
 
   depends_on "cmake" => [:build, :test]
@@ -23,7 +23,7 @@ class Geant4CX2 < Formula
         -DGEANT4_USE_GDML=ON
         -DGEANT4_USE_QT=ON
         -DGEANT4_USE_VTK=OFF
-        -DGEANT4_USE_PYTHON=ON
+        -DGEANT4_USE_PYTHON=OFF
         -DGEANT4_INSTALL_DATA=ON
         -DGEANT4_BUILD_MULTITHREADED=ON
         -DGEANT4_BUILD_TLS_MODEL=global-dynamic
