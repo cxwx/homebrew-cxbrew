@@ -25,8 +25,6 @@ class Dealii < Formula
   def install
     args = %w[
       -DCMAKE_INSTALL_PREFIX="#{prefix}"
-      -DDEAL_II_FORCE_BUNDLED_KOKKOS=OFF
-      -DDEAL_II_WITH_KOKKOS=OFF
     ]
     system "cmake", "-S", ".", "-B", "builddir", *args
     system "cmake", "--build", "builddir"
