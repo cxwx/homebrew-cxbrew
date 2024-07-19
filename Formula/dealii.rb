@@ -24,9 +24,9 @@ class Dealii < Formula
 
   def install
     args = %w[
-      -DCMAKE_INSTALL_PREFIX="#{prefix}"
+      -DCMAKE_INSTALL_PREFIX=#{prefix}
     ]
-    system "cmake", "-S", ".", "-B", "builddir", *args
+    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}"
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
