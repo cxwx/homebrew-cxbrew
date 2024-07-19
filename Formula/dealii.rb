@@ -1,9 +1,9 @@
 # cspell:disable
 class Dealii < Formula
-  desc "Deal II"
+  desc "deal.II finite element library."
   homepage "www.dealii.org"
   url "https://github.com/dealii/dealii/releases/download/v9.5.2/dealii-9.5.2.tar.gz"
-  # head "https://github.com/dealii/dealii", branch: "master"
+  license "Apache-2.0"
 
   depends_on "cmake" => :build
   depends_on "vtk"
@@ -30,6 +30,6 @@ class Dealii < Formula
     ]
     system "cmake", "-S", ".", "-B", "builddir", *args
     system "cmake", "--build", "builddir"
-    system "cmake", "--install" "builddir"
+    system "cmake", "--install", "builddir"
   end
 end
