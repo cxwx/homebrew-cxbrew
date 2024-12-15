@@ -1,3 +1,4 @@
+# cspell:disable
 class Umesimd < Formula
   desc "Explicit vectorization library"
   homepage "https://github.com/edanor/umesimd"
