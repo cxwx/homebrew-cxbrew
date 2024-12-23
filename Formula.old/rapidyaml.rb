@@ -11,9 +11,9 @@ class Rapidyaml < Formula
   conflicts_with "c4core", because: "both install `c4core`"
 
   def install
-    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DBUILD_SHARED_LIBS=ON"
-    system "cmake", "--build", "builddir"
-    system "cmake", "--install", "builddir"
+    system "cmake", "-S", ".", "-B", "build", "-DBUILD_SHARED_LIBS=ON", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
   test do
     (testpath/"test.cpp").write <<~CPP
