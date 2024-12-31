@@ -1,0 +1,41 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    todo.org                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/31 10:59:15 by chenxu            #+#    #+#              #
+#    Updated: 2024/12/31 11:04:33 by chenxu           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# long
+* TODO Activate G4 [2/3]
+  - [X] QT6
+  - [ ] MT on macOS
+  - [X] MT on win9x
+  - [ ] removed data download part
+  - [ ] 
+* FAILED ROOT [2/2]
+  CLOSED: [2024-12-31 Tue 10:59]
+  - [X] glew bug on macOS
+  - [X] mysql header bug for macOS
+
+# short
+* DONE merge wcstools into core [3/3]
+  CLOSED: [2024-12-31 Tue 11:02]
+  - [X] add license
+  - [X] conflict woth wcslib
+  - [X] add test part
+* TODO merge erfa into core [1/2]
+  - [X] add test
+  - [ ] add license
+* FAILED merge pal into core [/]
+  CLOSED: [2024-12-31 Tue 11:04]
+  - [ ] update to 0.9.10
+  - [ ] add test
+  - [ ] add license
+* TODO merge sofa into core [/]
+  - [ ] add license
+  - [ ] add test
