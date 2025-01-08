@@ -13,7 +13,7 @@
 # Cxwx Cxbrew
 
 Note any pr or issues is welcomed.
-Only test on macOS M1 now.
+Fully test on macOS M1 now.
 For personal usage.
 Not stable version.
 
@@ -32,3 +32,7 @@ brew install <formula>
 ## To-do
 
 See [to-do document](doc/todo.org)
+
+## Defect
+
+Most of the formulas are lack of LICENCE, TEST
