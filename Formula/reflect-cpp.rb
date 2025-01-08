@@ -21,9 +21,13 @@ class ReflectCpp < Formula
   depends_on "cmake" => :build
   depends_on "make" => :build
   # depends_on "vcpkg" => :build
+  # TODO: add support: https://github.com/getml/reflect-cpp?tab=readme-ov-file#serialization-formats
   depends_on "tomlplusplus"
   depends_on "yaml-cpp"
   depends_on "pugixml"
+  depends_on "yyjson" # ?
+  # BUG: janssonConfig.cmake not installed
+  # depends_on "avro-c"
 
   def install
     args = std_cmake_args + %w[
@@ -33,6 +37,7 @@ class ReflectCpp < Formula
       -DREFLECTCPP_USE_VCPKG=OFF
       -DREFLECTCPP_TOML=ON
       -DREFLECTCPP_XML=ON
+      -DREFLECTCPP_AVRO=OFF
     ]
 
     system "cmake", "-S" ,".", "-B", "builddir", *args
