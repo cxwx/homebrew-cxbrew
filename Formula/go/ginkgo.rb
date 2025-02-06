@@ -1,4 +1,5 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
+# TODO: bug need add chmod +x
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Ginkgo < Formula
