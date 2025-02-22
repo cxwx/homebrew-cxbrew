@@ -23,7 +23,6 @@ class DbgMacro < Formula
 
   def install
     args = std_cmake_args + %w[
-      -DBUILD_TESTING=OFF
       -DCATCH_BUILD_TESTING=OFF
       -DDBG_MACRO_ENABLE_TESTS=OFF
     ]
