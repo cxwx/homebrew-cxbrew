@@ -1,8 +1,8 @@
 class VisitStruct < Formula
   desc "miniature library for struct-field reflection in C++"
-  homepage "https://github.com/cxwx/visit_struct"
+  homepage "https://github.com/cbeck88/visit_struct"
   license "Boost Software License"
-  head "https://github.com/cxwx/visit_struct.git", branch: "master"
+  head "https://github.com/cbeck88/visit_struct.git", branch: "master"
 
   depends_on "cmake" => :build
 
