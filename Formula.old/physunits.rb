@@ -1,21 +1,17 @@
 class Physunits < Formula
   desc "C++ header-only for Physics unit/quantity manipulation and conversion"
   homepage "https://github.com/martinmoene/PhysUnits-CT-Cpp11"
-  url "https://github.com/martinmoene/PhysUnits-CT-Cpp11/archive/v1.2.0.tar.gz"
-  # version "v1.2.0"
+  url "https://github.com/martinmoene/PhysUnits-CT-Cpp11/archive/refs/tags/v1.2.0.tar.gz"
   sha256 "e9bcce99d9c90ac8ce96746eff49c20b7c9717aee08b3cd6e58127c7ad9fa7c6"
+  license "BSL-1.0"
+  head "https://github.com/martinmoene/PhysUnits-CT-Cpp11.git", branch: "master"
 
   depends_on "cmake" => :build
 
   def install
-    mkdir "phys-build" do
-      args = std_cmake_args + %w[
-        ../
-      ]
-
-      system "cmake", *args
-      system "make", "install"
-    end
+    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
+    system "cmake", "--build", "builddir"
+    system "cmake", "--install", "builddir"
   end
 
   test do
