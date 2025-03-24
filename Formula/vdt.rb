@@ -1,36 +1,33 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
+# TODO: SSE BUG
 class Vdt < Formula
   desc "Mathematical library"
   homepage "https://github.com/dpiparo/vdt"
-  url "https://github.com/dpiparo/vdt/archive/v0.4.3.tar.gz"
-  sha256 "705674612ebb5c182b65a8f61f4d173eb7fe7cdeee2235b402541a492e08ace1"
+  url "https://github.com/dpiparo/vdt/archive/v0.4.4.tar.gz"
+  sha256 "8b1664b45ec82042152f89d171dd962aea9bb35ac53c8eebb35df1cb9c34e498"
+  license "LGPL"
+  head "https://github.com/dpiparo/vdt.git", branch: "master"
 
   depends_on "cmake" => :build
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    mkdir "builddir" do
-      args = std_cmake_args + %w[
-        ../
-      ]
-      # -DBUILD_SHARED_LIBS=ON
-      system "cmake", *args
-      system "make", "install" # if this fails, try separate make/make install steps
-    end
+    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
+    system "cmake", "--build", "builddir"
+    system "cmake", "--install", "builddir"
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test vdt`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    (testpath/"test.cpp").write <<~CPP
+      #include <cpp-lazy/Lz/Map.hpp>
+
+      int main() {
+        std::array<int, 4> arr = {1, 2, 3, 4};
+        std::string result = lz::map(arr, [](int i) { return i + 1; }).toString(" "); // == "1 2 3 4"
+      }
+    CPP
+    ENV.prepend_path "PKG_CONFIG_PATH", Formula["fmt"].opt_lib/"pkgconfig"
+    cxxflags = shell_output("pkg-config --cflags fmt").strip
+    ldflags = shell_output("pkg-config --libs fmt").strip
+    system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test", *cxxflags.split, *ldflags.split
+    system "./test"
   end
 end
