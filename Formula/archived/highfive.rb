@@ -1,3 +1,4 @@
+# TODO: archived
 # cspell:disable
 class Highfive < Formula
   desc "High Five c++"
