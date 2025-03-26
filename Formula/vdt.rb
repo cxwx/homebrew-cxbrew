@@ -1,8 +1,8 @@
 # TODO: SSE BUG
 class Vdt < Formula
-  desc "Mathematical library"
+  desc "vdt Mathematical library"
   homepage "https://github.com/dpiparo/vdt"
-  url "https://github.com/dpiparo/vdt/archive/v0.4.4.tar.gz"
+  url "https://github.com/dpiparo/vdt/archive/refs/tags/v0.4.4.tar.gz"
   sha256 "8b1664b45ec82042152f89d171dd962aea9bb35ac53c8eebb35df1cb9c34e498"
   license "LGPL"
   head "https://github.com/dpiparo/vdt.git", branch: "master"
@@ -17,17 +17,14 @@ class Vdt < Formula
 
   test do
     (testpath/"test.cpp").write <<~CPP
-      #include <cpp-lazy/Lz/Map.hpp>
-
+      #include <vdt/sin.h>
+      #include <iostream>
+      using namespace std;
       int main() {
-        std::array<int, 4> arr = {1, 2, 3, 4};
-        std::string result = lz::map(arr, [](int i) { return i + 1; }).toString(" "); // == "1 2 3 4"
+        cout << vdt::fast_sin(0.0) << endl;
       }
     CPP
-    ENV.prepend_path "PKG_CONFIG_PATH", Formula["fmt"].opt_lib/"pkgconfig"
-    cxxflags = shell_output("pkg-config --cflags fmt").strip
-    ldflags = shell_output("pkg-config --libs fmt").strip
-    system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test", *cxxflags.split, *ldflags.split
-    system "./test"
+    system ENV.cxx, "test.cpp", "-std=c++14", "-o", "test", "-L#{lib}", "-lvdt"
+    assert_equal "0", shell_output("./test").chomp
   end
 end
