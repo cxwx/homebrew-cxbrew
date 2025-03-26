@@ -10,6 +10,7 @@ class Kokkos < Formula
 
   def install
     args = %w[
+      -DBUILD_SHARED_LIBS=ON
     ]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
