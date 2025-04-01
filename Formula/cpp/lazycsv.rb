@@ -6,11 +6,10 @@ class Lazycsv < Formula
 
   depends_on "cmake" => :build
 
-  # TODO: github:ashtum/lazycsv/pull/14
+  # DONE: github:ashtum/lazycsv/pull/14
   def install
     args = %w[
       -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_CXX_STANDARD=17
     ]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
