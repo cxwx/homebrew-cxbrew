@@ -1,20 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ftxui.rb                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/08 01:41:10 by chenxu            #+#    #+#              #
-#    Updated: 2025/01/08 01:43:39 by chenxu           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-# cspell:disable
 class Ftxui < Formula
   desc "C++ Functional Terminal User Interface."
   homepage "https://github.com/ArthurSonzogni/FTXUI"
-  url "https://github.com/ArthurSonzogni/FTXUI/archive/refs/tags/v5.0.0.tar.gz"
+  url "https://github.com/ArthurSonzogni/FTXUI/archive/refs/tags/v6.0.2.tar.gz"
+  sha256 "ace3477a8dd7cdb911dbc75e7b43cdcc9cf1d4a3cc3fb41168ecc31c06626cb9"
   head "https://github.com/ArthurSonzogni/FTXUI.git", branch: "main"
 
   depends_on "cmake" => :build
