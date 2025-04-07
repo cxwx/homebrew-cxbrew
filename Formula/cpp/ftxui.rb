@@ -9,16 +9,17 @@ class Ftxui < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args + %w[
+    args = %W[
       -DBUILD_SHARED_LIBS=ON
+      -DCMAKE_INSTALL_RPATH=#{rpath}
       -DFTXUI_BUILD_DOCS=ON
       -DFTXUI_BUILD_EXAMPLES=OFF
       -DFTXUI_BUILD_TESTS=OFF
       -DFTXUI_QUIET=ON
-      -DFTXUI_ENABLE_COVERAGE=ON
+      -DFTXUI_ENABLE_COVERAGE=OFF
     ]
 
-    system "cmake", "-S", ".", "-B", "builddir", *args
+    system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
