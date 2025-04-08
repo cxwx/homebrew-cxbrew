@@ -6,8 +6,9 @@ class Geant4 < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "expat"
   depends_on "qt"    # DONE: qt5 -> qt6
-#  depends_on "vtk"  # TODO: 目前似乎显示有BUG
+  depends_on "freetype"
   depends_on "xerces-c"
+#  depends_on "vtk"  # TODO: 目前似乎显示有BUG
 
   # conflicts_with "geant4", because: "both install `geant4`" # TODO:check the brew-sci
 
@@ -18,6 +19,7 @@ class Geant4 < Formula
         -DGEANT4_USE_GDML=ON
         -DGEANT4_USE_QT=ON
         -DGEANT4_USE_QT_QT6=ON
+        -DGEANT4_USE_FREETYPE=ON
 	      -DBUILD_SHARED_LIBS=ON
 	      -DBUILD_STATIC_LIBS=OFF
         -DGEANT4_USE_VTK=OFF
