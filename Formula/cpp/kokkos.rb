@@ -1,8 +1,8 @@
 class Kokkos < Formula
-  desc "Kokkos C++ Performance Portability Programming Ecosystem: The Programming Model - Parallel Execution and Memory Abstraction"
-  homepage "kokkos.org"
-  url "https://github.com/kokkos/kokkos/archive/refs/tags/4.5.01.tar.gz"
-  sha256 "e0008c89d7f03ebbe31eb3c89d40fe529b4e4072b40331ae6b9d6599f02dff44"
+  desc "C++ Performance Portability Programming Ecosystem"
+  homepage "https://kokkos.org"
+  url "https://github.com/kokkos/kokkos/archive/refs/tags/4.6.00.tar.gz"
+  sha256 "348b2d860046fc3ddef5ca3a128317be1a6f3fa35196f268338a180fcae52264"
   license "Apache-2.0"
   head "https://github.com/kokkos/kokkos.git", branch: "develop"
 
@@ -11,26 +11,40 @@ class Kokkos < Formula
   def install
     args = %w[
       -DBUILD_SHARED_LIBS=ON
+      -DKokkos_ENABLE_THREADS=ON
     ]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
+
+    # BUG: before merge to core
+    shim_path = "/opt/homebrew/Library/Homebrew/shims/mac/super"
+    inreplace ["bin/kokkos_launch_compiler", "lib/cmake/Kokkos/KokkosConfigCommon.cmake"] do |s|
+      s.gsub! shim_path, "/usr/bin"  # 或你觉得合理的路径
+    end
   end
 
   test do
     (testpath/"test.cpp").write <<~CPP
-      #include <cpp-lazy/Lz/Map.hpp>
-
-      int main() {
-        std::array<int, 4> arr = {1, 2, 3, 4};
-        std::string result = lz::map(arr, [](int i) { return i + 1; }).toString(" "); // == "1 2 3 4"
+      #include <Kokkos_Core.hpp>
+      auto main(int argc, char** argv) -> int {
+        Kokkos::initialize(argc, argv);
+        {
+          Kokkos::View<int*> v("v", 5);
+          Kokkos::parallel_for("fill", 5, KOKKOS_LAMBDA(int i) { v(i) = i; });
+          int r = 0;
+          Kokkos::parallel_reduce(
+            "accumulate", 5,
+            KOKKOS_LAMBDA(int i, int& partial_r) { partial_r += v(i); }, r);
+          KOKKOS_ASSERT(r == 10);
+        }
+        Kokkos::printf("Goodbye World");
+        Kokkos::finalize();
+        return 0;
       }
     CPP
-    ENV.prepend_path "PKG_CONFIG_PATH", Formula["fmt"].opt_lib/"pkgconfig"
-    cxxflags = shell_output("pkg-config --cflags fmt").strip
-    ldflags = shell_output("pkg-config --libs fmt").strip
-    system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test", *cxxflags.split, *ldflags.split
-    system "./test"
+    system ENV.cxx, "test.cpp", "-std=c++17", "-o", "test", "-L#{lib}", "-lkokkoscore"
+    assert_equal "Goodbye World", shell_output("./test")
   end
 end
