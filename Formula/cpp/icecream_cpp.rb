@@ -1,16 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    createmodel_c_x.rb                                 :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/09 19:29:29 by chenxu            #+#    #+#              #
-#    Updated: 2025/01/09 19:29:30 by chenxu           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-# cspell:disable
 class IcecreamCpp < Formula
   desc "Never use cout/printf to debug again"
   homepage "https://github.com/renatoGarcia/icecream-cpp"
