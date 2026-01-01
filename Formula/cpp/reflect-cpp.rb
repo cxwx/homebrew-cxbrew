@@ -18,14 +18,13 @@ class ReflectCpp < Formula
   depends_on "msgpack-c"
   depends_on "flatbuffers"
   depends_on "ctre"
-  # depends_on "capnproto" # not found https://capnproto.org/
+  depends_on "capnp" # https://capnproto.org/
   depends_on "mongo-c-driver"  # bson
   depends_on "simdjson"
   # depends_on "gtest"
   # depends_on "benchmark"
-  # depends_on "arrow"
-  depends_on "apache-arrow" # ??
-  depends_on "jsoncons" # cxwx/homebrew github:danielaparker/jsoncons
+  depends_on "apache-arrow"
+  depends_on "jsoncons"  # cxwx
   depends_on "pugixml"
   depends_on "yyjson" # ?
   depends_on "avro-c"
@@ -38,6 +37,7 @@ class ReflectCpp < Formula
       -DCMAKE_MAKE_PROGRAM=gmake
       -DREFLECTCPP_BUILD_SHARED=ON
       -DREFLECTCPP_BSON=OFF
+      -DREFLECTCPP_CAPNPROTO=ON
       -DREFLECTCPP_CBOR=ON
       -DREFLECTCPP_UBJSON=ON
       -DREFLECTCPP_JSON=ON
