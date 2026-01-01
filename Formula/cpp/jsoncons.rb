@@ -19,4 +19,5 @@ class Jsoncons < Formula
     system "cmake", "--install", "builddir"
   end
 
+  # TODO: test github:danielaparker/jsoncons/discussions/671
 end
