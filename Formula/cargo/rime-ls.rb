@@ -2,7 +2,7 @@ class RimeLs < Formula
   desc "A language server that provides input method functionality using librime"
   homepage "https://github.com/wlh320/rime-ls" 
   # url "https://github.com/wlh320/rime-ls/archive/refs/tags/v0.4.3.tar.gz"
-  # TODO:此版本我记得有内存泄露的问题
+  # TODO:此版本我记得有内存泄露的问题 github:wlh320/rime-ls/issues/74
   license "MIT"
   head "https://github.com/wlh320/rime-ls.git", branch: "master"
 
@@ -14,6 +14,6 @@ class RimeLs < Formula
   end
 
   test do
-    # TODO:
+    system bin/"rime-ls", "--version"
   end
 end
