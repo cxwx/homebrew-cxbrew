@@ -1,8 +1,8 @@
 class Sol2 < Formula
   desc "Sol3 (sol2 v3.0) - a C++ <-> Lua API wrapper with advanced features and top notch performance"
   homepage "https://sol2.rtfd.io"
-  url "https://github.com/ThePhD/sol2.git"
-  sha256 "9351f196f89df35906f721619c4e7fef50473130fcf42cf3dbaac7a1147ac032"
+  url "https://github.com/ThePhD/sol2/archive/refs/tags/v3.5.0.tar.gz"
+  # sha256 "9351f196f89df35906f721619c4e7fef50473130fcf42cf3dbaac7a1147ac032"
   # tag ISSUE: https://github.com/ThePhD/sol2/issues/1661
   # head "https://github.com/ThePhD/sol2.git", branch: "develop"
   head "https://github.com/cxwx/sol2.git", branch: "develop"
