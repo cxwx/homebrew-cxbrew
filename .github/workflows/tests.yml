@@ -5,8 +5,12 @@ on:
   pull_request:
 
 jobs:
-  test-macos-13:
-    runs-on: macos-13
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, macos-14, macos-15]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: Homebrew/actions/setup-homebrew@main
@@ -15,8 +19,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/Library/Caches/Homebrew/downloads
-          key: macOS-13-homebrew-${{ hashFiles('Formula/**/*.rb') }}
-          restore-keys: macOS-13-homebrew-
+          key: ${{ runner.os }}-homebrew-${{ hashFiles('Formula/**/*.rb') }}
+          restore-keys: ${{ runner.os }}-homebrew-
 
       - name: Detect changed formulas
         id: changed
@@ -46,93 +50,5 @@ jobs:
         if: always() && steps.changed.outputs.formulas != ''
         uses: actions/upload-artifact@v4
         with:
-          name: bottles-macos-13
-          path: '*.bottle.*'
-
-  test-macos-14:
-    runs-on: macos-14
-    steps:
-      - uses: actions/checkout@v4
-      - uses: Homebrew/actions/setup-homebrew@main
-
-      - name: Cache Homebrew downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/Library/Caches/Homebrew/downloads
-          key: macOS-14-homebrew-${{ hashFiles('Formula/**/*.rb') }}
-          restore-keys: macOS-14-homebrew-
-
-      - name: Detect changed formulas
-        id: changed
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'Formula/*.rb')
-          else
-            files=$(git diff --name-only HEAD~1 -- 'Formula/*.rb')
-          fi
-          if [ -z "$files" ]; then
-            echo "formulas=" >> "$GITHUB_OUTPUT"
-          else
-            names=$(echo "$files" | sed 's|Formula/||;s|\.rb$||' | tr '\n' ' ')
-            echo "formulas=$names" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Install changed formulas
-        if: steps.changed.outputs.formulas != ''
-        run: |
-          for name in ${{ steps.changed.outputs.formulas }}; do
-            echo "::group::brew install $name"
-            brew install --build-from-source cxwx/cxbrew/"$name"
-            echo "::endgroup::"
-          done
-
-      - name: Upload bottles
-        if: always() && steps.changed.outputs.formulas != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: bottles-macos-14
-          path: '*.bottle.*'
-
-  test-macos-15:
-    runs-on: macos-15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: Homebrew/actions/setup-homebrew@main
-
-      - name: Cache Homebrew downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/Library/Caches/Homebrew/downloads
-          key: macOS-15-homebrew-${{ hashFiles('Formula/**/*.rb') }}
-          restore-keys: macOS-15-homebrew-
-
-      - name: Detect changed formulas
-        id: changed
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'Formula/*.rb')
-          else
-            files=$(git diff --name-only HEAD~1 -- 'Formula/*.rb')
-          fi
-          if [ -z "$files" ]; then
-            echo "formulas=" >> "$GITHUB_OUTPUT"
-          else
-            names=$(echo "$files" | sed 's|Formula/||;s|\.rb$||' | tr '\n' ' ')
-            echo "formulas=$names" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Install changed formulas
-        if: steps.changed.outputs.formulas != ''
-        run: |
-          for name in ${{ steps.changed.outputs.formulas }}; do
-            echo "::group::brew install $name"
-            brew install --build-from-source cxwx/cxbrew/"$name"
-            echo "::endgroup::"
-          done
-
-      - name: Upload bottles
-        if: always() && steps.changed.outputs.formulas != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: bottles-macos-15
+          name: bottles-${{ matrix.os }}
           path: '*.bottle.*'

@@ -1,8 +1,8 @@
 # Cxwx Cxbrew
 
-[![CI macOS 13](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml/badge.svg?job=test-macos-13)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml?query=job%3Atest-macos-13)
-[![CI macOS 14](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml/badge.svg?job=test-macos-14)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml?query=job%3Atest-macos-14)
-[![CI macOS 15](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml/badge.svg?job=test-macos-15)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml?query=job%3Atest-macos-15)
+[![macOS 13](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-13.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-13.yml)
+[![macOS 14](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml)
+[![macOS 15](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml)
 
 Note any pr or issues is welcomed.
 Fully test on macOS M1 now.
