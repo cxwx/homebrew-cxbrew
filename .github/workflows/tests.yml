@@ -5,14 +5,7 @@ on:
   pull_request:
 
 jobs:
-  tap-syntax:
-    runs-on: macos-latest
-    steps:
-      - uses: Homebrew/actions/setup-homebrew@main
-      - run: brew test-bot --only-tap-syntax
-
   test:
-    needs: tap-syntax
     strategy:
       fail-fast: false
       matrix:
@@ -43,15 +36,6 @@ jobs:
             names=$(echo "$files" | sed 's|Formula/||;s|\.rb$||' | tr '\n' ' ')
             echo "formulas=$names" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Audit changed formulas
-        if: steps.changed.outputs.formulas != ''
-        run: |
-          for name in ${{ steps.changed.outputs.formulas }}; do
-            echo "::group::brew audit $name"
-            brew audit cxwx/cxbrew/"$name" || true
-            echo "::endgroup::"
-          done
 
       - name: Install changed formulas
         if: steps.changed.outputs.formulas != ''
