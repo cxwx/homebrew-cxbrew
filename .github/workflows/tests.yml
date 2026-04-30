@@ -8,7 +8,7 @@ jobs:
   tap-syntax:
     runs-on: macos-latest
     steps:
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@main
       - run: brew test-bot --only-tap-syntax
 
   test:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@main
 
       - name: Cache Homebrew downloads
         uses: actions/cache@v4
@@ -49,7 +49,7 @@ jobs:
         run: |
           for name in ${{ steps.changed.outputs.formulas }}; do
             echo "::group::brew audit $name"
-            brew audit --cxwx/cxbrew/"$name" || true
+            brew audit cxwx/cxbrew/"$name" || true
             echo "::endgroup::"
           done
 
