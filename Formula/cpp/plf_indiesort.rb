@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    createmodel_c_x.rb                                 :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/09 19:29:29 by chenxu            #+#    #+#              #
-#    Updated: 2025/01/09 19:29:30 by chenxu           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # cspell:disable
 class PlfIndiesort < Formula
   desc "A sort wrapper enabling both use of random-access sorting on non-random access containers, and increased performance for the sorting of large types."

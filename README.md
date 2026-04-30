@@ -1,15 +1,3 @@
-<!-- *********************************************************************** -->
-<!--                                                                         -->
-<!--                                                      :::      ::::::::  -->
-<!-- README.md                                          :+:      :+:    :+:  -->
-<!--                                                  +:+ +:+         +:+    -->
-<!-- By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+       -->
-<!--                                              +#+#+#+#+#+   +#+          -->
-<!-- Created: 2024/12/31 10:50:42 by chenxu            #+#    #+#            -->
-<!-- Updated: 2024/12/31 11:07:23 by chenxu           ###   ########.fr      -->
-<!--                                                                         -->
-<!-- *********************************************************************** -->
-
 # Cxwx Cxbrew
 
 [![CI macOS 13](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml/badge.svg?job=test-macos-13)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml?query=job%3Atest-macos-13)

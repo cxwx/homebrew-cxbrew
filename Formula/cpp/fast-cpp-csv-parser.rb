@@ -1,15 +1,3 @@
-# *************************************************************************** #
-#                                                                             #
-#                                                        :::      ::::::::    #
-#    fast-cpp-csv-parser.rb                            :+:      :+:    :+:    #
-#                                                    +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>          +#+  +:+       +#+         #
-#                                                +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/21 00:43:17 by chenxu           #+#    #+#              #
-#    Updated: 2025/02/21 00:43:19 by chenxu          ###   ########.fr        #
-#                                                                             #
-# *************************************************************************** #
-
 class FastCppCsvParser < Formula
   desc "a small, easy-to-use and fast header-only library for reading comma separated value (CSV) files"
   homepage "https://github.com/ben-strasser/fast-cpp-csv-parser"

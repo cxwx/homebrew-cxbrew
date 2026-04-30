@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ftxui.rb                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/08 01:41:10 by chenxu            #+#    #+#              #
-#    Updated: 2025/01/08 01:43:39 by chenxu           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # cspell:disable
 class CppDump < Formula
   desc "A C++ library for debugging purposes that can print any variable, even user-defined types."

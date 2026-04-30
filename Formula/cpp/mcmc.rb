@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    mcmc.rb                                            :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chenxu <chenxu@mail.ustc.edu.cn>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/29 18:54:00 by chenxu            #+#    #+#              #
-#    Updated: 2024/07/29 19:12:44 by chenxu           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-# cspell:disable
 class Mcmc < Formula
   desc "Lightweight C++ library of MCMC methods"
   homepage "https://github.com/kthohr/mcmc"
