@@ -2,8 +2,8 @@
 class Vecgeom < Formula
   desc "Geometry modeller library needed by particle detector simulation"
   homepage "https://gitlab.cern.ch/VecGeom/VecGeom"
-  url "https://gitlab.cern.ch/VecGeom/VecGeom/-/archive/v01.02.10/VecGeom-v01.02.10.tar.gz"
-  sha256 "b9c839d4a0788491598b6510dc7cd1cb4d14618bafb5e0bd3066c28364930221"
+  url "https://gitlab.cern.ch/VecGeom/VecGeom/-/archive/v2.0.0/VecGeom-v2.0.0.tar.gz"
+  sha256 "509d26ffd95d517094d2fe97712a0a54ac0300bd943de3ae626bf4abeb1b6424"
 
   depends_on "cmake" => :build
   depends_on "vc"
