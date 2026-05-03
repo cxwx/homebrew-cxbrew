@@ -26,14 +26,14 @@ jobs:
         id: changed
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'Formula/*.rb')
+            files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'Formula/**/*.rb')
           else
-            files=$(git diff --name-only HEAD~1 -- 'Formula/*.rb')
+            files=$(git diff --name-only HEAD~1 -- 'Formula/**/*.rb')
           fi
           if [ -z "$files" ]; then
             echo "formulas=" >> "$GITHUB_OUTPUT"
           else
-            names=$(echo "$files" | sed 's|Formula/||;s|\.rb$||' | tr '\n' ' ')
+            names=$(echo "$files" | sed 's|.*/||;s|\.rb$||' | tr '\n' ' ')
             echo "formulas=$names" >> "$GITHUB_OUTPUT"
           fi
 
