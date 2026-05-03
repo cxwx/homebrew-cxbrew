@@ -1,0 +1,77 @@
+name: Livecheck
+
+on:
+  schedule:
+    - cron: "23 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  livecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Run brew livecheck
+        id: livecheck
+        run: |
+          brew livecheck --tap cxwx/homebrew-cxbrew --json --newer-only 2>/dev/null > livecheck.json || true
+          if ! jq empty livecheck.json 2>/dev/null; then
+            echo '[]' > livecheck.json
+          fi
+          count=$(jq length livecheck.json)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Found $count formula(s) with updates"
+
+      - name: Ensure livecheck label exists
+        if: steps.livecheck.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create livecheck --repo "$GITHUB_REPOSITORY" \
+            --description "New version detected by brew livecheck" \
+            --color "0075ca" 2>/dev/null || true
+
+      - name: Create issues for outdated formulas
+        if: steps.livecheck.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          jq -c '.[]' livecheck.json | while read -r item; do
+            name=$(echo "$item" | jq -r '.formula // .name')
+            current=$(echo "$item" | jq -r '.version.current // "unknown"')
+            latest=$(echo "$item" | jq -r '.version.latest // "unknown"')
+            upstream=$(echo "$item" | jq -r '.meta.url // empty')
+
+            title="⬆️ ${name}: ${current} → ${latest}"
+
+            existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\"" --json number --jq 'length')
+            if [ "$existing" != "0" ]; then
+              echo "Issue already exists for $name, skipping"
+              continue
+            fi
+
+            body="## New version available
+
+          | | |
+          |---|---|
+          | **Formula** | \`${name}\` |
+          | **Current** | ${current} |
+          | **Latest** | ${latest} |
+          | **Upstream** | ${upstream:-N/A} |
+
+          ### Update
+
+          \`\`\`bash
+          brew bump-formula-pr --strict ${name} --url=<tarball_url> --sha256=<sha256>
+          \`\`\`"
+
+            gh issue create \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$title" \
+              --body "$body" \
+              --label "livecheck"
+          done
