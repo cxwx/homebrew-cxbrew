@@ -1,8 +1,8 @@
 class Libhv < Formula
-  desc "A c/c++ network library for developing TCP/UDP/SSL/HTTP/WebSocket/MQTT client/server."
+  desc "C/C++ network lib for TCP/UDP/SSL/HTTP/WebSocket/MQTT client/server"
   homepage "https://github.com/ithewei/libhv"
-  url "https://github.com/ithewei/libhv/archive/refs/tags/v1.3.3.tar.gz"
-  sha256 "dfeae857eb5d167820d0800161b6c4199d1f771c05a04e6dd0adc22ed3fd19ae"
+  url "https://github.com/ithewei/libhv/archive/refs/tags/v1.3.4.tar.gz"
+  sha256 "f0a9a197f90da55cc3ff104f9c7a27cc927f117b6c18613c3292726068588e10"
   license "Apache-2.0"
   head "https://github.com/ithewei/libhv.git", branch: "master"
 
@@ -11,7 +11,8 @@ class Libhv < Formula
   depends_on "cmake" => :build
 
   def install
-    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}"
+    args = std_cmake_args + %w[]
+    system "cmake", ".", "-B", "builddir", *args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
