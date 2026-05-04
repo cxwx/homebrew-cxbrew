@@ -1,14 +1,10 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-# TODO: bug need add chmod +x
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Ginkgo < Formula
-  desc "A Modern Testing Framework for Go"
-  homepage "http://onsi.github.io/ginkgo/"
-  url "https://github.com/onsi/ginkgo/archive/refs/tags/v2.22.2.tar.gz"
-  sha256 "1eb96d9ee728e225e683b590d08c632a60ad15f8ed815baa0f17f3ea4f136467"
-  head "https://github.com/onsi/ginkgo.git", branch: "master"
+  desc "Modern Testing Framework for Go"
+  homepage "https://onsi.github.io/ginkgo/"
+  url "https://github.com/onsi/ginkgo/archive/refs/tags/v2.28.3.tar.gz"
+  sha256 "82b6626efa55beff70398ee71bd0ef18546eac548369294f77730e07243058a0"
   license "MIT"
+  head "https://github.com/onsi/ginkgo.git", branch: "master"
 
   depends_on "go" => :build
 
