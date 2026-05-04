@@ -1,6 +1,5 @@
 # Cxwx Cxbrew
 
-[![macOS 13](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-13.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-13.yml)
 [![macOS 14](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml)
 [![macOS 15](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml)
 
