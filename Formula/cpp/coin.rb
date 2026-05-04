@@ -1,7 +1,7 @@
 class Coin < Formula
   desc "Deal.II finite element library"
   homepage "https://www.dealii.org"
-  url "https://github.com/dealii/dealii/releases/download/v9.6.2/dealii-9.6.2.tar.gz"
+  url "https://github.com/dealii/dealii/releases/download/v9.7.1/dealii-9.7.1.tar.gz"
   sha256 "1051e332de3822488e91c2b0460681052a3c4c5ac261cdd7a6af784869a25523"
   license "Apache-2.0"
   head "https://github.com/dealii/dealii.git", branch: "master"
