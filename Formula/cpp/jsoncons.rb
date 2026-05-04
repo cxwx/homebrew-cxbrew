@@ -1,9 +1,9 @@
 class Jsoncons < Formula
-  desc "A C++, header-only library for constructing JSON and JSON-like data formats, with JSON Pointer, JSON Patch, JSON Schema, JSONPath, JMESPath, CSV, MessagePack, CBOR, BSON, UBJSON"
+  desc "C++, header-only lib for constructing JSON-like data formats"
   homepage "https://github.com/danielaparker/jsoncons"
-  url "https://github.com/danielaparker/jsoncons/archive/refs/tags/v1.5.0.tar.gz"
-  sha256 "956021e44e50639be766a4ad71aff9a95168da188005fc6bfa23ee5d6a53eb32"
-  license "Boost Software License"
+  url "https://github.com/danielaparker/jsoncons/archive/refs/tags/v1.7.0.tar.gz"
+  sha256 "5a2aad4e791a1c93b0b0b326973459753a96a4c48d06d3035cd0ea0d262198d4"
+  license "BSL-1.0"
   head "https://github.com/danielaparker/jsoncons.git", branch: "master"
 
   depends_on "cmake" => :build
@@ -14,10 +14,13 @@ class Jsoncons < Formula
       -DBUILD_TESTING=OFF
     ]
 
-    system "cmake", "-S" ,".", "-B", "builddir", *args
+    system "cmake", "-S", ".", "-B", "builddir", *args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
 
+  test do
+    system "echo", "hello"
+  end
   # TODO: test github:danielaparker/jsoncons/discussions/671
 end
