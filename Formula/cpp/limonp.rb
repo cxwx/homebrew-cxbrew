@@ -1,13 +1,12 @@
 class Limonp < Formula
   desc "C++ headers(hpp) library with Python style"
   homepage "https://github.com/yanyiwu/limonp"
-  url "https://github.com/yanyiwu/limonp/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "c7b18794f020dbaa1006229b49a39217a463da0cb3586aee83eb7471f4ae71df"
+  url "https://github.com/yanyiwu/limonp/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "0d98bd9c87bd82bcfc234107908969e7416145d8b5e996e43c5d2513c419b2c0"
   license "MIT"
   head "https://github.com/yanyiwu/limonp.git", branch: "master"
 
   depends_on "cmake" => :build
-  # depends_on "googletest" => :build  # BUG:
 
   def install
     args = %w[
@@ -19,8 +18,10 @@ class Limonp < Formula
     system "cmake", "--install", "builddir"
   end
 
-  test do  # TODO:
+  test do # TODO(CX): test
     (testpath/"test.cpp").write <<~CPP
+      #include <iostream>
+      int main() { return 0; }
     CPP
     ENV.prepend_path "PKG_CONFIG_PATH", Formula["fmt"].opt_lib/"pkgconfig"
     cxxflags = shell_output("pkg-config --cflags fmt").strip
