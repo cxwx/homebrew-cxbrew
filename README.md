@@ -1,7 +1,6 @@
 # Cxwx Cxbrew
 
-[![macOS 14](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-14.yml)
-[![macOS 15](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml/badge.svg?v=1)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/badge-macos-15.yml)
+[![CI](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml/badge.svg)](https://github.com/cxwx/homebrew-cxbrew/actions/workflows/tests.yml)
 
 A personal Homebrew tap providing formulae for scientific computing, C++ libraries, and developer tools. Fully tested on Apple Silicon (M1).
 
