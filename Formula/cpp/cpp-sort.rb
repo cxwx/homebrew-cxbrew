@@ -2,7 +2,7 @@
 class CppSort < Formula
   desc "Sorting algorithms & related tools for C++14"
   homepage "https://github.com/Morwenn/cpp-sort"
-  url "https://github.com/Morwenn/cpp-sort/archive/refs/tags/1.16.0.tar.gz"
+  url "https://github.com/Morwenn/cpp-sort/archive/refs/tags/v2.1.0.tar.gz"
   head "https://github.com/Morwenn/cpp-sort.git", branch: "main"  # BUG: no main nor master branch
 
   depends_on "cmake" => :build
