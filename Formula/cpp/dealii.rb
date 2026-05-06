@@ -2,8 +2,8 @@
 class Dealii < Formula
   desc "Deal.II finite element library"
   homepage "https://www.dealii.org"
-  url "https://github.com/dealii/dealii/releases/download/v9.6.2/dealii-9.6.2.tar.gz"
-  sha256 "1051e332de3822488e91c2b0460681052a3c4c5ac261cdd7a6af784869a25523"
+  url "https://github.com/dealii/dealii/releases/download/v9.7.1/dealii-9.7.1.tar.gz"
+  sha256 "0f2096ef83db54fdcebe9f3d148fa713f63f1c3f567941b53bcb4a1a8ea7de43"
   license "Apache-2.0"
   head "https://github.com/dealii/dealii.git", branch: "master"
 
@@ -26,7 +26,13 @@ class Dealii < Formula
   depends_on :xcode
 
   def install
-    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}"
+    args = %W[
+      -B builddir
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      -DCMAKE_INSTALL_PREFIX=#{prefix}
+      -DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}
+    ]
+    system "cmake", ".", *args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
