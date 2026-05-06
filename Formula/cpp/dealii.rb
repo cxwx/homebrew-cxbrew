@@ -28,6 +28,7 @@ class Dealii < Formula
   def install
     args = %W[
       -B builddir
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       -DCMAKE_INSTALL_PREFIX=#{prefix}
       -DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}
     ]
