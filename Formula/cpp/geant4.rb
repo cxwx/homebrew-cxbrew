@@ -1,16 +1,15 @@
 class Geant4 < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-  url "https://geant4-data.web.cern.ch/releases/geant4-v11.3.0.tar.gz"
+  url "https://github.com/Geant4/geant4/archive/refs/tags/v11.4.1.tar.gz"
+  sha256 "550111022a72241411ec236265f02eb564302c5e9e45961399be36774da24e6e"
+  head "https://github.com/Geant4/geant4.git"
 
   depends_on "cmake" => [:build, :test]
   depends_on "expat"
-  depends_on "qt"    # DONE: qt5 -> qt6
   depends_on "freetype"
+  depends_on "qt"
   depends_on "xerces-c"
-#  depends_on "vtk"  # TODO: 目前似乎显示有BUG
-
-  # conflicts_with "geant4", because: "both install `geant4`" # TODO:check the brew-sci
 
   def install
     mkdir "geant-build" do
@@ -18,10 +17,12 @@ class Geant4 < Formula
         ../
         -DGEANT4_USE_GDML=ON
         -DGEANT4_USE_QT=ON
+        -DGEANT4_INSTALL_DATA=ON
+        -DGEANT4_INSTALL_DATA_TIMEOUT=3000
         -DGEANT4_USE_QT_QT6=ON
         -DGEANT4_USE_FREETYPE=ON
-	      -DBUILD_SHARED_LIBS=ON
-	      -DBUILD_STATIC_LIBS=OFF
+        -DBUILD_SHARED_LIBS=ON
+        -DBUILD_STATIC_LIBS=OFF
         -DGEANT4_USE_VTK=OFF
         -DGEANT4_INSTALL_DATA=ON
         -DGEANT4_BUILD_MULTITHREADED=ON
@@ -42,15 +43,14 @@ class Geant4 < Formula
     EOS
   end
 
-  # TODO: test
-  # test do
-  #   system "cmake", share/"Geant4-#{version}/examples/basic/B1"
-  #   system "make"
-  #   (testpath/"test.sh").write <<~EOS
-  #     . #{bin}/geant4.sh
-  #     ./exampleB1 run2.mac
-  #   EOS
-  #   assert_match "Number of events processed : 1000",
-  #                shell_output("/bin/bash test.sh")
-  # end
+  test do
+    system "cmake", share/"Geant4-#{version}/examples/basic/B1"
+    system "make"
+    (testpath/"test.sh").write <<~EOS
+      . #{bin}/geant4.sh
+      ./exampleB1 run2.mac
+    EOS
+    assert_match "Number of events processed : 1000",
+                 shell_output("/bin/bash test.sh")
+  end
 end
