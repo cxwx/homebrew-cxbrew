@@ -46,6 +46,12 @@ jobs:
             latest=$(echo "$item" | jq -r '.version.latest // "unknown"')
             upstream=$(echo "$item" | jq -r '.meta.url // empty')
 
+            # Skip formulas without a GitHub upstream URL
+            if [[ "$upstream" != *"github.com"* ]]; then
+              echo "Skipping $name: non-GitHub upstream ($upstream)"
+              continue
+            fi
+
             title="⬆️ ${name}: ${current} → ${latest}"
 
             existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\"" --json number --jq 'length')
