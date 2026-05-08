@@ -1,8 +1,8 @@
 class RimeLs < Formula
-  desc "A language server that provides input method functionality using librime"
-  homepage "https://github.com/wlh320/rime-ls" 
-  # url "https://github.com/wlh320/rime-ls/archive/refs/tags/v0.4.3.tar.gz"
-  # TODO:此版本我记得有内存泄露的问题 github:wlh320/rime-ls/issues/74
+  desc "Language server that provides input method functionality using librime"
+  homepage "https://github.com/wlh320/rime-ls"
+  url "https://github.com/wlh320/rime-ls/archive/refs/tags/v0.4.3.tar.gz"
+  sha256 "38a13b1ba9cbf833a0d96c12a0b4cc38c8feb73d6efbd3c4002e498ab29a3d2b"
   license "MIT"
   head "https://github.com/wlh320/rime-ls.git", branch: "master"
 
