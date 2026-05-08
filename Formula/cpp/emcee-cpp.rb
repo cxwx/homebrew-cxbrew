@@ -1,8 +1,8 @@
 class EmceeCpp < Formula
   desc "Cpp version of emcee"
   homepage "https://github.com/cxwx/emcee-cpp"
-  url "https://github.com/cxwx/emcee-cpp/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "73948c1dea627ec730935484e3bcd5d9f6cf49cf8313831f707752b35c09b172"
+  url "https://github.com/cxwx/emcee-cpp/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "789c0f51af4ba3b6c33607ec3e23e8c5c9ddb4378261cf68ba584ff3c7c4b2f8"
   license "MIT"
   depends_on "cmake" => :build
 
