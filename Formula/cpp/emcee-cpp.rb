@@ -5,6 +5,7 @@ class EmceeCpp < Formula
   sha256 "789c0f51af4ba3b6c33607ec3e23e8c5c9ddb4378261cf68ba584ff3c7c4b2f8"
   license "MIT"
   depends_on "cmake" => :build
+  depends_on "eigen@3"
 
   def install
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
