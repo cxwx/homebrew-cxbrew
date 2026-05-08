@@ -39,7 +39,7 @@ Browse the [`Formula/`](Formula/) directory for the full list. Formulae may be a
 
 ## CI
 
-Formulas are automatically validated on push to `master` via GitHub Actions, checking Ruby syntax for all `.rb` files under `Formula/`. Separate workflows run for macOS 13, 14, and 15.
+Formulas are automatically validated on push to `master` via GitHub Actions, checking Ruby syntax for all `.rb` files under `Formula/`. Separate workflows run for macOS 13, 14, 15 and Ubuntu.
 
 ## Known Limitations
 
