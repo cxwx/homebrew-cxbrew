@@ -44,7 +44,7 @@ jobs:
             name=$(echo "$item" | jq -r '.formula // .name')
             current=$(echo "$item" | jq -r '.version.current // "unknown"')
             latest=$(echo "$item" | jq -r '.version.latest // "unknown"')
-            upstream=$(echo "$item" | jq -r '.meta.url // empty')
+            upstream=$(brew info --json=v2 "cxwx/cxbrew/${name}" 2>/dev/null | jq -r '.formulae[0].homepage // empty')
 
             # Skip formulas without a GitHub upstream URL
             if [[ "$upstream" != *"github.com"* ]]; then
