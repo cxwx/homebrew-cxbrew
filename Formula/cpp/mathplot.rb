@@ -14,11 +14,14 @@ class Mathplot < Formula
   end
 
   def install
-    system "cmake", "-S", ".", "-B", "build",
-           "-DBUILD_EXAMPLES=OFF",
-           "-DBUILD_TESTS=OFF",
-           "-DBUILD_DOC=OFF",
-           *std_cmake_args
+    args = %w[
+      -DBUILD_EXAMPLES=OFF
+      -DBUILD_TESTS=OFF
+      -DBUILD_DOC=OFF
+    ]
+    args << "-DOpenGL_GL_PREFERENCE=LEGACY" if OS.linux?
+
+    system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
