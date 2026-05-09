@@ -14,12 +14,17 @@ class Mathplot < Formula
   end
 
   def install
+    if OS.linux?
+      inreplace "CMakeLists.txt",
+                'set(OpenGL_GL_PREFERENCE "GLVND")',
+                'set(OpenGL_GL_PREFERENCE "LEGACY")'
+    end
+
     args = %w[
       -DBUILD_EXAMPLES=OFF
       -DBUILD_TESTS=OFF
       -DBUILD_DOC=OFF
     ]
-    args << "-DOpenGL_GL_PREFERENCE=LEGACY" if OS.linux?
 
     system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
