@@ -8,6 +8,11 @@ class Mathplot < Formula
   depends_on "glfw"
   depends_on "nlohmann-json"
 
+  on_linux do
+    depends_on "mesa"
+    depends_on "mesa-glu"
+  end
+
   def install
     system "cmake", "-S", ".", "-B", "build",
            "-DBUILD_EXAMPLES=OFF",
