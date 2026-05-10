@@ -1,4 +1,3 @@
-# TODO:
 class Kaon < Formula
   desc "A human readable object notation / serialization format that syntactic similar to Rust and completely supports Serde's data model."
   homepage "https://github.com/eternal-io/keon"

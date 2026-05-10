@@ -1,6 +1,5 @@
-# TODO: shared libs
 class Wavelib < Formula
-  desc "C Implementation of 1D and 2D Wavelet Transforms (DWT,SWT and MODWT) along with 1D Wavelet packet Transform and 1D Continuous Wavelet Transform. "
+  desc "C Implementation of 1D and 2D Wavelet with 1D Wavelet"
   homepage "https://github.com/rafat/wavelib"
   head "https://github.com/rafat/wavelib.git", branch: "master"
 

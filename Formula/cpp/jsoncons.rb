@@ -19,8 +19,8 @@ class Jsoncons < Formula
     system "cmake", "--install", "builddir"
   end
 
+  # FAIL: test github:danielaparker/jsoncons/discussions/671
   test do
     system "echo", "hello"
   end
-  # TODO: test github:danielaparker/jsoncons/discussions/671
 end

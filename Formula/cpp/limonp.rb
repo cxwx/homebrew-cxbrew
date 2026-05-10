@@ -18,15 +18,19 @@ class Limonp < Formula
     system "cmake", "--install", "builddir"
   end
 
-  test do # TODO(CX): test
+  test do
     (testpath/"test.cpp").write <<~CPP
-      #include <iostream>
-      int main() { return 0; }
+      #include <limonp/StringUtil.hpp>
+      #include <limonp/Logging.hpp>
+      using namespace std;
+      #define print(x) std::cout << x << std::endl
+      int main() {
+        string str;
+        str = limonp::StringFormat("%s, %s", "hello", "world");
+        print(str); //hello, world
+      }
     CPP
-    ENV.prepend_path "PKG_CONFIG_PATH", Formula["fmt"].opt_lib/"pkgconfig"
-    cxxflags = shell_output("pkg-config --cflags fmt").strip
-    ldflags = shell_output("pkg-config --libs fmt").strip
-    system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test", *cxxflags.split, *ldflags.split
+    system ENV.cxx, "test.cpp", "-std=c++17", "-o", "test"
     system "./test"
   end
 end

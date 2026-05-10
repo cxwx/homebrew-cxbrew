@@ -3,7 +3,6 @@ class Sol2 < Formula
   homepage "https://sol2.rtfd.io"
   url "https://github.com/ThePhD/sol2/archive/refs/tags/v3.5.0.tar.gz"
   # sha256 "9351f196f89df35906f721619c4e7fef50473130fcf42cf3dbaac7a1147ac032"
-  # tag ISSUE: https://github.com/ThePhD/sol2/issues/1661
   # head "https://github.com/ThePhD/sol2.git", branch: "develop"
   head "https://github.com/cxwx/sol2.git", branch: "develop"
 
@@ -21,7 +20,7 @@ class Sol2 < Formula
     end
   end
 
-  # TODO: test
+  # FAIL: test
   # test do
   # #define SOL_ALL_SAFETIES_ON 1
   #include <sol/sol.hpp> // or #include "sol.hpp", whichever suits your needs

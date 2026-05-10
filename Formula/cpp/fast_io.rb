@@ -15,7 +15,7 @@ class FastIo < Formula
     system "cmake", "--install", "builddir"
   end
 
-  test do # TODO:
+  test do
     (testpath/"test.cpp").write <<~CPP
       #include <fast_io.h>
       int main() {

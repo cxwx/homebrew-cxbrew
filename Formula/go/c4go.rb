@@ -1,4 +1,3 @@
-# TODO: tags
 class C4go < Formula
   desc "Transpiling C code to Go code"
   homepage "https://github.com/Konstantin8105/c4go"

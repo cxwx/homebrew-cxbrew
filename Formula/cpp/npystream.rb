@@ -1,10 +1,8 @@
-# cspell:disable
 class Npystream < Formula
   desc "C++20 library for streaming data to .npy files"
   homepage "https://github.com/mreininghaus/npystream"
-  # TODO:
-  # url "https://github.com/dealii/dealii/releases/download/v9.5.2/dealii-9.5.2.tar.gz"
-  # sha256 "7930e5218a9807d60cc05c300a3b70f36f4af22c3551a2cd1141fbab013bbaf1"
+  url "https://github.com/mreininghaus/npystream/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "622e741fcf17047476092941bbb0821c31f0b7a0ba8687e0be2d5f41287cd14a"
   license "EUPL-1.2"
   head "https://github.com/mreininghaus/npystream.git", branch: "master"
 
@@ -20,7 +18,7 @@ class Npystream < Formula
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
-  test do # TODO:
+  test do
     system "echo", "not finished"
   end
 end

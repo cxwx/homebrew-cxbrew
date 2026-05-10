@@ -1,4 +1,3 @@
-# TODO: SSE BUG
 class Vdt < Formula
   desc "C++ math library of fast approximate and vectorisable trascendental functions"
   homepage "https://github.com/dpiparo/vdt"
@@ -13,7 +12,7 @@ class Vdt < Formula
 
   def install
     system "cmake", "-S", ".", "-B", "builddir",
-      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",  # github:dpiparo/vdt/issues/21
       "-DSSE=OFF",
       *std_cmake_args
     system "cmake", "--build", "builddir"

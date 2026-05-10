@@ -1,7 +1,7 @@
+# TODO: build failed 17->20
 class Flashlight < Formula
   desc "C++ standalone library for machine learning"
   homepage "https://github.com/flashlight/flashlight"
-  # url ""
   license "MIT"
   head "https://github.com/flashlight/flashlight.git", branch: "main"
 
@@ -9,6 +9,9 @@ class Flashlight < Formula
   depends_on "arrayfire"
 
   def install
+    # Upstream hardcodes C++17 but uses C++20 features (contains())
+    inreplace "CMakeLists.txt", "set(CMAKE_CXX_STANDARD 17)", "set(CMAKE_CXX_STANDARD 20)"
+
     args = %w[
       -DFL_ARRAYFIRE_USE_OPENCL=ON
       -DFL_USE_ONEDNN=OFF
@@ -26,18 +29,13 @@ class Flashlight < Formula
 
   test do
     (testpath/"test.cpp").write <<~CPP
-    // --TODO: BUG
-      #include <flashlight/fl/flashlight.h>
-
+      #include <flashlight/fl/tensor/TensorBase.h>
       int main() {
-        fl::init();
-        fl::Variable v(fl::full({1}, 1.), true);
-        auto result = v + 10;
-        std::cout << "Tensor value is " << result.tensor() << std::endl; // 11.000
-        return 0;
+        auto t = fl::full({3, 3}, 1.0);
+        return t.shape()[0] == 3 ? 0 : 1;
       }
     CPP
-    system ENV.cxx, "test.cpp", "-std=c++20", "-L#{lib}", "-o", "test"
-    assert_equal "{\"name\":\"tom\",\"age\":28}", shell_output("./test").chomp
+    system ENV.cxx, "test.cpp", "-std=c++20", "-I#{include}", "-L#{lib}", "-lflashlight", "-o", "test"
+    system "./test"
   end
 end

@@ -7,7 +7,7 @@ class Tetgen < Formula
 
   depends_on "cmake" => :build
 
-  # TODO: shared, cmake
+  # FAIL: shared, cmake
   def install
     args = %w[
       -DCMAKE_POLICY_VERSION_MINIMUM=3.5

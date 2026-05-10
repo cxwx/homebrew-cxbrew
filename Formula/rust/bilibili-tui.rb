@@ -12,6 +12,6 @@ class BilibiliTui < Formula
   end
 
   test do
-    # TODO:
+    # system bin/"bilibili-tui"
   end
 end

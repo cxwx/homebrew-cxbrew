@@ -3,12 +3,10 @@ class ReflectCpp < Formula
   homepage "https://github.com/getml/reflect-cpp"
   url "https://github.com/getml/reflect-cpp/archive/refs/tags/v0.24.0.tar.gz"
   sha256 "2185d45cca58f60bcdaca37a995c6f8e90c0105f312610333fed75f2efa6a996"
-  # sha256 "08b6406cbe4c6c14ff1a619fe93a94f92f6d9eb22213d93529ad975993945e45"
   head "https://github.com/getml/reflect-cpp.git", branch: "main"
 
   depends_on "cmake" => :build
   depends_on "make" => :build
-  # TODO: add support: from vcpkg
   depends_on "apache-arrow"
   depends_on "avro-c"
   depends_on "capnp"
