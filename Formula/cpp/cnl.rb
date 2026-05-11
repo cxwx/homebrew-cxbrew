@@ -1,8 +1,8 @@
 class Cnl < Formula
   desc "C++ library of fixed-precision numeric classes"
   homepage "https://github.com/johnmcfarlane/cnl"
-  url "https://github.com/johnmcfarlane/cnl/archive/refs/tags/v1.1.2.tar.gz"
-  sha256 "94c8915917029f3c43f1c7130106077e825ce5d4217bab3472ec3b0f84fe1233"
+  url "https://github.com/johnmcfarlane/cnl/archive/refs/tags/v1.1.7.tar.gz"
+  sha256 "41f9b94d71df315d7143866a06ec28b2481762ffce0ac42dfc8d53b27e7162c0"
   license "BSL-1.0"
   head "https://github.com/johnmcfarlane/cnl.git", branch: "main"
 
