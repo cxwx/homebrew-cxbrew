@@ -9,6 +9,10 @@ class Iminuit < Formula
 
   depends_on "numpy"
   depends_on "python@3.14"
+  depends_on "cmake" => :build
+  depends_on "ninja" => :build
+  depends_on "pybind11" => :build
+
 
   def python3
     which("python3.14")
