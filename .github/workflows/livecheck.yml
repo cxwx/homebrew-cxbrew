@@ -7,6 +7,8 @@ on:
 
 permissions:
   issues: write
+  contents: write
+  pull-requests: write
 
 jobs:
   livecheck:
@@ -35,7 +37,7 @@ jobs:
             --description "New version detected by brew livecheck" \
             --color "0075ca" 2>/dev/null || true
 
-      - name: Create issues for outdated formulas
+      - name: Create issues and PRs for outdated formulas
         if: steps.livecheck.outputs.count != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -53,7 +55,6 @@ jobs:
             fi
 
             # Skip if version format changed (e.g. semver → date-based)
-            # Semver: X.Y.Z  Date: YYYY_MM_DD or YYYYMMDD
             semver_re='^[0-9]+\.[0-9]+'
             date_re='^[0-9]{4}[_]?[0-9]{2}[_]?[0-9]{2}'
             if [[ "$current" =~ $semver_re && "$latest" =~ $date_re ]] || \
@@ -62,7 +63,8 @@ jobs:
               continue
             fi
 
-            upstream=$(brew info --json=v2 "cxwx/cxbrew/${name}" 2>/dev/null | jq -r '.formulae[0].homepage // empty')
+            info_json=$(brew info --json=v2 "cxwx/cxbrew/${name}" 2>/dev/null)
+            upstream=$(echo "$info_json" | jq -r '.formulae[0].homepage // empty')
 
             # Skip formulas without a GitHub upstream URL
             if [[ "$upstream" != *"github.com"* ]]; then
@@ -70,6 +72,10 @@ jobs:
               continue
             fi
 
+            # Extract owner/repo from homepage URL
+            gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/$||')
+
+            # --- Create issue ---
             title="⬆️ ${name}: ${current} → ${latest}"
 
             existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\"" --json number --jq 'length')
@@ -85,17 +91,35 @@ jobs:
           | **Formula** | \`${name}\` |
           | **Current** | ${current} |
           | **Latest** | ${latest} |
-          | **Upstream** | ${upstream:-N/A} |
+          | **Upstream** | ${upstream:-N/A} |"
 
-          ### Update
-
-          \`\`\`bash
-          brew bump-formula-pr --strict ${name} --url=<tarball_url> --sha256=<sha256>
-          \`\`\`"
-
-            gh issue create \
+            issue_number=$(gh issue create \
               --repo "$GITHUB_REPOSITORY" \
               --title "$title" \
               --body "$body" \
-              --label "livecheck"
+              --label "livecheck" \
+              --json number --jq '.number')
+            echo "Created issue #${issue_number} for ${name}"
+
+            # --- Create PR via brew bump-formula-pr ---
+            # Get tarball URL from latest GitHub release
+            tarball_url=$(gh api "repos/${gh_repo}/releases/latest" 2>/dev/null \
+              | jq -r '.tarball_url // empty')
+
+            if [[ -z "$tarball_url" ]]; then
+              # Fallback: construct archive URL from tag
+              tarball_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
+            fi
+
+            sha256=$(curl -sL "$tarball_url" | sha256sum | cut -d' ' -f1)
+
+            if [[ -z "$sha256" ]]; then
+              echo "Failed to get SHA256 for $name, skipping PR"
+              continue
+            fi
+
+            brew bump-formula-pr --no-audit --no-browse \
+              --message "Closes #${issue_number}" \
+              --url="$tarball_url" --sha256="$sha256" \
+              "cxwx/cxbrew/${name}" || echo "bump-formula-pr failed for $name"
           done
