@@ -6,6 +6,11 @@ class Cxxgraph < Formula
   license "MPL-2.0"
   head "https://github.com/ZigRazor/CXXGraph.git", branch: "master"
 
+  livecheck do
+    url :head
+    regex(/^v(\d+(?:\.\d+)+)$/i)
+  end
+
   depends_on "cmake" => :build
 
   def install
