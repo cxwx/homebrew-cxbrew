@@ -7,6 +7,7 @@ class ClangTidy < Formula
   sha256 "acc00c84a8f4d17d6c07697551fae9ed549f41dd54433d842f830e1e0d15e64e"
   license "Apache-2.0"
 
+  depends_on :macos
   depends_on "llvm"
   depends_on "python@3.14"
 
