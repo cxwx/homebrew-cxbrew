@@ -10,11 +10,19 @@ class PythonEmcee < Formula
   depends_on "numpy"
   depends_on "python@3.14"
 
+  def python3
+    which("python3.14")
+  end
+
   def install
-    virtualenv_install_with_resources
+    venv = virtualenv_create(libexec, python3)
+    venv.pip_install resources
+    venv.pip_install_and_link buildpath
+
+    (prefix/Language::Python.site_packages(python3)/"homebrew-emcee.pth").write venv.site_packages
   end
 
   test do
-    system libexec/"bin/python", "-c", "import emcee; print(emcee.__version__)"
+    system python3, "-c", "import emcee; print(emcee.__version__)"
   end
 end
