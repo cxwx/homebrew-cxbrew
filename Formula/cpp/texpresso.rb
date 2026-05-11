@@ -6,6 +6,7 @@ class Texpresso < Formula
   license "MIT"
 
   depends_on "pkg-config" => :build
+  depends_on "rust" => :build
   depends_on "mupdf"
   depends_on "sdl2"
 
