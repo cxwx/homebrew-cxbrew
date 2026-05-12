@@ -46,7 +46,10 @@ jobs:
         if: steps.livecheck.outputs.count != '0'
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
+          echo "GH_TOKEN prefix: ${GH_TOKEN:0:10}..."
+          gh auth status
           jq -c '.[]' livecheck.json | while read -r item; do
             name=$(echo "$item" | jq -r '.formula // .name')
             current=$(echo "$item" | jq -r '.version.current // "unknown"')
@@ -107,14 +110,8 @@ jobs:
             echo "Created issue #${issue_number} for ${name}"
 
             # --- Create PR via brew bump-formula-pr ---
-            # Get tarball URL from latest GitHub release
-            tarball_url=$(gh api "repos/${gh_repo}/releases/latest" 2>/dev/null \
-              | jq -r '.tarball_url // empty')
-
-            if [[ -z "$tarball_url" ]]; then
-              # Fallback: construct archive URL from tag
-              tarball_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
-            fi
+            # Construct archive URL (avoid API tarball_url which breaks livecheck)
+            tarball_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
 
             sha256=$(curl -sL "$tarball_url" | sha256sum | cut -d' ' -f1)
 
@@ -122,6 +119,10 @@ jobs:
               echo "Failed to get SHA256 for $name, skipping PR"
               continue
             fi
+
+            # Delete existing bump branch if present
+            branch_name="bump-${name}-${latest}"
+            git push origin --delete "$branch_name" 2>/dev/null || true
 
             brew bump-formula-pr --no-audit --no-browse --no-fork \
               --message "Closes #${issue_number}" \
