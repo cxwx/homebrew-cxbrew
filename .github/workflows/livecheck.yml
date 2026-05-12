@@ -93,12 +93,12 @@ jobs:
           | **Latest** | ${latest} |
           | **Upstream** | ${upstream:-N/A} |"
 
-            issue_number=$(gh issue create \
+            issue_url=$(gh issue create \
               --repo "$GITHUB_REPOSITORY" \
               --title "$title" \
               --body "$body" \
-              --label "livecheck" \
-              --json number --jq '.number')
+              --label "livecheck")
+            issue_number=$(basename "$issue_url")
             echo "Created issue #${issue_number} for ${name}"
 
             # --- Create PR via brew bump-formula-pr ---
