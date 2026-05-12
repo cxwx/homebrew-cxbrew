@@ -118,7 +118,7 @@ jobs:
               continue
             fi
 
-            brew bump-formula-pr --no-audit --no-browse \
+            brew bump-formula-pr --no-audit --no-browse --no-fork \
               --message "Closes #${issue_number}" \
               --url="$tarball_url" --sha256="$sha256" \
               "cxwx/cxbrew/${name}" || echo "bump-formula-pr failed for $name"
