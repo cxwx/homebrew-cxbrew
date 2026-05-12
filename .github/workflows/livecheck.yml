@@ -45,7 +45,7 @@ jobs:
       - name: Create issues and PRs for outdated formulas
         if: steps.livecheck.outputs.count != '0'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           jq -c '.[]' livecheck.json | while read -r item; do
             name=$(echo "$item" | jq -r '.formula // .name')
