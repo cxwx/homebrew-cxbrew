@@ -1,8 +1,8 @@
 class DeepseekTui < Formula
   desc "Terminal UI for DeepSeek AI"
   homepage "https://github.com/Hmbown/DeepSeek-TUI"
-  url "https://api.github.com/repos/Hmbown/DeepSeek-TUI/tarball/v0.8.30"
-  sha256 "fa8f770630190a22009081fe903746ad023d36a668eafe77790fac65b6944dd1"
+  url "https://github.com/Hmbown/DeepSeek-TUI/archive/refs/tags/v0.8.30.tar.gz"
+  sha256 "8c7ecba83ac9f3576fea24badcf77a03975ffa1b7617e680db0ff2a58f769da2"
   license "MIT"
   head "https://github.com/Hmbown/DeepSeek-TUI.git", branch: "main"
 
