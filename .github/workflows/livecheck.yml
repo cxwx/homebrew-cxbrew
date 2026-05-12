@@ -46,6 +46,7 @@ jobs:
         if: steps.livecheck.outputs.count != '0'
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           echo "GH_TOKEN prefix: ${GH_TOKEN:0:10}..."
           gh auth status
