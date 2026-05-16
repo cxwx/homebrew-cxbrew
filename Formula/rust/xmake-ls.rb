@@ -8,7 +8,7 @@ class XmakeLs < Formula
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args(path: "crates/xmake_ls")
+    system "cargo", "install", "--path", "crates/xmake_ls", "--locked", "--root", prefix.to_s
   end
 
   test do

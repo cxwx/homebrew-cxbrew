@@ -6,7 +6,7 @@ class Nufmt < Formula
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args
+    system "cargo", "install", "--path", ".", "--locked", "--root", prefix.to_s
   end
 
   test do

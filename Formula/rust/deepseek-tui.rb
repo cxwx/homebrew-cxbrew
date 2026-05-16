@@ -18,8 +18,8 @@ class DeepseekTui < Formula
   end
 
   def install
-    system "cargo", "install", *std_cargo_args(path: "crates/cli")
-    system "cargo", "install", *std_cargo_args(path: "crates/tui")
+    system "cargo", "install", "--path", "crates/cli", "--locked", "--root", prefix.to_s
+    system "cargo", "install", "--path", "crates/tui", "--locked", "--root", prefix.to_s
   end
 
   test do

@@ -6,7 +6,7 @@ class Kaon < Formula
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args(path: "yazi-cli")
+    system "cargo", "install", "--path", ".", "--locked", "--root", prefix.to_s(path: "yazi-cli")
 
   end
 
