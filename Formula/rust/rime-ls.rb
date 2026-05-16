@@ -10,7 +10,7 @@ class RimeLs < Formula
   depends_on "librime"
 
   def install
-    system "cargo", "install", *std_cargo_args
+    system "cargo", "install", "--path", ".", "--locked", "--root", prefix.to_s
   end
 
   test do
