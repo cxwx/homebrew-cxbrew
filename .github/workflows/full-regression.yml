@@ -44,12 +44,11 @@ jobs:
           pass=0
           fail=0
           while IFS= read -r name; do
-            formula_file=$(find Formula -name "${name}.rb" -print -quit)
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
               echo "::group::audit: $name"
             fi
 
-            if brew audit --online "$formula_file" 2>&1; then
+            if brew audit --online "cxwx/cxbrew/$name" 2>&1; then
               :
             else
               echo "AUDIT_FAIL: $name" >> /tmp/audit_failures.txt
@@ -64,26 +63,25 @@ jobs:
             echo "Progress: $pass/$total"
           done < all_formulas.txt
 
-          echo "=== Results: pass=$pass fail=$fail ===="
+          echo "=== Audit Results: pass=$pass fail=$fail ===="
           if [ -s /tmp/audit_failures.txt ]; then
             echo "Failed audits on ${{ matrix.os }}:"
             cat /tmp/audit_failures.txt
-            echo "${{ matrix.os }}" >> /tmp/all_failures.txt
           fi
 
-      - name: Fetch all formulas (dry-run)
+      - name: Install all formulas (dry-run)
         run: |
           pass=0
           fail=0
           while IFS= read -r name; do
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
-              echo "::group::fetch: $name"
+              echo "::group::install: $name"
             fi
 
-            if brew fetch --retry --deps-only "cxwx/cxbrew/$name" 2>&1; then
+            if brew install --dry-run "cxwx/cxbrew/$name" 2>&1; then
               :
             else
-              echo "FETCH_FAIL: $name" >> /tmp/fetch_failures.txt
+              echo "INSTALL_FAIL: $name" >> /tmp/install_failures.txt
               fail=$((fail + 1))
             fi
 
@@ -91,21 +89,28 @@ jobs:
               echo "::endgroup::"
             fi
             pass=$((pass + 1))
+            echo "Progress: $pass/$total"
           done < all_formulas.txt
 
-          echo "=== Results: pass=$pass fail=$fail ===="
-          if [ -s /tmp/fetch_failures.txt ]; then
-            echo "Failed fetches on ${{ matrix.os }}:"
-            cat /tmp/fetch_failures.txt
+          echo "=== Install Results: pass=$pass fail=$fail ===="
+          if [ -s /tmp/install_failures.txt ]; then
+            echo "Failed installs on ${{ matrix.os }}:"
+            cat /tmp/install_failures.txt
           fi
 
-      - name: Summary for workflow
+      - name: Summary
         if: always()
         run: |
           echo "=== Full Regression Summary (${{ matrix.os }}) ==="
-          if [ -s /tmp/all_failures.txt ]; then
-            echo "Platforms with failures:"
-            cat /tmp/all_failures.txt
+          if [ -s /tmp/audit_failures.txt ]; then
+            echo "Audit failures:"
+            cat /tmp/audit_failures.txt
           else
-            echo "All checks passed on ${{ matrix.os }}"
+            echo "All audits passed"
+          fi
+          if [ -s /tmp/install_failures.txt ]; then
+            echo "Install failures:"
+            cat /tmp/install_failures.txt
+          else
+            echo "All installs passed"
           fi
