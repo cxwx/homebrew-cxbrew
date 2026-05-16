@@ -2,6 +2,7 @@ class SofaC < Formula
   desc "Standards of Fundamental Astronomy"
   homepage "http://www.iausofa.org/"
   url "https://www.iausofa.org/2023_1011_C/sofa_c-20231011.tar.gz"
+  sha256 "656d2d0ed2f6f0565861ac5b2288de9feab0557ec9623f827815edb5bc4398a0"
 #  version "20210125_a"
 
   def install

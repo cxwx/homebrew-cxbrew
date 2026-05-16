@@ -2,7 +2,7 @@ class Clad < Formula
   desc "automatic differentiation for C/C++"
   homepage "https://github.com/vgvassilev/clad"
   url "https://github.com/vgvassilev/clad/archive/refs/tags/v2.3.tar.gz"
-  # sha256 "25bd5f0c3d24fc6c0e33b670e7c165d0cd0f6c9187c0dc5c3f8034eea1d6b276"
+  sha256 "02dc5cb57a7e397f407e9b7e9fce46c46c22ec824eee64e61c7b5080222d1c00"
   license "LGPL-3.0"
   head "https://github.com/vgvassilev/clad.git", branch: "master"
 

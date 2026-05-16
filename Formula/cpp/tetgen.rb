@@ -3,7 +3,7 @@ class Tetgen < Formula
   homepage "https://wias-berlin.de/software/index.jsp?id=TetGen&lang=1"
   url "https://wias-berlin.de/software/tetgen/1.5/src/tetgen1.6.0.tar.gz"
   sha256 "87b5e61ebd3a471fc4f2cdd7124c2b11dd6639f4feb1f941a5d2f5110d05ce39"
-  license "GNU Affero Public License v. 3.0"
+  license "AGPL-3.0-only"
 
   depends_on "cmake" => :build
 

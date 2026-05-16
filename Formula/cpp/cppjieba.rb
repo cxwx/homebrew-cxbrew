@@ -2,6 +2,7 @@ class Cppjieba < Formula
   desc "'结巴'中文分词的C++版本 "
   homepage "https://github.com/yanyiwu/cppjieba"
   url "https://github.com/yanyiwu/cppjieba/archive/refs/tags/v5.6.7.tar.gz"
+  sha256 "08322f7c2a06a88e52eb0fdbc286ec86a85abae5b2a33b1e1430dba50b71960e"
   license "MIT"
   head "https://github.com/yanyiwu/cppjieba.git", branch: "master"
 
