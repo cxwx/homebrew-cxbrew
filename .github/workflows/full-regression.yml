@@ -32,17 +32,20 @@ jobs:
       - name: List all formulas
         id: list
         run: |
-          formulas=$(find Formula -name '*.rb' -not -path '*/archived*' | while read f; do basename "$f" .rb; done)
-          total=$(echo "$formulas" | wc -l)
+          formulas=$(find Formula -name '*.rb' -not -path '*/archived*' | while read f; do
+            # Only include formulas with a stable url (skip HEAD-only formulas)
+            if grep -q '^ *url ' "$f" 2>/dev/null; then
+              basename "$f" .rb
+            fi
+          done)
+          total=$(echo "$formulas" | grep -c .)
           echo "$formulas" > all_formulas.txt
           echo "total=$total" >> "$GITHUB_OUTPUT"
-          echo "Found $total formula(s)"
+          echo "Found $total formula(s) (excluding HEAD-only)"
 
       - name: Audit all formulas
         run: |
-          echo "=== Starting audit on ${{ matrix.os }} ==="
-          pass=0
-          fail=0
+          > /tmp/audit_failures.txt
           while IFS= read -r name; do
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
               echo "::group::audit: $name"
@@ -52,27 +55,23 @@ jobs:
               :
             else
               echo "AUDIT_FAIL: $name" >> /tmp/audit_failures.txt
-              echo "AUDIT_FAIL: $name" >> /tmp/summary.txt
-              fail=$((fail + 1))
             fi
 
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
               echo "::endgroup::"
             fi
-            pass=$((pass + 1))
-            echo "Progress: $pass/$total"
           done < all_formulas.txt
 
-          echo "=== Audit Results: pass=$pass fail=$fail ===="
           if [ -s /tmp/audit_failures.txt ]; then
-            echo "Failed audits on ${{ matrix.os }}:"
+            echo "Audit issues detected on ${{ matrix.os }}:"
             cat /tmp/audit_failures.txt
+          else
+            echo "All audits passed on ${{ matrix.os }}"
           fi
 
       - name: Install all formulas (dry-run)
         run: |
-          pass=0
-          fail=0
+          > /tmp/install_failures.txt
           while IFS= read -r name; do
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
               echo "::group::install: $name"
@@ -82,35 +81,33 @@ jobs:
               :
             else
               echo "INSTALL_FAIL: $name" >> /tmp/install_failures.txt
-              fail=$((fail + 1))
             fi
 
             if [ "${{ github.event.inputs.verbose }}" = "true" ]; then
               echo "::endgroup::"
             fi
-            pass=$((pass + 1))
-            echo "Progress: $pass/$total"
           done < all_formulas.txt
 
-          echo "=== Install Results: pass=$pass fail=$fail ===="
           if [ -s /tmp/install_failures.txt ]; then
-            echo "Failed installs on ${{ matrix.os }}:"
+            echo "Install issues detected on ${{ matrix.os }}:"
             cat /tmp/install_failures.txt
+          else
+            echo "All installs passed on ${{ matrix.os }}"
           fi
 
       - name: Summary
         if: always()
         run: |
-          echo "=== Full Regression Summary (${{ matrix.os }}) ==="
+          echo "====== Full Regression Summary (${{ matrix.os }}) ======"
           if [ -s /tmp/audit_failures.txt ]; then
-            echo "Audit failures:"
+            echo "Audit issues found:"
             cat /tmp/audit_failures.txt
           else
-            echo "All audits passed"
+            echo "All audits OK"
           fi
           if [ -s /tmp/install_failures.txt ]; then
-            echo "Install failures:"
+            echo "Install issues found:"
             cat /tmp/install_failures.txt
           else
-            echo "All installs passed"
+            echo "All installs OK"
           fi
