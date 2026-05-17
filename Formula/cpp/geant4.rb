@@ -3,7 +3,7 @@ class Geant4 < Formula
   homepage "https://geant4.web.cern.ch"
   url "https://github.com/Geant4/geant4/archive/refs/tags/v11.4.1.tar.gz"
   sha256 "550111022a72241411ec236265f02eb564302c5e9e45961399be36774da24e6e"
-  head "https://github.com/Geant4/geant4.git"
+  head "https://github.com/Geant4/geant4.git", branch: "master"
 
   depends_on "cmake" => [:build, :test]
   depends_on "expat"

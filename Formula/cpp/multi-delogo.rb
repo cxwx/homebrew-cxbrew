@@ -4,7 +4,7 @@ class MultiDelogo < Formula
   url "https://github.com/wernerturing/multi-delogo/releases/download/v2.5.0/multi-delogo-2.5.0.tar.xz"
   sha256 "2fe97c4c17ad90bad27133b925df4aafebb8175167e3fee9a26d93148d538d87"
   license "GPL-3.0-or-later"
-  head "https://github.com/wernerturing/multi-delogo.git"
+  head "https://github.com/wernerturing/multi-delogo.git", branch: "master"
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
