@@ -1,8 +1,8 @@
 class ReflectCpp < Formula
   desc "C++20 lib for fast serialization deserialization validation using reflection"
   homepage "https://github.com/getml/reflect-cpp"
-  url "https://github.com/getml/reflect-cpp/archive/refs/tags/v0.24.0.tar.gz"
-  sha256 "2185d45cca58f60bcdaca37a995c6f8e90c0105f312610333fed75f2efa6a996"
+  url "https://github.com/getml/reflect-cpp/archive/refs/tags/v0.25.0.tar.gz"
+  sha256 "de74d3793fd3dde9105ebe0f40bffb28df7009d59e0714389e4d29fcb46a1a3f"
   head "https://github.com/getml/reflect-cpp.git", branch: "main"
 
   depends_on "cmake" => :build
