@@ -1,8 +1,8 @@
 class MihomoTui < Formula
   desc "A simple TUI dashboard for monitoring and managing Mihomo via its REST API"
   homepage "https://github.com/potoo0/mihomo-tui"
-  url "https://github.com/potoo0/mihomo-tui/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "35a40c9604a7a5638b822d1b48d631d3c933277d789e994bd622f44ce9de05ed"
+  url "https://github.com/potoo0/mihomo-tui/archive/refs/tags/v0.4.1.tar.gz"
+  sha256 "f7136a87f8578df695ecc7088d68b8af7472067c6a146734c607facbd0b8057b"
   license "MIT"
 
   depends_on "rust" => :build
