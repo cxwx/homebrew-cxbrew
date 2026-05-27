@@ -1,8 +1,8 @@
 class CodeWhale < Formula
   desc "Terminal UI for DeepSeek AI"
   homepage "https://github.com/Hmbown/CodeWhale"
-  url "https://github.com/Hmbown/CodeWhale/archive/refs/tags/v0.8.44.tar.gz"
-  sha256 "e63995e37bb7b2a6b9b27e7c7ea74fd54e69cbf8277f03f0611eb1732b260f2e"
+  url "https://github.com/Hmbown/CodeWhale/archive/refs/tags/v0.8.47.tar.gz"
+  sha256 "1506bcbc7badbb93057dc54d223116aa5e1906a8c9684c86ebe3caf9525bc79a"
   license "MIT"
   head "https://github.com/Hmbown/CodeWhale.git", branch: "main"
 
