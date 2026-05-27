@@ -1,0 +1,139 @@
+name: Link Check
+
+on:
+  schedule:
+    - cron: "37 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby
+
+      - name: Create link-check label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create link-check --repo "$GITHUB_REPOSITORY" \
+            --description "Broken download link detected" \
+            --color "d73a4a" 2>/dev/null || true
+
+      - name: Check formula links
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          broken=()
+          failed_urls=()
+
+          for rb in $(find Formula -name '*.rb'); do
+            name=$(basename "$rb" .rb)
+
+            # Extract url
+            url=$(ruby -e "
+              content = File.read('$rb')
+              if content =~ /url\s+[\"']([^\"']+)[\"']/
+                puts \$1
+              end
+            ")
+
+            # Extract head (git URL or HTTPS)
+            head_url=$(ruby -e "
+              content = File.read('$rb')
+              if content =~ /head\s+[\"']([^\"']+)[\"']/
+                puts \$1
+              end
+            ")
+
+            # Check stable url (do NOT follow redirects - detect renames/moves)
+            if [[ -n "$url" ]]; then
+              echo "Checking $name url: $url"
+              redirect_url=$(curl -sI -o /dev/null -w '%{redirect_url}' --max-time 30 "$url")
+              http_code=$(curl -sI -o /dev/null -w '%{http_code}' --max-time 30 "$url")
+              if [[ "$http_code" -ge 400 || "$http_code" -eq 0 ]]; then
+                echo "  BROKEN ($http_code)"
+                broken+=("$name")
+                failed_urls+=("url: $url (HTTP $http_code)")
+              elif [[ "$http_code" -ge 300 && "$http_code" -lt 400 ]]; then
+                echo "  REDIRECT ($http_code -> $redirect_url)"
+                broken+=("$name")
+                failed_urls+=("url: $url (HTTP $http_code -> $redirect_url)")
+              else
+                echo "  OK ($http_code)"
+              fi
+            fi
+
+            # Check head URL (git repo reachable)
+            if [[ -n "$head_url" ]]; then
+              echo "Checking $name head: $head_url"
+              if [[ "$head_url" == https://github.com/* ]]; then
+                # GitHub repo: use API to check existence
+                repo_path="${head_url#https://github.com/}"
+                repo_path="${repo_path%.git}"
+                http_code=$(curl -sI -o /dev/null -w '%{http_code}' --max-time 15 \
+                  -H "Accept: application/vnd.github+json" \
+                  "https://api.github.com/repos/${repo_path}")
+                if [[ "$http_code" -ge 300 || "$http_code" -eq 0 ]]; then
+                  echo "  HEAD BROKEN ($http_code)"
+                  broken+=("$name")
+                  failed_urls+=("head: $head_url (HTTP $http_code)")
+                else
+                  echo "  HEAD OK ($http_code)"
+                fi
+              else
+                # Non-GitHub: try git ls-remote
+                if ! git ls-remote --exit-code "$head_url" HEAD >/dev/null 2>&1; then
+                  echo "  HEAD BROKEN (unreachable)"
+                  broken+=("$name")
+                  failed_urls+=("head: $head_url (unreachable)")
+                else
+                  echo "  HEAD OK"
+                fi
+              fi
+            fi
+          done
+
+          # Output results
+          if [[ ${#broken[@]} -eq 0 ]]; then
+            echo "All links OK"
+            exit 0
+          fi
+
+          echo "Broken links found: ${broken[*]}"
+
+          # Build issue body
+          body="## Broken formula links detected
+
+          | Formula | Broken Link |
+          |---------|-------------|
+          "
+          for i in "${!broken[@]}"; do
+            body+="| \`${broken[$i]}\` | ${failed_urls[$i]} |
+          "
+          done
+
+          title="Broken links: ${broken[*]}"
+
+          # Check for existing open issue with same title prefix
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --search "\"Broken links:\"" --json number --jq 'length')
+          if [[ "$existing" != "0" ]]; then
+            echo "Open broken-links issue already exists, skipping"
+            exit 0
+          fi
+
+          gh issue create \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "$title" \
+            --body "$body" \
+            --label "link-check"
+
+          echo "Created issue for broken links"
