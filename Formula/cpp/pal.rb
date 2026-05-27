@@ -1,6 +1,6 @@
 class Pal < Formula
   homepage "https://github.com/IceCube-SPNO/pal"
-  # url "https://github.com/Starlink/pal/releases/download/v0.9.10/pal-0.9.10.tar.gz"
+  # TODO needtag github:Starlink/pal/issues/25
   # sha256 "191fde8c4f45d6807d4b011511344014966bb46e44029a4481d070cd5e7cc697"
   head "https://github.com/Starlink/pal.git", using: :git, branch: "master"
 
