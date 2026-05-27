@@ -53,51 +53,51 @@ jobs:
               end
             ")
 
-            # Check stable url (do NOT follow redirects - detect renames/moves)
-            if [[ -n "$url" ]]; then
+            # Check stable url (GitHub only - detect renames/moves)
+            if [[ -n "$url" && "$url" == https://github.com/* ]]; then
               echo "Checking $name url: $url"
-              redirect_url=$(curl -sI -o /dev/null -w '%{redirect_url}' --max-time 30 "$url")
               http_code=$(curl -sI -o /dev/null -w '%{http_code}' --max-time 30 "$url")
               if [[ "$http_code" -ge 400 || "$http_code" -eq 0 ]]; then
                 echo "  BROKEN ($http_code)"
                 broken+=("$name")
                 failed_urls+=("url: $url (HTTP $http_code)")
-              elif [[ "$http_code" -ge 300 && "$http_code" -lt 400 ]]; then
-                echo "  REDIRECT ($http_code -> $redirect_url)"
+              elif [[ "$http_code" -eq 301 ]]; then
+                redirect_url=$(curl -sI -o /dev/null -w '%{redirect_url}' --max-time 30 "$url")
+                echo "  RENAMED ($http_code -> $redirect_url)"
                 broken+=("$name")
-                failed_urls+=("url: $url (HTTP $http_code -> $redirect_url)")
+                failed_urls+=("url: $url (HTTP 301 -> $redirect_url)")
               else
                 echo "  OK ($http_code)"
               fi
             fi
 
-            # Check head URL (git repo reachable)
-            if [[ -n "$head_url" ]]; then
+            # Check head URL (GitHub only - detect renames)
+            if [[ -n "$head_url" && "$head_url" == https://github.com/* ]]; then
               echo "Checking $name head: $head_url"
-              if [[ "$head_url" == https://github.com/* ]]; then
-                # GitHub repo: use API to check existence
+                # GitHub repo: detect renames via API 301
                 repo_path="${head_url#https://github.com/}"
                 repo_path="${repo_path%.git}"
+                api_url="https://api.github.com/repos/${repo_path}"
+                # First request without -L to detect 301
                 http_code=$(curl -sI -o /dev/null -w '%{http_code}' --max-time 15 \
                   -H "Accept: application/vnd.github+json" \
-                  "https://api.github.com/repos/${repo_path}")
-                if [[ "$http_code" -ge 300 || "$http_code" -eq 0 ]]; then
+                  -H "Authorization: Bearer $GH_TOKEN" "$api_url")
+                if [[ "$http_code" -ge 400 || "$http_code" -eq 0 ]]; then
                   echo "  HEAD BROKEN ($http_code)"
                   broken+=("$name")
                   failed_urls+=("head: $head_url (HTTP $http_code)")
+                elif [[ "$http_code" -ge 300 && "$http_code" -lt 400 ]]; then
+                  # Follow redirect to get new repo name from JSON
+                  new_full_name=$(curl -sL --max-time 15 \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "Authorization: Bearer $GH_TOKEN" "$api_url" \
+                    | ruby -rjson -e 'puts JSON.parse(STDIN.read)["full_name"]' 2>/dev/null)
+                  echo "  HEAD RENAMED ($http_code -> $new_full_name)"
+                  broken+=("$name")
+                  failed_urls+=("head: $head_url (HTTP $http_code -> https://github.com/${new_full_name})")
                 else
                   echo "  HEAD OK ($http_code)"
                 fi
-              else
-                # Non-GitHub: try git ls-remote
-                if ! git ls-remote --exit-code "$head_url" HEAD >/dev/null 2>&1; then
-                  echo "  HEAD BROKEN (unreachable)"
-                  broken+=("$name")
-                  failed_urls+=("head: $head_url (unreachable)")
-                else
-                  echo "  HEAD OK"
-                fi
-              fi
             fi
           done
 
