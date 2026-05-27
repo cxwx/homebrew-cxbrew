@@ -63,9 +63,15 @@ jobs:
                 failed_urls+=("url: $url (HTTP $http_code)")
               elif [[ "$http_code" -eq 301 ]]; then
                 redirect_url=$(curl -sI -o /dev/null -w '%{redirect_url}' --max-time 30 "$url")
-                echo "  RENAMED ($http_code -> $redirect_url)"
-                broken+=("$name")
-                failed_urls+=("url: $url (HTTP 301 -> $redirect_url)")
+                # Ignore .git -> non-.git redirects (normal GitHub behavior)
+                url_no_git="${url%.git}"
+                if [[ "$redirect_url" == "$url_no_git" || "$redirect_url" == "$url_no_git/" ]]; then
+                  echo "  OK (301, .git suffix redirect)"
+                else
+                  echo "  RENAMED ($http_code -> $redirect_url)"
+                  broken+=("$name")
+                  failed_urls+=("url: $url (HTTP 301 -> $redirect_url)")
+                fi
               else
                 echo "  OK ($http_code)"
               fi
