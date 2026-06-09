@@ -39,6 +39,8 @@ jobs:
 
       - name: Install changed formulas
         if: steps.changed.outputs.formulas != ''
+        env:
+          HOMEBREW_NO_SANDBOX_LINUX: 1
         run: |
           for name in ${{ steps.changed.outputs.formulas }}; do
             echo "::group::brew install $name"
