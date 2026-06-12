@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# TODO(CX): still not working correctly
 
 class Neomacs < Formula
   desc "Modern Emacs rewritten in Rust with GPU acceleration"
@@ -41,8 +40,9 @@ class Neomacs < Formula
     if OS.mac?
       # macOS structure: neomacs, neomacs.pdump, lisp/, etc/ at root
       bin.install "neomacs"
+      # Install pdump to bin alongside the binary (required for standalone binary)
+      bin.install "neomacs.pdump"
       pkgshare.install "lisp", "etc"
-      pkgshare.install "neomacs.pdump"
     else
       # Linux structure: bin/, share/neomacs/
       bin.install "bin/neomacs", "bin/neomacs.pdump"
@@ -51,14 +51,10 @@ class Neomacs < Formula
   end
 
   def caveats
-    runtime_root = OS.mac? ? pkgshare : pkgshare/"neomacs"
     <<~EOS
-      Neomacs runtime files are installed to: #{runtime_root}
+      Neomacs is in active alpha development. Expect rough edges and breaking changes.
 
-      If neomacs fails to find runtime files, set:
-        export NEOMACS_RUNTIME_ROOT=#{runtime_root}
-
-      Alpha development: expect rough edges and breaking changes.
+      For more information: https://github.com/eval-exec/neomacs
     EOS
   end
 
