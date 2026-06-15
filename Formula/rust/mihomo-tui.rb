@@ -8,6 +8,9 @@ class MihomoTui < Formula
   depends_on "rust" => :build
 
   def install
+    ENV.append_to_rustflags "--cfg tokio_unstable"
+    ENV["VERGEN_GIT_DESCRIBE"] = "v#{version}"
+    ENV["VERGEN_BUILD_DATE"] = time.iso8601
     system "cargo", "install", "--path", ".", "--locked", "--root", prefix.to_s
   end
 
