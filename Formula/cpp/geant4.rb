@@ -6,7 +6,7 @@ class Geant4 < Formula
   head "https://github.com/Geant4/geant4.git", branch: "master"
 
   depends_on "cmake" => [:build, :test]
-  depends_on "expat"
+  # depends_on "expat"
   depends_on "freetype"
   depends_on "qt"
   depends_on "xerces-c"
