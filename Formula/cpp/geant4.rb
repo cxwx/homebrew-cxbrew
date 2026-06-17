@@ -1,12 +1,11 @@
 class Geant4 < Formula
   desc "Simulation toolkit for particle transport through matter"
   homepage "https://geant4.web.cern.ch"
-  url "https://github.com/Geant4/geant4/archive/refs/tags/v11.4.1.tar.gz"
-  sha256 "550111022a72241411ec236265f02eb564302c5e9e45961399be36774da24e6e"
+  url "https://github.com/Geant4/geant4/archive/refs/tags/v11.4.2.tar.gz"
+  sha256 "f381f461e31fdcfccf28a5e48b420d61ba66adbf55d266e3691277bab04eb270"
   head "https://github.com/Geant4/geant4.git", branch: "master"
 
   depends_on "cmake" => [:build, :test]
-  # depends_on "expat"
   depends_on "freetype"
   depends_on "qt"
   depends_on "xerces-c"
