@@ -21,6 +21,7 @@ brew install cxwx/cxbrew/<formula>
 For example:
 
 ```sh
+brew install cxwx/cxbrew/geant4
 brew install cxwx/cxbrew/highfive
 brew install cxwx/cxbrew/bilibili-tui
 brew install cxwx/cxbrew/rime-ls
