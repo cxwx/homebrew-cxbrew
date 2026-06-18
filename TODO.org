@@ -2,10 +2,12 @@
 - [ ] remove all cmake_minimum_required < 3.5
   - [ ] umesimd
   - [ ] xtensorfftw
+  - [ ] argh
 - [ ] submodule -> livecheck?
   - [ ] mathplot
 - [ ] remove head-only
   - [ ] pf
   - [ ] stltostp
   - [ ] pal
+  - [ ] gamera
 - [ ] crprora

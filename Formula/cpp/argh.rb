@@ -11,7 +11,7 @@ class Argh < Formula
   uses_from_macos "python" => :build
 
   def install
-    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
+    system "cmake", "-S", ".", "-B", "builddir", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
