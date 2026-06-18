@@ -1,15 +1,13 @@
-# BUG: version conflict catch2 2.9.2, url version 1.0.3
 class Pf < Formula
   desc ": a header only template library for fast particle filtering!"
   homepage "https://github.com/tbrown122387/pf/"
-  url "https://github.com/tbrown122387/pf/archive/refs/tags/v1.0.3.tar.gz"
-  sha256 "332aa9910e2cdbeebe73fc484f7278093abeccec2fe0a34f72b0fdcfc9c23ef3"
-  # url "https://github.com/tbrown122387/pf/archive/v1.0.3.tar.gz"
-  # sha256 "5f3d42a84152ab1b47cc601294bf42a90e1011bf80069cd01b7dc9b91b9154cf"
-  head "https://github.com/tbrown122387/pf.git", branch: "master"
+  # 仅 head:stable v1.0.3 的 CMakeLists 要求 Catch2 2.9.2,而 brew 的 catch2 已是 v3,
+  # 版本不兼容无法 configure;master 已升级到 Catch2 3,故用 head。
   license "MIT"
+  head "https://github.com/tbrown122387/pf.git", branch: "master"
 
   depends_on "cmake" => :build
+  depends_on "boost"
   depends_on "eigen@3"
   depends_on "catch2"
 
@@ -17,6 +15,13 @@ class Pf < Formula
     # ENV.deparallelize  # if your formula fails when building in parallel
     system "cmake", ".", *std_cmake_args
     system "make", "install" # if this fails, try separate make/make install steps
+  end
+
+  def caveats
+    <<~EOS
+      仅 head 版本:stable v1.0.3 要 Catch2 2.9.2,与 brew 的 catch2 v3 冲突,无法构建。
+      请用 `brew install --HEAD pf`。
+    EOS
   end
 
   test do

@@ -9,7 +9,8 @@ class Umesimd < Formula
   depends_on "cmake" => :build
 
   def install
-    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
+    # 上游 cmake_minimum_required < 3.5,新 CMake 移除了兼容,需放宽 policy 下限
+    system "cmake", "-S", ".", "-B", "builddir", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end

@@ -1,8 +1,7 @@
 class Stltostp < Formula
   desc "Convert stl files to STEP brep files"
   homepage "https://github.com/slugdev/stltostp"
-  url "https://github.com/slugdev/stltostp/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "bb812a2a3eff0483fe8dc8d105cc4fc673ec4fa42a7942fa60cd3447353a9a4b"
+  # 仅 head:stable v1.0.1 的 main.cpp 在新工具链下编译报错,上游 tag 未修,master 已修。
   license "BSD-4-Clause"
   head "https://github.com/slugdev/stltostp.git", branch: "master"
 
@@ -14,6 +13,13 @@ class Stltostp < Formula
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
+  end
+
+  def caveats
+    <<~EOS
+      仅 head 版本:stable v1.0.1 的代码在新编译器下报错,无法直接构建。
+      请用 `brew install --HEAD stltostp`。
+    EOS
   end
 
   # test do
