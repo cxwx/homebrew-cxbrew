@@ -1,14 +1,16 @@
 class Umesimd < Formula
   desc "Explicit vectorization library"
   homepage "https://github.com/edanor/umesimd"
-  # url "https://github.com/edanor/umesimd/archive/v0.8.1.tar.gz"
+  url "https://github.com/edanor/umesimd/archive/refs/tags/v0.8.1.tar.gz"
+  sha256 "78f457634ee593495083cf8eb6ec1cf7f274db5ff7210c37b3a954f1a712d357"
   head "https://github.com/edanor/umesimd.git", branch: "master"
   license "MIT"
 
   depends_on "cmake" => :build
 
   def install
-    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
+    # 上游 cmake_minimum_required < 3.5,新 CMake 移除了兼容,需放宽 policy 下限
+    system "cmake", "-S", ".", "-B", "builddir", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end

@@ -1,7 +1,8 @@
-# TODO: build failed 17->20
 class Flashlight < Formula
   desc "C++ standalone library for machine learning"
   homepage "https://github.com/flashlight/flashlight"
+  # BUG:上游自 v0.4.0(2021)后无新 release;v0.4.0 stable 与 main 在 macOS 26/Clang 19 下均
+  # 架构性不兼容(vector<fl::Index> 循环依赖),暂保持 head-only,待上游修复
   license "MIT"
   head "https://github.com/flashlight/flashlight.git", branch: "main"
 

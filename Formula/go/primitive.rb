@@ -1,9 +1,6 @@
 class Primitive < Formula
   desc "Reproducing images with geometric primitives"
   homepage "https://github.com/fogleman/primitive"
-  url "https://github.com/fogleman/primitive/archive/refs/heads/master.tar.gz"
-  version "0.0.1"
-  sha256 "63a749395b2297d48ff7aff19f7fd211b0cefffae72c1a4c90745023044f4679"
   license "MIT"
   head "https://github.com/fogleman/primitive.git", branch: "master"
 

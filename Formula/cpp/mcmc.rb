@@ -1,8 +1,6 @@
 class Mcmc < Formula
   desc "Lightweight C++ library of MCMC methods"
   homepage "https://github.com/kthohr/mcmc"
-  url "https://github.com/kthohr/mcmc.git"
-  version "0.0.1"
   head "https://github.com/kthohr/mcmc.git", branch: "master"
 
   depends_on "rsync" => :build

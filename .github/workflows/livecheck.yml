@@ -72,7 +72,8 @@ jobs:
             fi
 
             info_json=$(brew info --json=v2 "cxwx/cxbrew/${name}" 2>/dev/null)
-            upstream=$(echo "$info_json" | jq -r '.formulae[0].homepage // empty')
+            # 优先用 stable url(实际下载源),fallback homepage;homepage 常是文档站会漏掉 GitHub 镜像
+            upstream=$(echo "$info_json" | jq -r '.formulae[0].urls.stable.url // .formulae[0].homepage // empty')
 
             # Skip formulas without a GitHub upstream URL
             if [[ "$upstream" != *"github.com"* ]]; then
@@ -80,8 +81,8 @@ jobs:
               continue
             fi
 
-            # Extract owner/repo from homepage URL
-            gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/$||')
+            # Extract owner/repo from the URL (archive/refs/tags/... 或 .git 或裸 owner/repo)
+            gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/archive/.*||; s|\.git$||; s|/$||')
 
             # --- Create issue ---
             title="⬆️ ${name}: ${current} → ${latest}"

@@ -2,6 +2,8 @@
 class Libtap < Formula
   desc "https://github.com/zorgnax/libtap"
   homepage "https://github.com/zorgnax/libtap"
+  url "https://github.com/zorgnax/libtap/archive/refs/tags/0.1.0.tar.gz"
+  sha256 "eac69e0fb4ac0406c2b6173ffaf89f5411b9aa7d4de17fb07a95f86136653752"
   license "LGPL-3.0"
   head "https://github.com/zorgnax/libtap.git", branch: "master"
 
