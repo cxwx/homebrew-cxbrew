@@ -3,13 +3,16 @@ class Tqdm < Formula
 
   desc "Fast, extensible progress bar for Python"
   homepage "https://tqdm.github.io"
-  url "https://files.pythonhosted.org/packages/87/d7/0535a28b1f5f24f6612fb3ff1e89fb1a8d160fee0f976e0aa6803862134b/tqdm-4.68.3.tar.gz"
-  sha256 "00dfa48452b6b6cfae3dd9885636c23d3422d1ec97c66d96818cbd5e0821d482"
+  url "https://github.com/tqdm/tqdm/archive/refs/tags/v4.68.3.tar.gz"
+  sha256 "58e3453acfc407a51b68e565282831700b2a37bf6b2e33f79e5c40fd2f4f70e8"
   license "MIT"
 
   depends_on "python@3.14"
 
   def install
+    # tqdm 用 setuptools-scm 从 git tag 生成 version;GitHub archive 无 .git 会 build 失败,
+    # 故用 formula version 假装(等价于 PyPI sdist 里预写入的 version)。
+    ENV["SETUPTOOLS_SCM_PRETEND_VERSION"] = version
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install resources
     venv.pip_install_and_link buildpath
