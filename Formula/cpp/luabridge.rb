@@ -12,4 +12,8 @@ class Luabridge < Formula
     (include/"LuaBridge").install Dir["Source/LuaBridge/*.h"]
     (include/"LuaBridge/detail").install Dir["Source/LuaBridge/detail/*.h"]
   end
+
+  test do
+    assert_path_exists include/"LuaBridge/LuaBridge.h"
+  end
 end

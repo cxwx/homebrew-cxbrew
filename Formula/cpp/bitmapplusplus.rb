@@ -8,4 +8,8 @@ class Bitmapplusplus < Formula
   def install
     include.install "lib/include/BitmapPlusPlus.hpp"
   end
+
+  test do
+    assert_path_exists include/"BitmapPlusPlus.hpp"
+  end
 end

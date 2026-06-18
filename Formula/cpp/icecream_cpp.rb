@@ -14,4 +14,8 @@ class IcecreamCpp < Formula
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
+
+  test do
+    assert_path_exists include/"icecream.hpp"
+  end
 end

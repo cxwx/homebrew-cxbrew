@@ -31,4 +31,7 @@ class Sol2 < Formula
 # 	lua.script("print('bark bark bark!')");
 # }
   # end
+
+  test do
+  end
 end

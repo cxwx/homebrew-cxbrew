@@ -15,4 +15,8 @@ class Annoy < Formula
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
+
+  test do
+    assert_path_exists include/"annoy/annoylib.h"
+  end
 end

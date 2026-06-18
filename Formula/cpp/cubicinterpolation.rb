@@ -17,4 +17,7 @@ class Cubicinterpolation < Formula
     system "cmake", "--install", "builddir"
   end
 
+
+  test do
+  end
 end

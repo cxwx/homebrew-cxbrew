@@ -52,6 +52,5 @@ class ReflectCpp < Formula
     system "cmake", "--install", "builddir"
   end
   test do
-    echo "hello"
   end
 end

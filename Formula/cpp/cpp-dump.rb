@@ -18,4 +18,8 @@ class CppDump < Formula
     system "cmake", "--install", "builddir"
   end
 
+
+  test do
+    assert_path_exists include/"cpp-dump.hpp"
+  end
 end

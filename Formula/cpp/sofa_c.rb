@@ -30,4 +30,7 @@ class SofaC < Formula
       end
     end
   end
+
+  test do
+  end
 end

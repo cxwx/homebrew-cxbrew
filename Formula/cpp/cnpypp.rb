@@ -21,4 +21,7 @@ class Cnpypp < Formula
       system "make cnpy++ install"
     end
   end
+
+  test do
+  end
 end

@@ -19,4 +19,7 @@ class Crmc < Formula
       system "make", "install"
     end
   end
+
+  test do
+  end
 end

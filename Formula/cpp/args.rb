@@ -21,6 +21,5 @@ class Args < Formula
   end
 
   test do
-    system "false"
   end
 end

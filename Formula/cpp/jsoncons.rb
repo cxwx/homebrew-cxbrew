@@ -21,6 +21,5 @@ class Jsoncons < Formula
 
   # FAIL: test github:danielaparker/jsoncons/discussions/671
   test do
-    system "echo", "hello"
   end
 end

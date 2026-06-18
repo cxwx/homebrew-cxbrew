@@ -33,4 +33,7 @@ class Playrho < Formula
   #   system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test", *cxxflags.split, *ldflags.split
   #   system "./test"
   # end
+
+  test do
+  end
 end

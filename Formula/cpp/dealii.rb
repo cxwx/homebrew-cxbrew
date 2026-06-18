@@ -37,6 +37,5 @@ class Dealii < Formula
     system "cmake", "--install", "builddir"
   end
   test do
-    system "echo", "not finished"
   end
 end

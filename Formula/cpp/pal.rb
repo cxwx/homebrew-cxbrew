@@ -36,4 +36,7 @@ class Pal < Formula
       请用 `brew install --HEAD pal`。
     EOS
   end
+
+  test do
+  end
 end

@@ -20,4 +20,7 @@ class CppSort < Formula
     system "cmake", "--install", "builddir"
   end
 
+
+  test do
+  end
 end

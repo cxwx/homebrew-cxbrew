@@ -13,6 +13,5 @@ class Sudoku < Formula
     bin.install "bin/sudoku"
   end
   test do
-    system "echo", "not finished"
   end
 end

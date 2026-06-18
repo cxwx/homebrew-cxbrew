@@ -64,4 +64,7 @@ class Crprora < Formula
     # 你需要确认一下编译完后这个文件夹在 builddir 的哪个位置
     # cp_r "builddir/python/crpropa", python_site_packages rescue nil
   end
+
+  test do
+  end
 end

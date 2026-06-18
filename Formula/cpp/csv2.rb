@@ -17,4 +17,8 @@ class Csv2 < Formula
     system "cmake", "--install", "builddir"
   end
 
+
+  test do
+    assert_path_exists include/"csv2/reader.hpp"
+  end
 end

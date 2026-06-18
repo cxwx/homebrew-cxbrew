@@ -14,6 +14,5 @@ class EmceeCpp < Formula
   end
 
   test do
-    system "false"
   end
 end

@@ -8,4 +8,8 @@ class Enum < Formula
   def install
     include.install "enum.h"
   end
+
+  test do
+    assert_path_exists include/"enum.h"
+  end
 end

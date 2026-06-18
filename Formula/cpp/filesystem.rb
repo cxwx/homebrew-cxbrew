@@ -15,4 +15,8 @@ class Filesystem < Formula
     system "cmake", "--install", "builddir"
   end
 
+
+  test do
+    assert_path_exists include/"ghc/filesystem.hpp"
+  end
 end
