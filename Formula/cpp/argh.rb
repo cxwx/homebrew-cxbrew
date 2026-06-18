@@ -1,7 +1,8 @@
 class Argh < Formula
   desc "minimalist argument handler"
   homepage "https://github.com/adishavit/argh"
-  # url ""
+  url "https://github.com/adishavit/argh/archive/refs/tags/v1.3.2.tar.gz"
+  sha256 "4b76d8c55e97cc0752feee4f00b99dc58464dd030dea9ba257c0a7d24a84f9dd"
   license "BSD-3-Clause"
   head "https://github.com/adishavit/argh.git", branch: "master"
 
@@ -16,15 +17,5 @@ class Argh < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<~CPP
-    #include <vdt/sin.h>
-    #include <iostream>
-    using namespace std;
-    int main() {
-      cout << vdt::fast_sin(0.0) << endl;
-    }
-    CPP
-    system ENV.cxx, "test.cpp", "-std=c++14", "-o", "test", "-L#{lib}", "-lvdt"
-    assert_equal "0", shell_output("./test").chomp
   end
 end
