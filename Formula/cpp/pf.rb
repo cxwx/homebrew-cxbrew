@@ -2,6 +2,8 @@
 class Pf < Formula
   desc ": a header only template library for fast particle filtering!"
   homepage "https://github.com/tbrown122387/pf/"
+  url "https://github.com/tbrown122387/pf/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "332aa9910e2cdbeebe73fc484f7278093abeccec2fe0a34f72b0fdcfc9c23ef3"
   # url "https://github.com/tbrown122387/pf/archive/v1.0.3.tar.gz"
   # sha256 "5f3d42a84152ab1b47cc601294bf42a90e1011bf80069cd01b7dc9b91b9154cf"
   head "https://github.com/tbrown122387/pf.git", branch: "master"

@@ -2,6 +2,8 @@
 class Xtensorio < Formula
   desc "xtensor-io"
   homepage "https://github.com/xtensor-stack/xtensor-io"
+  url "https://github.com/xtensor-stack/xtensor-io/archive/refs/tags/0.13.0.tar.gz"
+  sha256 "470bedee082adb0ef25ef7b54f9cfd3684e27b8489c42cf7980e0d90c14d04da"
   head "https://github.com/xtensor-stack/xtensor-io.git", branch: "master"
 
   depends_on "cmake" => :build

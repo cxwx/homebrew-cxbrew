@@ -1,7 +1,8 @@
 class Umesimd < Formula
   desc "Explicit vectorization library"
   homepage "https://github.com/edanor/umesimd"
-  # url "https://github.com/edanor/umesimd/archive/v0.8.1.tar.gz"
+  url "https://github.com/edanor/umesimd/archive/refs/tags/v0.8.1.tar.gz"
+  sha256 "78f457634ee593495083cf8eb6ec1cf7f274db5ff7210c37b3a954f1a712d357"
   head "https://github.com/edanor/umesimd.git", branch: "master"
   license "MIT"
 

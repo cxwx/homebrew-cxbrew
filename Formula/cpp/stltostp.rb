@@ -1,8 +1,8 @@
 class Stltostp < Formula
   desc "Convert stl files to STEP brep files"
   homepage "https://github.com/slugdev/stltostp"
-  # url "https://github.com/louis-langholtz/PlayRho/archive/refs/tags/v1.1.2.tar.gz"
-  # sha256 "b8e61eace48607c545a495c742479fb58e7ea34b8dfe7f874a14b8414135cccc"
+  url "https://github.com/slugdev/stltostp/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "bb812a2a3eff0483fe8dc8d105cc4fc673ec4fa42a7942fa60cd3447353a9a4b"
   license "BSD-4-Clause"
   head "https://github.com/slugdev/stltostp.git", branch: "master"
 
