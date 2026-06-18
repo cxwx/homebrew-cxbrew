@@ -37,17 +37,19 @@ class Neomacs < Formula
   end
 
   def install
+    # pdump 是数据文件,不能进 bin/(brew audit 要求 bin 下都是可执行)。
+    # 而 standalone binary 运行时需与 pdump 同目录,故 binary+pdump 都放 libexec/,
+    # bin 仅放 symlink(binary 经 realpath 找到 libexec 下的 pdump)。
     if OS.mac?
       # macOS structure: neomacs, neomacs.pdump, lisp/, etc/ at root
-      bin.install "neomacs"
-      # Install pdump to bin alongside the binary (required for standalone binary)
-      bin.install "neomacs.pdump"
+      libexec.install "neomacs", "neomacs.pdump"
       pkgshare.install "lisp", "etc"
     else
       # Linux structure: bin/, share/neomacs/
-      bin.install "bin/neomacs", "bin/neomacs.pdump"
+      libexec.install "bin/neomacs", "bin/neomacs.pdump"
       pkgshare.install Dir["share/neomacs/*"]
     end
+    bin.install_symlink libexec/"neomacs"
   end
 
   def caveats
