@@ -75,14 +75,31 @@ jobs:
             # 优先用 stable url(实际下载源),fallback homepage;homepage 常是文档站会漏掉 GitHub 镜像
             upstream=$(echo "$info_json" | jq -r '.formulae[0].urls.stable.url // .formulae[0].homepage // empty')
 
-            # Skip formulas without a GitHub upstream URL
-            if [[ "$upstream" != *"github.com"* ]]; then
-              echo "Skipping $name: non-GitHub upstream ($upstream)"
+            # 按源类型决定 bump 用的 url+sha:PyPI 走 JSON API,GitHub 走 archive
+            bump_url=""
+            bump_sha=""
+            if [[ "$upstream" == *"files.pythonhosted.org"* ]]; then
+              # PyPI:从文件名提取包名,查对应版本 sdist 的 url+sha(避免硬编码 hash 前缀)
+              pkg=$(echo "$upstream" | sed -E 's#.*/##; s#-[0-9].*##; s/_/-/g')
+              # PyPI json 字符串字段可能含未转义控制字符,jq 严格模式会 parse 失败,用 python3 单行提取 sdist url+sha
+              pypi_line=$(curl -s "https://pypi.org/pypi/${pkg}/${latest}/json" | python3 -c 'import sys,json; d=json.load(sys.stdin); print(next((u["url"]+" "+u["digests"]["sha256"] for u in d["urls"] if u["packagetype"]=="sdist"),""))')
+              bump_url="${pypi_line% *}"
+              bump_sha="${pypi_line#* }"
+              echo "$name: PyPI package '$pkg'"
+            elif [[ "$upstream" == *"github.com"* ]]; then
+              # GitHub:archive url + curl 算 sha
+              gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/archive/.*||; s|\.git$||; s|/$||')
+              bump_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
+              bump_sha=$(curl -sL "$bump_url" | sha256sum | cut -d' ' -f1)
+            else
+              echo "Skipping $name: non-GitHub/non-PyPI upstream ($upstream)"
               continue
             fi
 
-            # Extract owner/repo from the URL (archive/refs/tags/... 或 .git 或裸 owner/repo)
-            gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/archive/.*||; s|\.git$||; s|/$||')
+            if [[ -z "$bump_url" || -z "$bump_sha" ]]; then
+              echo "Failed to get url/sha for $name (url=$bump_url), skipping PR"
+              continue
+            fi
 
             # --- Create issue ---
             title="⬆️ ${name}: ${current} → ${latest}"
@@ -111,22 +128,12 @@ jobs:
             echo "Created issue #${issue_number} for ${name}"
 
             # --- Create PR via brew bump-formula-pr ---
-            # Construct archive URL (avoid API tarball_url which breaks livecheck)
-            tarball_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
-
-            sha256=$(curl -sL "$tarball_url" | sha256sum | cut -d' ' -f1)
-
-            if [[ -z "$sha256" ]]; then
-              echo "Failed to get SHA256 for $name, skipping PR"
-              continue
-            fi
-
             # Delete existing bump branch if present
             branch_name="bump-${name}-${latest}"
             git push origin --delete "$branch_name" 2>/dev/null || true
 
             brew bump-formula-pr --no-audit --no-browse --no-fork \
               --message "Closes #${issue_number}" \
-              --url="$tarball_url" --sha256="$sha256" \
+              --url="$bump_url" --sha256="$bump_sha" \
               "cxwx/cxbrew/${name}" || echo "bump-formula-pr failed for $name"
           done
