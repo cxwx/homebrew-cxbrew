@@ -7,3 +7,5 @@
 - [ ] remove head-only
   - [ ] pf
   - [ ] stltostp
+  - [ ] pal
+- [ ] crprora
