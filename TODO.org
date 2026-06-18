@@ -11,3 +11,5 @@
   - [ ] pal
   - [ ] gamera
 - [ ] crprora
+- [ ] sofa
+  - [ ] livecheck
