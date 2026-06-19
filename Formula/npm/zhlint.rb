@@ -1,5 +1,5 @@
 class Zhlint < Formula
-  desc "A linting tool for Chinese language"
+  desc "Linting tool for Chinese language"
   homepage "https://github.com/zhlint-project/zhlint"
   url "https://registry.npmjs.org/zhlint/-/zhlint-0.8.2.tgz"
   sha256 "f96e28eec3b72840d0c1ef55a16639c5da04971dee11048dddbdeb86ec40c248"

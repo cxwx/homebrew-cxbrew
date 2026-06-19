@@ -10,13 +10,11 @@ class Pf < Formula
 
   depends_on "cmake" => :build
   depends_on "boost"
-  depends_on "eigen@3"
   depends_on "catch2"
+  depends_on "eigen@3"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     system "cmake", ".", *std_cmake_args
-    system "make", "install" # if this fails, try separate make/make install steps
   end
 
   def caveats

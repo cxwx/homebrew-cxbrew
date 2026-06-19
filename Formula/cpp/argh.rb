@@ -1,6 +1,6 @@
 # TODO(CX): github:adishavit/argh/pull/93
 class Argh < Formula
-  desc "minimalist argument handler"
+  desc "Minimalist argument handler"
   homepage "https://github.com/adishavit/argh"
   url "https://github.com/adishavit/argh/archive/refs/tags/v1.3.2.tar.gz"
   sha256 "4b76d8c55e97cc0752feee4f00b99dc58464dd030dea9ba257c0a7d24a84f9dd"

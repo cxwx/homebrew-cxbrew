@@ -1,4 +1,5 @@
 class Pal < Formula
+  desc "Starlink Positional Astronomy Library"
   homepage "https://github.com/IceCube-SPNO/pal"
   # stable v0.9.10 当前装不了:release tarball 不含 CMakeLists.txt(上游尚未为 cmake build 打新 tag,
   # 见 Starlink/pal#25)。保留 url 供 livecheck/CI workflow 跟踪新 release,日常装请用 head。
@@ -6,13 +7,10 @@ class Pal < Formula
   sha256 "dc7461cb03ac3a7ca2ab30c24deee7eb04b656f77d9c41d83f1a64ad3b4f733a"
   head "https://github.com/Starlink/pal.git", using: :git, branch: "master"
 
+  depends_on "cmake" => :build
   depends_on "erfa"
   # if RUBY_PLATFORM.match?(/darwin/)
-  #   depends_on "autoconf" => :build
-  #   depends_on "automake" => :build
-  #   depends_on "libtool"  => :build
   # end
-  depends_on "cmake" => :build
 
   # def install
   #   #    system "autoreconf", "--install", "--symlink", buildpath

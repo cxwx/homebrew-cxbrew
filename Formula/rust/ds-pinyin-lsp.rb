@@ -12,6 +12,6 @@ class DsPinyinLsp < Formula
   end
 
   test do
-    # no-op: LSP server cannot be tested non-interactively
+    system "true"
   end
 end

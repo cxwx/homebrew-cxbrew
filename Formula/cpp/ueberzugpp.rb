@@ -6,8 +6,8 @@ class Ueberzugpp < Formula
   homepage "https://github.com/jstkdng/ueberzugpp"
   url "https://github.com/jstkdng/ueberzugpp/archive/refs/tags/v2.9.10.tar.gz"
   sha256 "225b74ae3c71fd7d6dbd8b3a1740dacda95c40146a4fd00c792e4f18f200854d"
-  head "https://github.com/jstkdng/ueberzugpp.git"
   license "GPL-3.0-or-later"
+  head "https://github.com/jstkdng/ueberzugpp.git"
 
   depends_on "cli11" => :build
   depends_on "cmake" => :build
@@ -51,6 +51,6 @@ class Ueberzugpp < Formula
     secondary.close
     sleep(1)
 
-    assert_predicate testpath/"ueberzugpp-#{ENV["USER"]}.log", :exist?
+    assert_path_exists testpath/"ueberzugpp-#{ENV["USER"]}.log"
   end
 end

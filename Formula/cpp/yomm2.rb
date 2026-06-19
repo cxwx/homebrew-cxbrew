@@ -9,8 +9,7 @@ class Yomm2 < Formula
   depends_on "cmake" => :build
 
   def install
-    args = %w[
-    ]
+    args = %w[]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"

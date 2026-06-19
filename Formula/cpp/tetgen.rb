@@ -16,7 +16,6 @@ class Tetgen < Formula
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"
-    # system "cmake", "--install", "builddir"
     lib.install "builddir/libtet.a"
     bin.install "builddir/tetgen"
   end

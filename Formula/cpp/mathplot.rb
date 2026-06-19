@@ -12,9 +12,9 @@ class Mathplot < Formula
   depends_on "nlohmann-json"
 
   on_linux do
+    depends_on "libx11"
     depends_on "mesa"
     depends_on "mesa-glu"
-    depends_on "libx11"
   end
 
   def install
@@ -29,7 +29,7 @@ class Mathplot < Formula
       args << "-DOPENGL_opengl_LIBRARY=#{Formula["mesa"].opt_lib}/libGL.so"
       args << "-DOPENGL_glx_LIBRARY=#{Formula["mesa"].opt_lib}/libGL.so"
       args << "-DOPENGL_INCLUDE_DIR=#{Formula["mesa"].opt_include}"
-      
+
       # Sometimes GLVND still fails on Linuxbrew; forcing LEGACY often bypasses the libOpenGL.so requirement
       inreplace "CMakeLists.txt", /set\(OpenGL_GL_PREFERENCE .*\)/, 'set(OpenGL_GL_PREFERENCE "LEGACY")'
     end

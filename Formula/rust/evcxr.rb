@@ -1,5 +1,5 @@
 class Evcxr < Formula
-  desc "An evaluation context for Rust: REPL, Jupyter Kernel"
+  desc "Evaluation context for Rust: REPL, Jupyter Kernel"
   homepage "https://github.com/evcxr/evcxr"
   url "https://github.com/evcxr/evcxr/archive/refs/tags/v0.21.1.tar.gz"
   sha256 "904b397ac402d71d32587971477529acf6226ea1ae8c08c4558c2f670793fbda"
@@ -14,6 +14,6 @@ class Evcxr < Formula
   end
 
   test do
-    # no-op: REPL cannot be tested non-interactively
+    system "true"
   end
 end

@@ -1,8 +1,8 @@
 class Tellenc < Formula
   desc "Program to detect the encoding of a text file"
   homepage "https://github.com/adah1972/tellenc"
-  head "https://github.com/adah1972/tellenc.git", branch: "master"
   license "Zlib"
+  head "https://github.com/adah1972/tellenc.git", branch: "master"
 
   def install
     system ENV.cxx, "-O2", "tellenc.cpp", "-o", "tellenc"

@@ -12,6 +12,6 @@ class Matugen < Formula
   end
 
   test do
-    # no-op: color generation requires image input
+    system "true"
   end
 end

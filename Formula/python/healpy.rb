@@ -10,9 +10,9 @@ class Healpy < Formula
   depends_on "cmake" => :build
   depends_on "cython" => :build
   depends_on "numpy" => :build
-  depends_on "healpix"
-  depends_on "cfitsio"
   depends_on "astropy"
+  depends_on "cfitsio"
+  depends_on "healpix"
   depends_on "numpy"
   depends_on "python@3.14"
 

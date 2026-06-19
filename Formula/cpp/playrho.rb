@@ -1,5 +1,5 @@
 class Playrho < Formula
-  desc "interactive physics engine & library"
+  desc "Interactive physics engine & library"
   homepage "https://github.com/louis-langholtz/PlayRho"
   url "https://github.com/louis-langholtz/PlayRho/archive/refs/tags/v1.1.2.tar.gz"
   sha256 "b8e61eace48607c545a495c742479fb58e7ea34b8dfe7f874a14b8414135cccc"

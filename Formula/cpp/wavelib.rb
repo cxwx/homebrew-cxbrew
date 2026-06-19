@@ -12,9 +12,8 @@ class Wavelib < Formula
       -DBUILD_SHARED_LIBS=ON
     ]
 
-    system "cmake", "-S" ,".", "-B", "builddir", *args
+    system "cmake", "-S", ".", "-B", "builddir", *args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
-
 end

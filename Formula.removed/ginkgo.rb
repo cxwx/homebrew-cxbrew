@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ginkgo < Formula
   desc "Modern Testing Framework for Go"
   homepage "https://onsi.github.io/ginkgo/"

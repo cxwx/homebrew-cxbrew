@@ -12,7 +12,7 @@ class Vdt < Formula
 
   def install
     system "cmake", "-S", ".", "-B", "builddir",
-      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",  # github:dpiparo/vdt/issues/21
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5", # github:dpiparo/vdt/issues/21
       "-DSSE=OFF",
       *std_cmake_args
     system "cmake", "--build", "builddir"
@@ -21,12 +21,12 @@ class Vdt < Formula
 
   test do
     (testpath/"test.cpp").write <<~CPP
-    #include <vdt/sin.h>
-    #include <iostream>
-    using namespace std;
-    int main() {
-      cout << vdt::fast_sin(0.0) << endl;
-    }
+      #include <vdt/sin.h>
+      #include <iostream>
+      using namespace std;
+      int main() {
+        cout << vdt::fast_sin(0.0) << endl;
+      }
     CPP
     system ENV.cxx, "test.cpp", "-std=c++14", "-o", "test", "-L#{lib}", "-lvdt"
     assert_equal "0", shell_output("./test").chomp

@@ -12,7 +12,7 @@ class Mcmc < Formula
   def install
     if OS.mac?
       system "sed", "-i.bak", "s/-fopenmp/-Xpreprocessor -fopenmp -lomp/g", "configure"
-      system "mkdir", "-p", "#{prefix}/lib"
+      lib.mkpath
     end
     # system "export EIGEN_INCLUDE_PATH=/opt/homebrew/include/eigen3/"
     system "EIGEN_INCLUDE_PATH=/opt/homebrew/include/eigen3 ./configure -i #{prefix} -l eigen -p"
@@ -20,5 +20,4 @@ class Mcmc < Formula
     system "make"
     system "make", "install"
   end
-
 end

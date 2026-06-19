@@ -1,5 +1,5 @@
 class InifileCpp < Formula
-  desc "header-only and easy to use Ini file parser for C++"
+  desc "Header-only and easy to use Ini file parser for C++"
   homepage "https://github.com/Rookfighter/inifile-cpp"
   license "MIT"
   head "https://github.com/Rookfighter/inifile-cpp.git", branch: "main"

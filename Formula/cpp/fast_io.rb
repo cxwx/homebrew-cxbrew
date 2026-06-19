@@ -7,8 +7,7 @@ class FastIo < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args + %w[
-    ]
+    args = std_cmake_args + %w[]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"

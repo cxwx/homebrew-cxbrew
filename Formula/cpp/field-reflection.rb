@@ -17,8 +17,7 @@ class FieldReflection < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<~CPP
-    CPP
+    (testpath/"test.cpp").write ""
     system ENV.cxx, "test.cpp", "-std=c++11", "-o", "test"
     system "./test"
   end

@@ -1,5 +1,5 @@
 class Decoratorcpp < Formula
-  desc "A modern C++ decorator template implementation"
+  desc "Modern C++ decorator template implementation"
   homepage "https://github.com/caomengxuan666/DecoratorCPP"
   head "https://github.com/caomengxuan666/DecoratorCPP.git", branch: "master"
 

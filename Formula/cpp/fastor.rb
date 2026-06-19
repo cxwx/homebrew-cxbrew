@@ -13,9 +13,12 @@ class Fastor < Formula
     inreplace "Fastor/config/cpuid.h",
       "       : \"a\" (i), \"c\" (0));",
       "       : \"a\" (i), \"c\" (0));\n#else\n    regs[0] = regs[1] = regs[2] = regs[3] = 0;\n#endif"
+    rdtsc_replacement = "#if defined(__x86_64__) || defined(__i386__)\n    " \
+                        "__asm__ __volatile__ (\"rdtsc\" : \"=a\" (lo), \"=d\" (hi));\n" \
+                        "#else\n    lo = hi = 0;\n#endif"
     inreplace "Fastor/util/timeit.h",
       "    __asm__ __volatile__ (\"rdtsc\" : \"=a\" (lo), \"=d\" (hi));",
-      "#if defined(__x86_64__) || defined(__i386__)\n    __asm__ __volatile__ (\"rdtsc\" : \"=a\" (lo), \"=d\" (hi));\n#else\n    lo = hi = 0;\n#endif"
+      rdtsc_replacement
 
     (include/"Fastor").install Dir["Fastor/*"]
   end

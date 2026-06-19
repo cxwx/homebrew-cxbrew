@@ -8,7 +8,8 @@ class Sudoku < Formula
   conflicts_with "nbsdgames", because: "both install `sudoku`"
 
   def install
-    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}"
+    system "cmake", ".", "-B", "builddir", "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+"-DCMAKE_CXX_COMPILER=#{which(ENV.cxx)}"
     system "cmake", "--build", "builddir"
     bin.install "bin/sudoku"
   end

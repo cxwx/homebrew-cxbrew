@@ -18,18 +18,18 @@ class Fkyaml < Formula
 
   test do
     (testpath/"test.cpp").write <<~CPP
-      #include <iostream>
-      #include <string>
-      #include <fkYAML/node.hpp>
+            #include <iostream>
+            #include <string>
+            #include <fkYAML/node.hpp>
 
-      int main() {
-        std::string yaml = R"(
-project: fkYAML
-        )";
-        auto node = fkyaml::node::deserialize(yaml);
-        node["maintainer"] = "fktn-k";
-        std::cout << node;
-      }
+            int main() {
+              std::string yaml = R"(
+      project: fkYAML
+              )";
+              auto node = fkyaml::node::deserialize(yaml);
+              node["maintainer"] = "fktn-k";
+              std::cout << node;
+            }
     CPP
     system ENV.cxx, "test.cpp", "-std=c++14", "-o", "test"
     system "./test"

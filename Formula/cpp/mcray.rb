@@ -11,10 +11,10 @@ class Mcray < Formula
   end
 
   depends_on "cmake" => :build
-  depends_on "gsl"
   depends_on "boost"
-  depends_on "libomp"
-  depends_on "gcc" # gfortran,编译 SOPHIA(Fortran)子库
+  depends_on "gcc"
+  depends_on "gsl"
+  depends_on "libomp" # gfortran,编译 SOPHIA(Fortran)子库
 
   def install
     # C/C++ 用 clang(macOS 默认):必须和 brew boost(clang/libc++ 编译)ABI 一致,
@@ -29,7 +29,7 @@ class Mcray < Formula
       # 1) -Wl,--as-needed 是 GNU ld flag,macOS ld64 不支持
       s.gsub!(/ ?-Wl,--as-needed/, "")
       # 2) boost_system 在新版 Boost(>=1.69)是 header-only,无 lib,FIND_LIBRARY 会 NOTFOUND
-      s.gsub!(/FIND_LIBRARY\(BOOST_SYS_LIBRARY boost_system\)/, 'set(BOOST_SYS_LIBRARY "")')
+      s.gsub!("FIND_LIBRARY(BOOST_SYS_LIBRARY boost_system)", 'set(BOOST_SYS_LIBRARY "")')
       # 3) Apple clang 不支持 -fopenmp(需 -Xpreprocessor -fopenmp);只改 C/CXX 行,Fortran 行保留
       s.gsub!('"${CMAKE_C_FLAGS} -fopenmp"', '"${CMAKE_C_FLAGS} -Xpreprocessor -fopenmp"')
       s.gsub!('"${CMAKE_CXX_FLAGS} -fopenmp"', '"${CMAKE_CXX_FLAGS} -Xpreprocessor -fopenmp"')
@@ -60,6 +60,6 @@ class Mcray < Formula
 
   test do
     # CRbeam 无 --version;无参数会跑模拟。验证能启动(找到 tables + 打印线程数)
-    assert_match "Number of available threads", shell_output("#{bin}/CRbeam 2>&1", 0)
+    assert_match "Number of available threads", shell_output("#{bin}/CRbeam 2>&1")
   end
 end

@@ -1,5 +1,5 @@
 class Clad < Formula
-  desc "automatic differentiation for C/C++"
+  desc "Automatic differentiation for C/C++"
   homepage "https://github.com/vgvassilev/clad"
   url "https://github.com/vgvassilev/clad/archive/refs/tags/v2.3.tar.gz"
   sha256 "02dc5cb57a7e397f407e9b7e9fce46c46c22ec824eee64e61c7b5080222d1c00"
@@ -8,7 +8,7 @@ class Clad < Formula
 
   depends_on "cmake" => :build
   depends_on "kokkos"
-  depends_on "llvm@21"  # TODO: upgrade
+  depends_on "llvm@21" # TODO: upgrade
 
   def install
     args = %w[

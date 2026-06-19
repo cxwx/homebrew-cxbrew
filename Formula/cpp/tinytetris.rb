@@ -6,7 +6,7 @@ class Tinytetris < Formula
   depends_on "ncurses"
 
   def install
-    system "g++", "tinytetris.cpp", "-lncurses", "-o", "tinytetris"
+    system ENV.cxx, "tinytetris.cpp", "-lncurses", "-o", "tinytetris"
     bin.install "tinytetris"
   end
 end

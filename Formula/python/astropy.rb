@@ -7,11 +7,11 @@ class Astropy < Formula
   sha256 "7f4de5db41f26f140433eddd78458abfc1c19b8037f9f8a89c33853cfba1fdc3"
   license "BSD-3-Clause"
 
-  depends_on "cmake" => :build
-  depends_on "ninja" => :build
-  depends_on "cython" => :build
-  depends_on "numpy" => :build
   depends_on "cfitsio" => :build
+  depends_on "cmake" => :build
+  depends_on "cython" => :build
+  depends_on "ninja" => :build
+  depends_on "numpy" => :build
   depends_on "erfa"
   depends_on "numpy"
   depends_on "python@3.14"

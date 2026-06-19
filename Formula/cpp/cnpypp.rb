@@ -9,7 +9,6 @@ class Cnpypp < Formula
   depends_on "boost"
   depends_on "range-v3"
 
-
   def install
     mkdir "corsika-build" do
       args = std_cmake_args + %w[
@@ -18,7 +17,7 @@ class Cnpypp < Formula
       ]
 
       system "cmake", *args
-      system "make cnpy++ install"
+      system "make", "cnpy++", "install"
     end
   end
 
