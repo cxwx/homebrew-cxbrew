@@ -1,8 +1,8 @@
 # harper:ignore
-* To-dos [0/1]
-- [ ] remove all cmake_minimum_required < 3.5
+* To-dos [1/6]
+- [-] remove all cmake_minimum_required < 3.5
   - [ ] umesimd
-  - [ ] xtensorfftw
+  - [X] xtensorfftw
   - [ ] argh
 - [ ] submodule -> livecheck?
   - [ ] mathplot
@@ -14,5 +14,6 @@
 - [ ] crprora
 - [ ] sofa
   - [ ] livecheck
-- [ ] test
-  - [ ] all module
+- [X] test
+  - [X] all module
+  - [ ] some system true

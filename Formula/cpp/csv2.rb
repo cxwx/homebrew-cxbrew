@@ -9,14 +9,10 @@ class Csv2 < Formula
   depends_on "cmake" => :build
 
   def install
-    args = std_cmake_args + %w[
-    ]
-
-    system "cmake", "-S" ,".", "-B", "builddir", *args
+    system "cmake", "-S", ".", "-B", "builddir", *std_cmake_args
     system "cmake", "--build", "builddir"
     system "cmake", "--install", "builddir"
   end
-
 
   test do
     assert_path_exists include/"csv2/reader.hpp"
