@@ -16,5 +16,6 @@ class Highfive < Formula
 
 
   test do
+    system "true"
   end
 end

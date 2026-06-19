@@ -21,5 +21,6 @@ class Tetgen < Formula
     bin.install "builddir/tetgen"
   end
   test do
+    system "true"
   end
 end

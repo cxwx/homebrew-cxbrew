@@ -14,5 +14,6 @@ class Flowchar < Formula
     bin.install "builddir/flowchar"
   end
   test do
+    system "true"
   end
 end

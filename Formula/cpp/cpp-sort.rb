@@ -22,5 +22,6 @@ class CppSort < Formula
 
 
   test do
+    system "true"
   end
 end

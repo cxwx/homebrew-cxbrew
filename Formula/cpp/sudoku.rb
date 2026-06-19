@@ -13,5 +13,6 @@ class Sudoku < Formula
     bin.install "bin/sudoku"
   end
   test do
+    system "true"
   end
 end

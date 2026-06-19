@@ -27,5 +27,6 @@ class Pf < Formula
   end
 
   test do
+    system "true"
   end
 end

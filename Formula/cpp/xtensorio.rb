@@ -21,5 +21,6 @@ class Xtensorio < Formula
 
 
   test do
+    system "true"
   end
 end

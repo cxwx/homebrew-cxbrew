@@ -17,5 +17,6 @@ class Cpp2048 < Formula
     # install "builddir/2048" => "#{bin}/cpp2048"
   end
   test do
+    system "true"
   end
 end

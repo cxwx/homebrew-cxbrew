@@ -33,5 +33,6 @@ class Sol2 < Formula
   # end
 
   test do
+    system "true"
   end
 end

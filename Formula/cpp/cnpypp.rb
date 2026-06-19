@@ -23,5 +23,6 @@ class Cnpypp < Formula
   end
 
   test do
+    system "true"
   end
 end

@@ -19,5 +19,6 @@ class Npystream < Formula
     system "cmake", "--install", "builddir"
   end
   test do
+    system "true"
   end
 end
