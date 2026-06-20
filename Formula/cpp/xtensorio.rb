@@ -2,8 +2,8 @@
 class Xtensorio < Formula
   desc "C++ library for reading/writing xtensor data formats"
   homepage "https://github.com/xtensor-stack/xtensor-io"
-  url "https://github.com/xtensor-stack/xtensor-io/archive/refs/tags/0.13.0.tar.gz"
-  sha256 "470bedee082adb0ef25ef7b54f9cfd3684e27b8489c42cf7980e0d90c14d04da"
+  url "https://github.com/xtensor-stack/xtensor-io/archive/refs/tags/v0.14.0.tar.gz"
+  sha256 "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed"
   head "https://github.com/xtensor-stack/xtensor-io.git", branch: "master"
 
   depends_on "cmake" => :build
