@@ -87,9 +87,12 @@ jobs:
               bump_sha="${pypi_line#* }"
               echo "$name: PyPI package '$pkg'"
             elif [[ "$upstream" == *"github.com"* ]]; then
-              # GitHub:archive url + curl 算 sha
+              # GitHub:查实际 tag 名(支持 v 前缀或无,xtensor 系列等用无 v),避免硬编码 v 导致 404
               gh_repo=$(echo "$upstream" | sed -E 's|https?://github.com/||; s|/archive/.*||; s|\.git$||; s|/$||')
-              bump_url="https://github.com/${gh_repo}/archive/refs/tags/v${latest}.tar.gz"
+              tag_name=$(gh api "repos/${gh_repo}/tags" --jq ".[].name" 2>/dev/null | grep -Ex "v?${latest}" | head -1)
+              [ -z "$tag_name" ] && tag_name="v${latest}"
+              bump_url="https://github.com/${gh_repo}/archive/refs/tags/${tag_name}.tar.gz"
+              echo "$name: GitHub tag '$tag_name'"
               bump_sha=$(curl -sL "$bump_url" | sha256sum | cut -d' ' -f1)
             else
               echo "Skipping $name: non-GitHub/non-PyPI upstream ($upstream)"
