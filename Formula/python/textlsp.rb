@@ -13,6 +13,12 @@ class Textlsp < Formula
     strategy :pypi
   end
 
+  # jiter and pydantic-core (pulled in transitively by openai) are Rust/maturin
+  # wheels whose Mach-O install name ships without -headerpad_max_install_names,
+  # so Homebrew cannot relocate them ("Updated load commands do not fit in the
+  # header"). Build just those two from source; see std_pip_args below.
+  depends_on "maturin" => :build
+  depends_on "rust" => :build
   depends_on "python@3.14"
 
   def python3
@@ -21,9 +27,11 @@ class Textlsp < Formula
 
   # textLSP pins its runtime dependencies (pygls, language-tool-python,
   # tree_sitter, openai, ollama, ...), so install them and use prebuilt wheels
-  # instead of the default dependency-free, source-only build.
+  # instead of the default dependency-free, source-only build. The one exception
+  # is jiter and pydantic-core, which are forced to build from source so their
+  # dylib IDs can be relocated (see the rust/maturin build deps above).
   def std_pip_args(prefix: false, build_isolation: true)
-    args = ["--verbose", "--ignore-installed", "--no-compile"]
+    args = ["--verbose", "--ignore-installed", "--no-compile", "--no-binary=jiter,pydantic-core"]
     args << "--no-build-isolation" unless build_isolation
     args
   end
