@@ -3,8 +3,8 @@
 class Neomacs < Formula
   desc "Modern Emacs rewritten in Rust with GPU acceleration"
   homepage "https://github.com/eval-exec/neomacs"
-  url "https://github.com/eval-exec/neomacs/releases/download/v0.0.7/neomacs-0.0.7-aarch64-apple-darwin.tar.gz"
-  sha256 "6551ee96f76c90f392e8d6eb3de561881c64aef13b9174e34b1d5d1b0ffc9d96"
+  url "https://github.com/eval-exec/neomacs/releases/download/v0.0.7/neomacs-0.0.7-x86_64-unknown-linux-gnu.tar.gz/archive/refs/tags/v0.0.9.tar.gz"
+  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   license "GPL-3.0-only"
   head "https://github.com/eval-exec/neomacs.git", branch: "main"
 
