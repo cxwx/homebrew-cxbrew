@@ -13,7 +13,13 @@ class Squawk < Formula
 
   depends_on "rust" => :build
 
+  # native-tls pulls in openssl-sys on Linux; macOS uses the system Security framework.
+  on_linux do
+    depends_on "openssl@3"
+  end
+
   def install
+    ENV["OPENSSL_DIR"] = formula_opt_prefix("openssl@3") if OS.linux?
     system "cargo", "install", "--path", "crates/squawk", "--locked", "--root", prefix.to_s
   end
 
