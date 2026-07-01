@@ -8,7 +8,7 @@ class Clad < Formula
 
   depends_on "cmake" => :build
   depends_on "kokkos"
-  depends_on "llvm@21" # TODO: upgrade
+  depends_on "llvm"
 
   def install
     args = %w[
