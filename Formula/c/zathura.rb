@@ -1,8 +1,8 @@
 class Zathura < Formula
   desc "Document viewer"
   homepage "https://pwmt.org/projects/zathura"
-  url "https://github.com/pwmt/zathura/archive/refs/tags/2026.05.20.tar.gz"
-  sha256 "505171977ecb6b5baca8b85ecae8e91112b3718068c42a26c1af58226ded3387"
+  url "https://github.com/pwmt/zathura/archive/refs/tags/2026.07.08.tar.gz"
+  sha256 "36e514bac5160254bfb90a380eaba8b36f98809060d0e02e4b6c1af41a142ce1"
   license "zlib"
 
   depends_on "meson" => :build
