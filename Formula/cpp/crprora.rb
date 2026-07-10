@@ -2,8 +2,8 @@
 class Crprora < Formula
   desc "Astrophysical framework for propagating ultra-high energy particles"
   homepage "https://crpropa.github.io/CRPropa3/"
-  url "https://github.com/CRPropa/CRPropa3/archive/refs/tags/3.2.2.tar.gz"
-  sha256 "4e2100237e82f6dda16ff5c2f2052c83c8dccabc135989243fd5569c1b01867f"
+  url "https://github.com/CRPropa/CRPropa3/archive/refs/tags/3.3.tar.gz"
+  sha256 "0e7475b9c7ecaa031fd1659199dbb29336d4caf29d1d4fb2a1292875d0ae0521"
   # url "https://github.com/CRPropa/CRPropa3/archive/refs/tags/3.2.1.tar.gz"
   # sha256 "b8e61eace48607c545a495c742479fb58e7ea34b8dfe7f874a14b8414135cccc"
   license "GPL-3.0-or-later"
