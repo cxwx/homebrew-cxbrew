@@ -1,8 +1,8 @@
 class GeoUtilsCpp < Formula
   desc "Header-only C++17 library for geographic calculations on a sphere"
   homepage "https://github.com/gistrec/geo-utils-cpp"
-  url "https://github.com/gistrec/geo-utils-cpp/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "be01e145e38341544ba283ebd7ca9896e9b488659167b72ce662960fe4d58bb4"
+  url "https://github.com/gistrec/geo-utils-cpp/archive/refs/tags/v1.2.2.tar.gz"
+  sha256 "2ecc7726c73d7565e7820feafd944fc3d1800f586ca79e8b8b7fdb67a7ae2274"
   license "Apache-2.0"
 
   depends_on "cmake" => :build
