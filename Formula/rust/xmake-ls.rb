@@ -1,8 +1,8 @@
 class XmakeLs < Formula
   desc "Language server for the XMake build system"
   homepage "https://github.com/CppCXY/xmake_ls"
-  url "https://github.com/CppCXY/xmake_ls/archive/refs/tags/0.3.0.tar.gz"
-  sha256 "1c056025bd56717dc7350823a6cb21b4513a2fbc9f65d9d7efa47cd654ded8b8"
+  url "https://github.com/CppCXY/xmake_ls/archive/refs/tags/0.5.0.tar.gz"
+  sha256 "f7b475cfcaa9e96ff225b173e309053c3edeecef87350253414624031449eab7"
   license "MIT"
 
   depends_on "rust" => :build
