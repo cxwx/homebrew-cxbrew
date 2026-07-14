@@ -1,8 +1,8 @@
 class BilibiliTui < Formula
   desc "Terminal user interface (TUI) client for Bilibili"
   homepage "https://maredevi.moe/projects/bilibili-tui/"
-  url "https://github.com/MareDevi/bilibili-tui/archive/refs/tags/v1.0.11.tar.gz"
-  sha256 "906a98ec336a25d5eb340d01583fede545eea31c9d32bd65c61f35c86b34c632"
+  url "https://github.com/MareDevi/bilibili-tui/archive/refs/tags/v1.0.12.tar.gz"
+  sha256 "1aa58265043f67e866221affb4c18ac198018a90c58c9bc71891fb796d1f4eb2"
   license "MIT"
   head "https://github.com/maredevi/bilibili-tui.git", branch: "main"
 
