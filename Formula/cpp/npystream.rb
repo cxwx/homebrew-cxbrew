@@ -1,8 +1,8 @@
 class Npystream < Formula
   desc "C++20 library for streaming data to .npy files"
   homepage "https://github.com/mreininghaus/npystream"
-  url "https://github.com/mreininghaus/npystream/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "622e741fcf17047476092941bbb0821c31f0b7a0ba8687e0be2d5f41287cd14a"
+  url "https://github.com/mreininghaus/npystream/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "22ec98e0781ce0edc7886e1449847ee6c29bc09e3c7b436f95f2909848ba34df"
   license "EUPL-1.2"
   head "https://github.com/mreininghaus/npystream.git", branch: "master"
 
