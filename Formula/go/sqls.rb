@@ -1,8 +1,8 @@
 class Sqls < Formula
   desc "SQL language server written in Go"
   homepage "https://github.com/sqls-server/sqls"
-  url "https://github.com/sqls-server/sqls/archive/refs/tags/v0.2.47.tar.gz"
-  sha256 "0f3fb535bd4ca0fbe4ad05cfbf07d31514ee25102293a965bfbde89e38168b9c"
+  url "https://github.com/sqls-server/sqls/archive/refs/tags/v0.2.48.tar.gz"
+  sha256 "dd8a27fc0ed440807969968ae4d6f9fa650c3bf6a827c1e69b70ec361b6657fc"
   license "MIT"
   head "https://github.com/sqls-server/sqls.git", branch: "master"
 
