@@ -9,7 +9,10 @@ class FieldReflection < Formula
   depends_on "cmake" => :build
 
   def install
-    args = %w[]
+    # Avoid needing GTest: tests build by default when this is the top-level project.
+    args = %w[
+      -DFIELD_RFL_BUILD_TEST=OFF
+    ]
 
     system "cmake", "-S", ".", "-B", "builddir", *args, *std_cmake_args
     system "cmake", "--build", "builddir"
