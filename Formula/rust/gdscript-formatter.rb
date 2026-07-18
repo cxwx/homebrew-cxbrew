@@ -1,7 +1,7 @@
 class GdscriptFormatter < Formula
   desc "Faster code formatter for GDScript and Godot 4"
   homepage "https://github.com/GDQuest/GDScript-formatter"
-  version "0.20.1"
+  version "0.21.0"
   license "MIT"
 
   # 上游 .gitattributes 用 `export-ignore` 让 GitHub source archive 只含 Godot
@@ -14,23 +14,23 @@ class GdscriptFormatter < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.20.1/gdscript-formatter-0.20.1-macos-aarch64.zip"
-      sha256 "29d2f449fa3a1492adc9fc5de3411315f775a8d368e425be41a1a0d1d5dd7009"
+      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.21.0/gdscript-formatter-0.21.0-macos-aarch64.zip"
+      sha256 "441bbf3de76ed8e74e7dd57515557300aa7f426ef1d1be7a7f6db25b2235edc1"
     end
     on_intel do
-      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.20.1/gdscript-formatter-0.20.1-macos-x86_64.zip"
-      sha256 "c242d26badf6ecf550a4e2f4b29d164fb84da710ed1ab1a5471e98d64d5bda05"
+      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.21.0/gdscript-formatter-0.21.0-macos-x86_64.zip"
+      sha256 "e663f789c6077d128386abb5c167d08824da9a95b65af267c0d931e280622137"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.20.1/gdscript-formatter-0.20.1-linux-aarch64.zip"
-      sha256 "a7f68b97277f340cbacbd3f3c92eaf350aaa3851411072573032bba29409ce33"
+      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.21.0/gdscript-formatter-0.21.0-linux-aarch64.zip"
+      sha256 "9252daf30c0687a448cd0b8c78ded618ba7af4e12c3d62d9cae3b174990e7b0b"
     end
     on_intel do
-      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.20.1/gdscript-formatter-0.20.1-linux-x86_64.zip"
-      sha256 "8cd2a9e8520bc4d0f80a51bca8b3cb4295f9f4f21f7b09aec95a058271729077"
+      url "https://github.com/GDQuest/GDScript-formatter/releases/download/0.21.0/gdscript-formatter-0.21.0-linux-x86_64.zip"
+      sha256 "dcf4aa93e3a20abdbfebb673b7d2fbdc3320f6a0e6e651ab46c85f326cb653d1"
     end
   end
 
