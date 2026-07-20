@@ -27,10 +27,6 @@ class Zathura < Formula
   def install
     ENV["CC"] = (formula_opt_bin("gcc")/"gcc-#{Formula["gcc"].version.major}").to_s if OS.mac?
 
-    # Upstream ships a stray </issue> where </p> is meant in the release notes.
-    inreplace "data/org.pwmt.zathura.metainfo.xml.in",
-              "test-wayland features</issue>",
-              "test-wayland features</p>"
     # gettext 1.0 hides the AppStream ITS rules from msgfmt, breaking the
     # metainfo translation merge; install the file untranslated instead.
     inreplace "data/meson.build" do |s|
