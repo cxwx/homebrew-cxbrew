@@ -1,8 +1,8 @@
 class Fkyaml < Formula
   desc "C++ header-only YAML library"
   homepage "https://github.com/fktn-k/fkYAML"
-  url "https://github.com/fktn-k/fkYAML/archive/refs/tags/v0.4.2.tar.gz"
-  sha256 "6b0c04d8f7505bb55db690c921e684fadbe719cfba351aeed2da087828775f3a"
+  url "https://github.com/fktn-k/fkYAML/archive/refs/tags/v0.4.3.tar.gz"
+  sha256 "f23790bbe64eb9a5f0c8e73d2890f7143b1ed8f5d22d5e42a032ede68b664d29"
   license "MIT"
   head "https://github.com/fktn-k/fkYAML.git", branch: "main"
 
