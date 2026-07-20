@@ -5,6 +5,7 @@ class Zathura < Formula
   sha256 "737911eaf3ff7047004e0cb68548365313f072c3522b89efa0e4b7a036730b80"
   license "zlib"
 
+  depends_on "gcc" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
@@ -18,14 +19,11 @@ class Zathura < Formula
   depends_on "sqlite"
   depends_on "xxhash"
 
-  on_macos do
-    # zathura jumps `goto` across g_autofree (__attribute__((cleanup))) variables,
-    # which Clang rejects; build with GCC instead.
-    depends_on "gcc" => :build
-  end
-
   def install
-    ENV["CC"] = (formula_opt_bin("gcc")/"gcc-#{Formula["gcc"].version.major}").to_s if OS.mac?
+    # Build with Homebrew GCC everywhere: Clang rejects zathura's `goto`
+    # across g_autofree (__attribute__((cleanup))) variables, and C23's
+    # <stdckdint.h> (ckd_mul, new in 2026.07.18) needs GCC >= 14.
+    ENV["CC"] = (formula_opt_bin("gcc")/"gcc-#{Formula["gcc"].version.major}").to_s
 
     # gettext 1.0 hides the AppStream ITS rules from msgfmt, breaking the
     # metainfo translation merge; install the file untranslated instead.
