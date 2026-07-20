@@ -1,10 +1,11 @@
 class Zathura < Formula
   desc "Document viewer"
   homepage "https://pwmt.org/projects/zathura"
-  url "https://github.com/pwmt/zathura/archive/refs/tags/2026.07.08.tar.gz"
-  sha256 "36e514bac5160254bfb90a380eaba8b36f98809060d0e02e4b6c1af41a142ce1"
+  url "https://github.com/pwmt/zathura/archive/refs/tags/2026.07.18.tar.gz"
+  sha256 "737911eaf3ff7047004e0cb68548365313f072c3522b89efa0e4b7a036730b80"
   license "zlib"
 
+  depends_on "gcc" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
@@ -18,19 +19,12 @@ class Zathura < Formula
   depends_on "sqlite"
   depends_on "xxhash"
 
-  on_macos do
-    # zathura jumps `goto` across g_autofree (__attribute__((cleanup))) variables,
-    # which Clang rejects; build with GCC instead.
-    depends_on "gcc" => :build
-  end
-
   def install
-    ENV["CC"] = (formula_opt_bin("gcc")/"gcc-#{Formula["gcc"].version.major}").to_s if OS.mac?
+    # Build with Homebrew GCC everywhere: Clang rejects zathura's `goto`
+    # across g_autofree (__attribute__((cleanup))) variables, and C23's
+    # <stdckdint.h> (ckd_mul, new in 2026.07.18) needs GCC >= 14.
+    ENV["CC"] = (formula_opt_bin("gcc")/"gcc-#{Formula["gcc"].version.major}").to_s
 
-    # Upstream ships a stray </issue> where </p> is meant in the release notes.
-    inreplace "data/org.pwmt.zathura.metainfo.xml.in",
-              "test-wayland features</issue>",
-              "test-wayland features</p>"
     # gettext 1.0 hides the AppStream ITS rules from msgfmt, breaking the
     # metainfo translation merge; install the file untranslated instead.
     inreplace "data/meson.build" do |s|
