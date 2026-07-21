@@ -2,8 +2,8 @@
 class Filesystem < Formula
   desc "For xtensor-io"
   homepage "https://github.com/gulrak/filesystem"
-  url "https://github.com/gulrak/filesystem/archive/refs/tags/v1.5.14.tar.gz"
-  sha256 "e783f672e49de7c5a237a0cea905ed51012da55c04fbacab397161976efc8472"
+  url "https://github.com/gulrak/filesystem/archive/refs/tags/v1.5.16.tar.gz"
+  sha256 "f4a098ed48e3b25b87b2be84cde58c884177af6b4ce27666ed2dbfe907b24418"
   head "https://github.com/gulrak/filesystem.git", branch: "master"
 
   depends_on "cmake" => :build
