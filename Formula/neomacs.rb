@@ -3,8 +3,7 @@
 class Neomacs < Formula
   desc "Modern Emacs rewritten in Rust with GPU acceleration"
   homepage "https://github.com/eval-exec/neomacs"
-  url "https://github.com/eval-exec/neomacs/releases/download/v0.0.12/neomacs-0.0.12-x86_64-unknown-linux-gnu.tar.gz/archive/refs/tags/v0.0.13.tar.gz"
-  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+  version "0.0.13"
   license "GPL-3.0-only"
   head "https://github.com/eval-exec/neomacs.git", branch: "main"
 
@@ -16,7 +15,7 @@ class Neomacs < Formula
   on_macos do
     on_arm do
       url "https://github.com/eval-exec/neomacs/releases/download/v#{version}/neomacs-#{version}-aarch64-apple-darwin.tar.gz"
-      sha256 "6551ee96f76c90f392e8d6eb3de561881c64aef13b9174e34b1d5d1b0ffc9d96"
+      sha256 "69f1729a34f4b7d3006c3b535a8beb9268256a43d1368fa15532ead62e6e17dd"
     end
 
     on_intel do
@@ -27,12 +26,12 @@ class Neomacs < Formula
   on_linux do
     on_intel do
       url "https://github.com/eval-exec/neomacs/releases/download/v#{version}/neomacs-#{version}-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "8e097fbfa99b068580f93b9b1fd6bfeb180440915601af6ca1e725bc946c50c3"
+      sha256 "3e369edb3cd89140fd21d661db5221e8051f9afca0aafe6893a5d070af693551"
     end
 
     on_arm do
       url "https://github.com/eval-exec/neomacs/releases/download/v#{version}/neomacs-#{version}-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "14659c9d6a38118b95a55afde85a0963c7234b483187f2772e0bb7caca4fa5d5"
+      sha256 "5fa65d9c9d95b3358c215a40f05b2fec36146ca004beba134cbb55620d064bdf"
     end
   end
 
