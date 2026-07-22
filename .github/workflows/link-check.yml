@@ -37,11 +37,14 @@ jobs:
           for rb in $(find Formula -name '*.rb'); do
             name=$(basename "$rb" .rb)
 
-            # Extract url
+            # Extract url (substitute #{version} so versioned release URLs resolve)
             url=$(ruby -e "
               content = File.read('$rb')
+              version = content[/^\s*version\s+[\"']([^\"']+)[\"']/, 1]
               if content =~ /url\s+[\"']([^\"']+)[\"']/
-                puts \$1
+                url = \$1
+                url = url.gsub('#{version}', version) if version
+                puts url
               end
             ")
 
