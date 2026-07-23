@@ -1,8 +1,8 @@
 class Args < Formula
   desc "Simple header-only C++ argument parser library"
   homepage "https://github.com/Taywee/args"
-  url "https://github.com/Taywee/args/archive/refs/tags/6.5.0.tar.gz"
-  sha256 "c2b05d582783b20160966c5a9136fbd704d9c910deb3bec38c8cae46138de53f"
+  url "https://github.com/Taywee/args/archive/refs/tags/6.6.0.tar.gz"
+  sha256 "9949b763e4b43ad3362d5da365e7f6118df296bc29c1d2dff415baac1e430c43"
   license "MIT"
   head "https://github.com/Taywee/args.git", branch: "master"
 
