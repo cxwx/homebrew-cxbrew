@@ -3,8 +3,8 @@ class Tqdm < Formula
 
   desc "Fast, extensible progress bar for Python"
   homepage "https://tqdm.github.io"
-  url "https://github.com/tqdm/tqdm/archive/refs/tags/v4.69.0.tar.gz"
-  sha256 "982df271921c3376388e9a3bc5c2e8b8c6c2230fe371648bf22558cd56d7c620"
+  url "https://github.com/tqdm/tqdm/archive/refs/tags/v4.70.0.tar.gz"
+  sha256 "61c8070ed8e6bee0ae59b0b5a4a392358ae718b58e50546c440a81f2ac79c5d8"
   license "MIT"
 
   depends_on "python@3.14"
