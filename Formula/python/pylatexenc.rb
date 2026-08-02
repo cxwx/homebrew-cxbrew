@@ -3,8 +3,8 @@ class Pylatexenc < Formula
 
   desc "LaTeX parsing and conversion tools"
   homepage "https://github.com/phfaist/pylatexenc"
-  url "https://files.pythonhosted.org/packages/5d/ab/34ec41718af73c00119d0351b7a2531d2ebddb51833a36448fc7b862be60/pylatexenc-2.10.tar.gz"
-  sha256 "3dd8fd84eb46dc30bee1e23eaab8d8fb5a7f507347b23e5f38ad9675c84f40d3"
+  url "https://files.pythonhosted.org/packages/52/45/ddb0fb04acf95fe9cf9c369814dbdd08651bd2c9ee455f142651e06f4488/pylatexenc-2.11.tar.gz"
+  sha256 "305a072a99ce736246049c9da05841b9d718c0f7ea8888f5f596cf15cb621053"
   license "MIT"
   head "https://github.com/phfaist/pylatexenc.git", branch: "main"
 
