@@ -1,8 +1,8 @@
 class Jsoncons < Formula
   desc "C++, header-only lib for constructing JSON-like data formats"
   homepage "https://github.com/danielaparker/jsoncons"
-  url "https://github.com/danielaparker/jsoncons/archive/refs/tags/v1.8.1.tar.gz"
-  sha256 "05657792d92f55be3e6494036c414e9d94237e3959fa46b073fdc712f4a9e56d"
+  url "https://github.com/danielaparker/jsoncons/archive/refs/tags/v1.9.0.tar.gz"
+  sha256 "f1017b36e4e034acd5c0f5f616bacf5d7a161d6d3a43ff9ddb73fd8dca4d3cd9"
   license "BSL-1.0"
   head "https://github.com/danielaparker/jsoncons.git", branch: "master"
 
