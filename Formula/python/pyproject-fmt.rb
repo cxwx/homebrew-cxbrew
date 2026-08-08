@@ -3,8 +3,8 @@ class PyprojectFmt < Formula
 
   desc "Format your pyproject.toml file"
   homepage "https://github.com/tox-dev/toml-fmt"
-  url "https://files.pythonhosted.org/packages/51/1c/a1609a8d22798ba62e47b1467900a90455d17f64a1b28823137b9d12b73d/pyproject_fmt-2.26.0.tar.gz"
-  sha256 "9d939973dcc2061373922c8f8824f5598d55afa517abe67ae861b3fc5623c0a5"
+  url "https://files.pythonhosted.org/packages/76/39/65b0c0342498ca594f1f678e9bb955bde32ba75ffabf8dff6c711d703109/pyproject_fmt-2.27.0.tar.gz"
+  sha256 "31f638e1d42a6689922d9c413d410a5f3f56e45c844830763321119e919cd45b"
   license "MIT"
   head "https://github.com/tox-dev/toml-fmt.git", branch: "main"
 
