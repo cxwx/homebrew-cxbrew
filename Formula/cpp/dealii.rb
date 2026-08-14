@@ -2,8 +2,8 @@
 class Dealii < Formula
   desc "Deal.II finite element library"
   homepage "https://www.dealii.org"
-  url "https://github.com/dealii/dealii/releases/download/v9.7.1/dealii-9.7.1.tar.gz"
-  sha256 "0f2096ef83db54fdcebe9f3d148fa713f63f1c3f567941b53bcb4a1a8ea7de43"
+  url "https://github.com/dealii/dealii/releases/download/v9.8.0/dealii-9.8.0.tar.gz"
+  sha256 "d8d66aac57baad145a752d3f11cf72cfa9457e3f99ae09e5c8d5c9259a83aee1"
   license "Apache-2.0"
   head "https://github.com/dealii/dealii.git", branch: "master"
 
