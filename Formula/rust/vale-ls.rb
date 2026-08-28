@@ -1,8 +1,8 @@
 class ValeLs < Formula
   desc "Language Server Protocol implementation for the Vale linter"
   homepage "https://github.com/vale-cli/vale-ls"
-  url "https://github.com/vale-cli/vale-ls/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "2ff774132bb022f12416e7bc12c37bd76e0e6b06473bd14fef40a0063fde6514"
+  url "https://github.com/vale-cli/vale-ls/archive/refs/tags/v0.5.1.tar.gz"
+  sha256 "8b54ac33155f6a2771fb900120a47c98137a72265d76f96d325a65837d510e38"
   license "MIT"
   head "https://github.com/vale-cli/vale-ls.git", branch: "main"
 
