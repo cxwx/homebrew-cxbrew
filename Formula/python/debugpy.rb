@@ -3,8 +3,8 @@ class Debugpy < Formula
 
   desc "Implementation of the Debug Adapter Protocol for Python"
   homepage "https://github.com/microsoft/debugpy"
-  url "https://files.pythonhosted.org/packages/f2/aa/12037145b7a56eaa5b29b41872f7a21b538e807e13f32c4d3c46e59be084/debugpy-1.8.21.tar.gz"
-  sha256 "a3c53278e84c94e11bd87c53970ec391d1a67396c8b22609fcac576520e611a6"
+  url "https://files.pythonhosted.org/packages/44/9d/3cb6693342acf96802dba89934a5b8da43c201d764ebd1f2c0514a3d42bd/debugpy-1.8.22.tar.gz"
+  sha256 "e489c7268e1c7b41e13b438d9c533d2a7af73fb59bf8cd30fead8286c1c39c4e"
   license "MIT"
   head "https://github.com/microsoft/debugpy.git", branch: "main"
 
