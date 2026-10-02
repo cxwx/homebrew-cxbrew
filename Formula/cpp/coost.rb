@@ -7,7 +7,7 @@ class Coost < Formula
   head "https://github.com/idealvin/coost.git", branch: "master"
 
   depends_on "cmake" => :build
-  depends_on "openssl@3"
+  depends_on "openssl"
 
   def install
     args = std_cmake_args + %w[
