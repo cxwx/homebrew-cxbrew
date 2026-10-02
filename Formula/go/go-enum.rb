@@ -2,8 +2,8 @@
 class GoEnum < Formula
   desc "Enum generator for go"
   homepage "https://github.com/abice/go-enum"
-  url "https://github.com/abice/go-enum/archive/refs/tags/v0.9.4.tar.gz"
-  sha256 "1c622c1f0b1fc982eed87a17598ed3e8fe84431566db6ee3d587096f8e6b3363"
+  url "https://github.com/abice/go-enum/archive/refs/tags/v0.9.5.tar.gz"
+  sha256 "70818e5c177493c335124abb5c102038bf31b0a77fb53e546979fd8131378939"
   license "MIT"
   head "https://github.com/abice/go-enum.git", branch: "master"
 
