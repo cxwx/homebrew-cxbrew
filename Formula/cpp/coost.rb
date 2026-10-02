@@ -2,8 +2,8 @@
 class Coost < Formula
   desc "Tiny boost library in C++11"
   homepage "https://github.com/idealvin/coost"
-  url "https://github.com/idealvin/coost/archive/refs/tags/v3.0.2.tar.gz"
-  sha256 "922ba21fb9a922c84f6a4b3bd568ed3b3463ccb1ae906cd7c49d90c7f0359b24"
+  url "https://github.com/idealvin/coost/archive/refs/tags/v4.0.1.tar.gz"
+  sha256 "4b8fad3283f5c5c12f6ca54da2da772c8e128cb471a56ac42729a6cbdddd0093"
   head "https://github.com/idealvin/coost.git", branch: "master"
 
   depends_on "cmake" => :build
