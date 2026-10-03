@@ -42,6 +42,9 @@ jobs:
         env:
           HOMEBREW_NO_SANDBOX_LINUX: 1
         run: |
+          # GitHub macOS runner 镜像预装并 link 了 openssl@1.1,占用
+          # /opt/homebrew/bin/openssl;升级 openssl@3 依赖时 brew link 会冲突失败
+          brew unlink openssl@1.1 &>/dev/null || true
           for name in ${{ steps.changed.outputs.formulas }}; do
             echo "::group::brew install $name"
             formula_file=$(find Formula -name "$name.rb" -print -quit)
