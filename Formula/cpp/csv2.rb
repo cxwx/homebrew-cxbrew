@@ -2,8 +2,8 @@
 class Csv2 < Formula
   desc "Fast CSV parser and writer for Modern C++"
   homepage "https://github.com/p-ranav/csv2"
-  url "https://github.com/p-ranav/csv2/archive/refs/tags/v0.1.tar.gz"
-  sha256 "e185d0378a95edb2ad0f2473970d8fe8579c87326640340d42bdf6327fd96791"
+  url "https://github.com/p-ranav/csv2/archive/refs/tags/v0.2.tar.gz"
+  sha256 "30e9ac5e83520475a274ec04494ad24d602a15bb75839610b51432e50a98048d"
   head "https://github.com/p-ranav/csv2.git", branch: "main"
 
   depends_on "cmake" => :build
