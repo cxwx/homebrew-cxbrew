@@ -1,8 +1,8 @@
 class Tetgen < Formula
   desc "Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator"
   homepage "https://wias-berlin.de/software/index.jsp?id=TetGen&lang=1"
-  url "https://github.com/TetGen/TetGen/archive/refs/tags/v1.6.0.tar.gz"
-  sha256 "524bddc38afc205db075b74b67da424b87e676cfd12eccf7915d2e945afcac10"
+  url "https://github.com/TetGen/TetGen/archive/refs/tags/v1.6.1.tar.gz"
+  sha256 "88398de3e0c16463f27686b73c7fc863df97360784466d22a24e0590886b16ec"
   license "AGPL-3.0-only"
 
   depends_on "cmake" => :build
