@@ -1,8 +1,8 @@
 class FieldReflection < Formula
   desc "Compile-time reflection for C++ to get field names and types from a struct/class"
   homepage "https://github.com/yosh-matsuda/field-reflection"
-  url "https://github.com/yosh-matsuda/field-reflection/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "330c5b17ea56dd9d5cda111e6ce26a9e99fb02634234f50640aea101e6a54b82"
+  url "https://github.com/yosh-matsuda/field-reflection/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "648ce059a2751eb1531013b7432e5f15176f65334888e4c0b316b7aeaec20681"
   license "MIT"
   head "https://github.com/yosh-matsuda/field-reflection.git", branch: "main"
 
