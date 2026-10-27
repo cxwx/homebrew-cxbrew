@@ -35,6 +35,7 @@ Formulae are organized by language under `Formula/`:
 - **`go/`** - Go developer tools
 - **`rust/`** - Rust tools
 - **`c/`** - C libraries
+- **`archived/`** - Unmaintained formulae (still installable, but not updated or auto-bumped)
 
 Browse the [`Formula/`](Formula/) directory for the full list. Formulae may be added or removed over time.
 

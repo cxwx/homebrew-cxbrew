@@ -25,7 +25,10 @@ jobs:
       - name: Run brew livecheck
         id: livecheck
         run: |
-          brew livecheck --tap cxwx/homebrew-cxbrew --json --newer-only 2>/dev/null > livecheck.json || true
+          # archived/ 不再维护,冻结版本,跳过避免自动开 bump issue/PR
+          formulas=$(find Formula -name '*.rb' -not -path 'Formula/archived/*' \
+            | sed -E 's|.*/|cxwx/cxbrew/|; s|\.rb$||' | tr '\n' ' ')
+          brew livecheck --json --newer-only $formulas 2>/dev/null > livecheck.json || true
           if ! jq empty livecheck.json 2>/dev/null; then
             echo '[]' > livecheck.json
           fi
