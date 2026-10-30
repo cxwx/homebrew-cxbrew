@@ -1,8 +1,8 @@
 class Airshipper < Formula
   desc "Official launcher for the Veloren voxel RPG"
   homepage "https://veloren.net/download"
-  url "https://github.com/veloren/airshipper/archive/refs/tags/v0.17.0.tar.gz"
-  sha256 "fb4628a4c1b5f8ab8b1a8523c30af3b3eff05c1611a995e8b265c547bbfddafe"
+  url "https://github.com/veloren/airshipper/archive/refs/tags/v0.18.0.tar.gz"
+  sha256 "de5ff02521de70dad5c878502f78163be26172ea08a4661cdd60827af0a68341"
   license "GPL-3.0-only"
   head "https://github.com/veloren/airshipper.git", branch: "master"
 
