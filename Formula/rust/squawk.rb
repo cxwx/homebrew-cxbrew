@@ -1,8 +1,8 @@
 class Squawk < Formula
   desc "Linter for Postgres migrations & SQL"
   homepage "https://github.com/sbdchd/squawk"
-  url "https://github.com/sbdchd/squawk/archive/refs/tags/v2.71.0.tar.gz"
-  sha256 "375082537f4cc9cd431dd8d0cb3801bc988f35d8b0ec172951f927bb64dc086d"
+  url "https://github.com/sbdchd/squawk/archive/refs/tags/v2.72.0.tar.gz"
+  sha256 "386e4a1b7c11273321aafba2b1597b40f5920edd43d8d9921d458c5513b7380b"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/sbdchd/squawk.git", branch: "master"
 
