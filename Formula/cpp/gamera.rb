@@ -1,8 +1,9 @@
 class Gamera < Formula
   desc "Spectral modelling of non-thermally emitting astrophysical sources"
-  homepage "https://github.com/cxwx/GAMERA"
+  # homepage "https://github.com/cxwx/GAMERA"
+  homepage "https://github.com/libgamera/GAMERA"
   license "LGPL-2.1-or-later"
-  head "https://github.com/cxwx/GAMERA.git", branch: "master"
+  head "https://github.com/libgamera/GAMERA.git", branch: "master"
 
   depends_on "cmake" => :build
   depends_on "gsl"
